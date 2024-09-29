@@ -1,10 +1,28 @@
 <script setup>
-  import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import Home from './components/Home.vue'
+import About from './components/About.vue'
+import NotFound from './components/NotFound.vue'
 
-  const message = ref('Hello world')
-  
+const routes = {
+  '/': Home,
+  '/about': About
+}
+
+const currentPath = ref(window.location.hash)
+
+window.addEventListener('hashchange', () => {
+  currentPath.value = window.location.hash
+})
+
+const currentView = computed(() => {
+  return routes[currentPath.value.slice(1) || '/'] || NotFound
+})
 </script>
 
 <template>
-  <p>message:{{ message }}</p>
+  <a href="#/">Home</a> |
+  <a href="#/about">About</a> 
+  <!-- <a href="#/non-existent-path">Broken Link</a> -->
+  <component :is="currentView" />
 </template>
