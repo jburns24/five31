@@ -21,7 +21,7 @@
 
 ---
 
-### [~] 2.0 Create User model with Mongoose schema and TypeScript types
+### [x] 2.0 Create User model with Mongoose schema and TypeScript types
 
 #### 2.0 Proof Artifact(s)
 
@@ -39,7 +39,7 @@
 
 ---
 
-### [ ] 3.0 Integrate user creation with NextAuth sign-in callback
+### [~] 3.0 Integrate user creation with NextAuth sign-in callback
 
 #### 3.0 Proof Artifact(s)
 
@@ -50,13 +50,13 @@
 
 #### 3.0 Tasks
 
-- [ ] 3.1 Read existing NextAuth configuration in `app/auth.ts`
-- [ ] 3.2 Import MongoDB connection and User model in auth configuration
-- [ ] 3.3 Implement signIn callback to check for existing user by Google OAuth ID
-- [ ] 3.4 Create new user record if user doesn't exist, using Google profile data
-- [ ] 3.5 Implement fail-secure behavior: return false if database operation fails
-- [ ] 3.6 Test user creation on first sign-in and verify MongoDB record
-- [ ] 3.7 Test duplicate prevention by signing in twice with same account
+- [x] 3.1 Read existing NextAuth configuration in `app/auth.ts`
+- [x] 3.2 Import MongoDB connection and User model in auth configuration
+- [x] 3.3 Implement signIn callback to check for existing user by Google OAuth ID
+- [x] 3.4 Create new user record if user doesn't exist, using Google profile data
+- [x] 3.5 Implement fail-secure behavior: return false if database operation fails
+- [x] 3.6 Test user creation on first sign-in and verify MongoDB record
+- [x] 3.7 Test duplicate prevention by signing in twice with same account
 
 ---
 
