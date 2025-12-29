@@ -21,7 +21,7 @@
 
 ---
 
-### [ ] 2.0 Create User model with Mongoose schema and TypeScript types
+### [~] 2.0 Create User model with Mongoose schema and TypeScript types
 
 #### 2.0 Proof Artifact(s)
 
@@ -31,11 +31,11 @@
 
 #### 2.0 Tasks
 
-- [ ] 2.1 Create `models/User.ts` with Mongoose schema including googleId, email, name, and image fields
-- [ ] 2.2 Add validation rules: unique constraint on googleId, email format validation, required fields
-- [ ] 2.3 Add automatic timestamps (createdAt, updatedAt) to schema
-- [ ] 2.4 Define TypeScript interfaces matching schema structure for type safety
-- [ ] 2.5 Export User model with proper TypeScript types
+- [x] 2.1 Create `models/User.ts` with Mongoose schema including googleId, email, name, and image fields
+- [x] 2.2 Add validation rules: unique constraint on googleId, email format validation, required fields
+- [x] 2.3 Add automatic timestamps (createdAt, updatedAt) to schema
+- [x] 2.4 Define TypeScript interfaces matching schema structure for type safety
+- [x] 2.5 Export User model with proper TypeScript types
 
 ---
 
