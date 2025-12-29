@@ -39,7 +39,7 @@
 
 ---
 
-### [~] 3.0 Integrate user creation with NextAuth sign-in callback
+### [x] 3.0 Integrate user creation with NextAuth sign-in callback
 
 #### 3.0 Proof Artifact(s)
 
@@ -60,7 +60,7 @@
 
 ---
 
-### [ ] 4.0 Verify data persistence across server restarts
+### [~] 4.0 Verify data persistence across server restarts
 
 #### 4.0 Proof Artifact(s)
 
@@ -77,9 +77,9 @@
 
 #### 4.0 Tasks
 
-- [ ] 4.1 Sign in with Google and capture user record in MongoDB Atlas
-- [ ] 4.2 Stop the Next.js development server
-- [ ] 4.3 Restart the Next.js development server
-- [ ] 4.4 Refresh browser and verify user still authenticated via JWT cookie
-- [ ] 4.5 Verify user data displayed on dashboard after restart
-- [ ] 4.6 Verify MongoDB Atlas still contains user record with same data
+- [x] 4.1 Sign in with Google and capture user record in MongoDB Atlas
+- [x] 4.2 Stop the Next.js development server
+- [x] 4.3 Restart the Next.js development server
+- [x] 4.4 Refresh browser and verify user still authenticated via JWT cookie
+- [x] 4.5 Verify user data displayed on dashboard after restart
+- [x] 4.6 Verify MongoDB Atlas still contains user record with same data
