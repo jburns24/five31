@@ -60,7 +60,7 @@
 
 ---
 
-### [~] 4.0 Verify data persistence across server restarts
+### [x] 4.0 Verify data persistence across server restarts
 
 #### 4.0 Proof Artifact(s)
 
