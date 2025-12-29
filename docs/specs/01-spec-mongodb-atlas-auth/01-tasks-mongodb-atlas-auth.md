@@ -2,7 +2,7 @@
 
 ## Tasks
 
-### [~] 1.0 Set up MongoDB Atlas dependencies and connection infrastructure
+### [x] 1.0 Set up MongoDB Atlas dependencies and connection infrastructure
 
 #### 1.0 Proof Artifact(s)
 
