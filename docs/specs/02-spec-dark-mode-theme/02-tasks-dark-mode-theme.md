@@ -20,7 +20,7 @@
 
 ## Tasks
 
-### [~] 1.0 Implement Core Dark Mode Theme with Color Palette
+### [x] 1.0 Implement Core Dark Mode Theme with Color Palette
 
 #### 1.0 Proof Artifact(s)
 
@@ -40,7 +40,7 @@
 - [x] 1.8 Update `.user-details h2` color from #333 to white (#ffffff) and `.user-details p` color from #718096 to soft gray (#a0a0a0)
 - [x] 1.9 Test visual changes by running `npm run dev`, view home page and dashboard, verify all colors match specification using browser DevTools color picker
 
-### [ ] 2.0 Integrate Barbell SVG Background Pattern
+### [~] 2.0 Integrate Barbell SVG Background Pattern
 
 #### 2.0 Proof Artifact(s)
 
@@ -50,13 +50,13 @@
 
 #### 2.0 Tasks
 
-- [ ] 2.1 Create the barbell SVG pattern as a properly URL-encoded data URI using the specifications: 220×220px pattern size, white stroke at 4px width, horizontal bar from x=65 to x=155 at y=110, outer plates (10×32px) at x=43 and x=167, inner plates (12×44px) at x=53 and x=155
-- [ ] 2.2 Add the barbell SVG background-image to the body element in `app/globals.css` using the data URI format: `background-image: url("data:image/svg+xml,...")`
-- [ ] 2.3 Set the SVG pattern opacity to 0.14 by including `opacity='0.14'` in the SVG group element
-- [ ] 2.4 Configure background-repeat: repeat and background-size: 220px 220px on the body element to ensure seamless tiling
-- [ ] 2.5 Test pattern visibility by running `npm run dev`, verify the barbell pattern is visible but subtle against the black background, check tiling at various viewport sizes
-- [ ] 2.6 Test pattern at 200% browser zoom to verify SVG remains crisp and tiles properly without gaps or misalignment
-- [ ] 2.7 Verify text readability over the pattern on both home and dashboard pages, ensuring the 0.14 opacity doesn't interfere with content
+- [x] 2.1 Create the barbell SVG pattern as a properly URL-encoded data URI using the specifications: 220×220px pattern size, white stroke at 4px width, horizontal bar from x=65 to x=155 at y=110, outer plates (10×32px) at x=43 and x=167, inner plates (12×44px) at x=53 and x=155
+- [x] 2.2 Add the barbell SVG background-image to the body element in `app/globals.css` using the data URI format: `background-image: url("data:image/svg+xml,...")`
+- [x] 2.3 Set the SVG pattern opacity to 0.14 by including `opacity='0.14'` in the SVG group element
+- [x] 2.4 Configure background-repeat: repeat and background-size: 220px 220px on the body element to ensure seamless tiling
+- [x] 2.5 Test pattern visibility by running `npm run dev`, verify the barbell pattern is visible but subtle against the black background, check tiling at various viewport sizes
+- [x] 2.6 Test pattern at 200% browser zoom to verify SVG remains crisp and tiles properly without gaps or misalignment
+- [x] 2.7 Verify text readability over the pattern on both home and dashboard pages, ensuring the 0.14 opacity doesn't interfere with content
 
 ### [ ] 3.0 Add Navigation Header with Logo and Favicon
 
