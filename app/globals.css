@@ -16,7 +16,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #000000;
   min-height: 100vh;
 }
 
@@ -30,10 +30,10 @@ main {
 }
 
 .card {
-  background: white;
+  background: #1a1a1a;
   border-radius: 12px;
   padding: 3rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 40px rgba(255, 255, 255, 0.05);
   max-width: 600px;
   width: 100%;
 }
@@ -41,11 +41,11 @@ main {
 .card h1 {
   font-size: 2rem;
   margin-bottom: 1rem;
-  color: #333;
+  color: #ffffff;
 }
 
 .card p {
-  color: #666;
+  color: #b0b0b0;
   line-height: 1.6;
   margin-bottom: 1.5rem;
 }
@@ -53,7 +53,7 @@ main {
 .button {
   display: inline-block;
   padding: 0.75rem 1.5rem;
-  background: #667eea;
+  background: #404040;
   color: white;
   border: none;
   border-radius: 8px;
@@ -65,15 +65,15 @@ main {
 }
 
 .button:hover {
-  background: #5568d3;
+  background: #505050;
 }
 
 .button-secondary {
-  background: #e53e3e;
+  background: #2d2d2d;
 }
 
 .button-secondary:hover {
-  background: #c53030;
+  background: #3d3d3d;
 }
 
 .user-info {
@@ -82,7 +82,7 @@ main {
   gap: 1rem;
   margin: 1.5rem 0;
   padding: 1rem;
-  background: #f7fafc;
+  background: #2d2d2d;
   border-radius: 8px;
 }
 
@@ -94,12 +94,12 @@ main {
 
 .user-details h2 {
   font-size: 1.25rem;
-  color: #333;
+  color: #ffffff;
   margin-bottom: 0.25rem;
 }
 
 .user-details p {
-  color: #718096;
+  color: #a0a0a0;
   margin: 0;
 }
 
