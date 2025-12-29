@@ -40,7 +40,7 @@
 - [x] 1.8 Update `.user-details h2` color from #333 to white (#ffffff) and `.user-details p` color from #718096 to soft gray (#a0a0a0)
 - [x] 1.9 Test visual changes by running `npm run dev`, view home page and dashboard, verify all colors match specification using browser DevTools color picker
 
-### [~] 2.0 Integrate Barbell SVG Background Pattern
+### [x] 2.0 Integrate Barbell SVG Background Pattern
 
 #### 2.0 Proof Artifact(s)
 
@@ -58,7 +58,7 @@
 - [x] 2.6 Test pattern at 200% browser zoom to verify SVG remains crisp and tiles properly without gaps or misalignment
 - [x] 2.7 Verify text readability over the pattern on both home and dashboard pages, ensuring the 0.14 opacity doesn't interfere with content
 
-### [ ] 3.0 Add Navigation Header with Logo and Favicon
+### [~] 3.0 Add Navigation Header with Logo and Favicon
 
 #### 3.0 Proof Artifact(s)
 
@@ -69,11 +69,11 @@
 
 #### 3.0 Tasks
 
-- [ ] 3.1 Update metadata in `app/layout.tsx` to configure the favicon by adding `icons: { icon: '/favicon.png' }` to the Metadata object
-- [ ] 3.2 Create new `components/Header.tsx` component with TypeScript: use Next.js Link component wrapping Next.js Image component for the logo, sized at 40px height with proportional width, alt text "Logo", linking to "/"
-- [ ] 3.3 Add CSS styles for the header in `app/globals.css`: create `.header` class with padding, flexbox layout, and dark background, and `.header-logo` class to ensure proper logo styling and hover effects
-- [ ] 3.4 Style the logo for visibility against dark background: add a subtle white border or light background circle if needed to ensure the dark dumbbell image is visible
-- [ ] 3.5 Import and add the Header component to `app/layout.tsx` inside the body tag, positioned before the SessionProvider/children
-- [ ] 3.6 Test header on both home and dashboard pages by running `npm run dev`, verify logo appears in top-left, is clickable, and navigates to home page
-- [ ] 3.7 Test responsive behavior at mobile viewport (375px width) using browser DevTools device emulation, ensure header and logo scale appropriately
-- [ ] 3.8 Verify favicon appears in browser tab by checking the tab icon in multiple browsers (Chrome, Firefox, Safari if available)
+- [x] 3.1 Update metadata in `app/layout.tsx` to configure the favicon by adding `icons: { icon: '/favicon.png' }` to the Metadata object
+- [x] 3.2 Create new `components/Header.tsx` component with TypeScript: use Next.js Link component wrapping Next.js Image component for the logo, sized at 40px height with proportional width, alt text "Logo", linking to "/"
+- [x] 3.3 Add CSS styles for the header in `app/globals.css`: create `.header` class with padding, flexbox layout, and dark background, and `.header-logo` class to ensure proper logo styling and hover effects
+- [x] 3.4 Style the logo for visibility against dark background: add a subtle white border or light background circle if needed to ensure the dark dumbbell image is visible
+- [x] 3.5 Import and add the Header component to `app/layout.tsx` inside the body tag, positioned before the SessionProvider/children
+- [x] 3.6 Test header on both home and dashboard pages by running `npm run dev`, verify logo appears in top-left, is clickable, and navigates to home page
+- [x] 3.7 Test responsive behavior at mobile viewport (375px width) using browser DevTools device emulation, ensure header and logo scale appropriately
+- [x] 3.8 Verify favicon appears in browser tab by checking the tab icon in multiple browsers (Chrome, Firefox, Safari if available)
