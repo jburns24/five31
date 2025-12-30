@@ -116,7 +116,7 @@
 - [x] 3.13 Test UI: verify card displays on /account page, inputs work, validation shows errors, button enables/disables correctly
 - [x] 3.14 Test persistence: enter 1RM values, refresh page, verify values are pre-filled from database
 
-### [ ] 4.0 Build Workout Generation API and User Flow
+### [x] 4.0 Build Workout Generation API and User Flow
 
 **Purpose:** Implement the server-side API endpoint for workout generation with confirmation dialog and archival logic.
 
@@ -131,24 +131,24 @@
 
 #### 4.0 Tasks
 
-- [ ] 4.1 Create `components/ConfirmDialog.tsx` client component with props: isOpen, title, message, onConfirm, onCancel
-- [ ] 4.2 Implement dialog UI with modal overlay, message display, and Cancel/Confirm buttons
-- [ ] 4.3 Add CSS styling for dialog (modal overlay, dialog box, button styles) to globals.css
-- [ ] 4.4 Update `components/OneRMCard.tsx` to add state for dialog visibility and onClick handler for "Generate Workout" button
-- [ ] 4.5 Add ConfirmDialog component to OneRMCard with message: "This will create a new 4-week workout plan based on your 1RM values. Any unfinished workout cycle will be archived and a new one generated. Continue?"
-- [ ] 4.6 Create `app/api/workout/generate/route.ts` with POST handler
-- [ ] 4.7 Add session validation in API route using `getServerSession(authOptions)`, return 401 if not authenticated
-- [ ] 4.8 Add request body validation: verify 1RM values for all four lifts, units, and roundingPreference are provided and valid
-- [ ] 4.9 Connect to database using `connectDB()` from lib/mongodb
-- [ ] 4.10 Update User model with submitted 1RM values using `User.findOneAndUpdate({ email: session.user.email })`
-- [ ] 4.11 Archive existing active WorkoutPlans for the user: `WorkoutPlan.updateMany({ userId, isArchived: false }, { isArchived: true })`
-- [ ] 4.12 Import and call `generateWorkoutPlan()` from lib/workoutCalculator with user's 1RM values
-- [ ] 4.13 Create new WorkoutPlan document with generated data and save to database
-- [ ] 4.14 Return success response with workout plan ID
-- [ ] 4.15 Add error handling: return 400 for validation errors, 500 for server errors with appropriate error messages
-- [ ] 4.16 Update OneRMCard onConfirm handler to call API endpoint with fetch POST request
-- [ ] 4.17 Handle API response: on success, redirect to `/workout` using Next.js router; on error, display error message to user
-- [ ] 4.18 Test complete flow: click Generate Workout → see dialog → confirm → verify API called → verify redirect to /workout → verify database shows archived old plan and new active plan
+- [x] 4.1 Create `components/ConfirmDialog.tsx` client component with props: isOpen, title, message, onConfirm, onCancel
+- [x] 4.2 Implement dialog UI with modal overlay, message display, and Cancel/Confirm buttons
+- [x] 4.3 Add CSS styling for dialog (modal overlay, dialog box, button styles) to globals.css
+- [x] 4.4 Update `components/OneRMCard.tsx` to add state for dialog visibility and onClick handler for "Generate Workout" button
+- [x] 4.5 Add ConfirmDialog component to OneRMCard with message: "This will create a new 4-week workout plan based on your 1RM values. Any unfinished workout cycle will be archived and a new one generated. Continue?"
+- [x] 4.6 Create `app/api/workout/generate/route.ts` with POST handler
+- [x] 4.7 Add session validation in API route using `getServerSession(authOptions)`, return 401 if not authenticated
+- [x] 4.8 Add request body validation: verify 1RM values for all four lifts, units, and roundingPreference are provided and valid
+- [x] 4.9 Connect to database using `connectDB()` from lib/mongodb
+- [x] 4.10 Update User model with submitted 1RM values using `User.findOneAndUpdate({ email: session.user.email })`
+- [x] 4.11 Archive existing active WorkoutPlans for the user: `WorkoutPlan.updateMany({ userId, isArchived: false }, { isArchived: true })`
+- [x] 4.12 Import and call `generateWorkoutPlan()` from lib/workoutCalculator with user's 1RM values
+- [x] 4.13 Create new WorkoutPlan document with generated data and save to database
+- [x] 4.14 Return success response with workout plan ID
+- [x] 4.15 Add error handling: return 400 for validation errors, 500 for server errors with appropriate error messages
+- [x] 4.16 Update OneRMCard onConfirm handler to call API endpoint with fetch POST request
+- [x] 4.17 Handle API response: on success, redirect to `/workout` using Next.js router; on error, display error message to user
+- [x] 4.18 Test complete flow: click Generate Workout → see dialog → confirm → verify API called → verify redirect to /workout → verify database shows archived old plan and new active plan
 
 ### [ ] 5.0 Create Workout Display Page
 
