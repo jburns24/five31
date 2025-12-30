@@ -64,7 +64,7 @@ Add desktop horizontal navigation that appears at screen widths of 1024px and ab
 - [x] 2.4 Add smooth transition styles in `globals.css` for switching between mobile and desktop layouts (300ms ease transition)
 - [x] 2.5 Test responsive behavior: verify hamburger menu appears below 1024px, desktop navigation appears at 1024px and above, and navigation items display correctly for both auth states at desktop breakpoint
 
-### [~] 3.0 Create User Profile Page at /account
+### [x] 3.0 Create User Profile Page at /account
 
 Build a protected profile page that displays user information (name, email, profile picture, account creation date) with sign-out functionality and fallback avatar using user initials.
 
@@ -87,7 +87,7 @@ Build a protected profile page that displays user information (name, email, prof
 - [x] 3.7 Format the createdAt date for display using JavaScript Date methods (e.g., "Member since December 2025")
 - [x] 3.8 Test profile page: verify page accessible when authenticated at `/account`, displays all user information correctly, shows initials fallback when no image, and redirects unauthenticated users to home
 
-### [ ] 4.0 Update Authentication Flow and Remove Dashboard
+### [~] 4.0 Update Authentication Flow and Remove Dashboard
 
 Update authentication redirect flow to navigate users to `/account` instead of `/dashboard`, and remove the deprecated dashboard page.
 
@@ -100,7 +100,7 @@ Update authentication redirect flow to navigate users to `/account` instead of `
 
 #### 4.0 Tasks
 
-- [ ] 4.1 Update `components/SignInButton.tsx` to change callbackUrl from '/dashboard' to '/account'
-- [ ] 4.2 Update `app/auth.ts` authOptions configuration to set default signIn redirect to '/account' in pages configuration
-- [ ] 4.3 Delete `app/dashboard/page.tsx` file completely
-- [ ] 4.4 Test complete authentication flow: sign in from mobile hamburger menu and verify redirect to `/account`, sign in from desktop navigation and verify redirect to `/account`, and confirm dashboard route no longer exists
+- [x] 4.1 Update `components/SignInButton.tsx` to change callbackUrl from '/dashboard' to '/account'
+- [x] 4.2 Update `app/auth.ts` authOptions configuration to set default signIn redirect to '/account' in pages configuration
+- [x] 4.3 Delete `app/dashboard/page.tsx` file completely
+- [x] 4.4 Test complete authentication flow: sign in from mobile hamburger menu and verify redirect to `/account`, sign in from desktop navigation and verify redirect to `/account`, and confirm dashboard route no longer exists
