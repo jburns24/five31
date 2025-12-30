@@ -1,7 +1,14 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
+import { useState } from 'react'
+import HamburgerIcon from './HamburgerIcon'
+import MobileNav from './MobileNav'
 
 export default function Header() {
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false)
+
   return (
     <header className="header">
       <Link href="/" className="header-logo">
@@ -13,6 +20,8 @@ export default function Header() {
           priority
         />
       </Link>
+      <HamburgerIcon onClick={() => setIsMobileNavOpen(true)} />
+      <MobileNav isOpen={isMobileNavOpen} onClose={() => setIsMobileNavOpen(false)} />
     </header>
   )
 }
