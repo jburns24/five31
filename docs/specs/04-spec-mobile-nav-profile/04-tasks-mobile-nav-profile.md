@@ -87,7 +87,7 @@ Build a protected profile page that displays user information (name, email, prof
 - [x] 3.7 Format the createdAt date for display using JavaScript Date methods (e.g., "Member since December 2025")
 - [x] 3.8 Test profile page: verify page accessible when authenticated at `/account`, displays all user information correctly, shows initials fallback when no image, and redirects unauthenticated users to home
 
-### [~] 4.0 Update Authentication Flow and Remove Dashboard
+### [x] 4.0 Update Authentication Flow and Remove Dashboard
 
 Update authentication redirect flow to navigate users to `/account` instead of `/dashboard`, and remove the deprecated dashboard page.
 
