@@ -45,7 +45,7 @@ Create a mobile-first navigation system with a hamburger menu icon that slides i
 - [x] 1.6 Update `Header.tsx` to include `HamburgerIcon` and `MobileNav` components, ensuring they only render on mobile viewports
 - [x] 1.7 Test mobile navigation flow: verify hamburger icon appears on mobile, menu slides in from right, navigation items display correctly for both auth states, and menu closes on navigation click and outside click
 
-### [~] 2.0 Implement Responsive Desktop Navigation
+### [x] 2.0 Implement Responsive Desktop Navigation
 
 Add desktop horizontal navigation that appears at screen widths of 1024px and above, replacing the hamburger menu with a traditional navigation layout.
 
@@ -64,7 +64,7 @@ Add desktop horizontal navigation that appears at screen widths of 1024px and ab
 - [x] 2.4 Add smooth transition styles in `globals.css` for switching between mobile and desktop layouts (300ms ease transition)
 - [x] 2.5 Test responsive behavior: verify hamburger menu appears below 1024px, desktop navigation appears at 1024px and above, and navigation items display correctly for both auth states at desktop breakpoint
 
-### [ ] 3.0 Create User Profile Page at /account
+### [~] 3.0 Create User Profile Page at /account
 
 Build a protected profile page that displays user information (name, email, profile picture, account creation date) with sign-out functionality and fallback avatar using user initials.
 
@@ -78,14 +78,14 @@ Build a protected profile page that displays user information (name, email, prof
 
 #### 3.0 Tasks
 
-- [ ] 3.1 Create `app/account/page.tsx` as a server component that uses `getServerSession` to check authentication status and redirects unauthenticated users to home page
-- [ ] 3.2 Query MongoDB in `page.tsx` to fetch user data (name, email, image, createdAt) using the existing User model and session email
-- [ ] 3.3 Create `UserAvatar.tsx` component that displays profile picture if available, or generates user initials in a colored circle if image is null/empty
-- [ ] 3.4 Implement deterministic color scheme in `UserAvatar.tsx` for initials background (use name hash to select from predefined color palette)
-- [ ] 3.5 Build profile page layout in `page.tsx` using existing card-based pattern: display UserAvatar (80px diameter), user name, email, formatted account creation date, and SignOutButton
-- [ ] 3.6 Add profile page specific CSS to `globals.css`: avatar styles for initials display, profile card layout, and information row formatting
-- [ ] 3.7 Format the createdAt date for display using JavaScript Date methods (e.g., "Member since December 2025")
-- [ ] 3.8 Test profile page: verify page accessible when authenticated at `/account`, displays all user information correctly, shows initials fallback when no image, and redirects unauthenticated users to home
+- [x] 3.1 Create `app/account/page.tsx` as a server component that uses `getServerSession` to check authentication status and redirects unauthenticated users to home page
+- [x] 3.2 Query MongoDB in `page.tsx` to fetch user data (name, email, image, createdAt) using the existing User model and session email
+- [x] 3.3 Create `UserAvatar.tsx` component that displays profile picture if available, or generates user initials in a colored circle if image is null/empty
+- [x] 3.4 Implement deterministic color scheme in `UserAvatar.tsx` for initials background (use name hash to select from predefined color palette)
+- [x] 3.5 Build profile page layout in `page.tsx` using existing card-based pattern: display UserAvatar (80px diameter), user name, email, formatted account creation date, and SignOutButton
+- [x] 3.6 Add profile page specific CSS to `globals.css`: avatar styles for initials display, profile card layout, and information row formatting
+- [x] 3.7 Format the createdAt date for display using JavaScript Date methods (e.g., "Member since December 2025")
+- [x] 3.8 Test profile page: verify page accessible when authenticated at `/account`, displays all user information correctly, shows initials fallback when no image, and redirects unauthenticated users to home
 
 ### [ ] 4.0 Update Authentication Flow and Remove Dashboard
 
