@@ -116,7 +116,7 @@ This task list breaks down the Workout Page Tracking feature into implementable 
 - [x] 3.18 Test AMRAP button: verify it only appears when all sets complete and last is AMRAP
 - [x] 3.19 Test state locking: verify sets cannot be unmarked after AMRAP recorded
 
-### [~] 4.0 AMRAP Recording and PR Detection System
+### [x] 4.0 AMRAP Recording and PR Detection System
 
 #### 4.0 Proof Artifact(s)
 
@@ -130,38 +130,38 @@ This task list breaks down the Workout Page Tracking feature into implementable 
 
 #### 4.0 Tasks
 
-- [ ] 4.1 Create `lib/oneRMCalculation.ts` with function to calculate theoretical 1RM using Epley formula: weight × (1 + reps/30)
-- [ ] 4.2 Create `lib/oneRMCalculation.test.ts` with test cases for various weight/rep combinations
-- [ ] 4.3 Create `lib/prDetection.ts` with functions to detect rep PRs (same weight, more reps) and 1RM PRs (higher calculated max)
-- [ ] 4.4 In prDetection, implement function to compare current AMRAP to historical AMRAPs for the same lift
-- [ ] 4.5 In prDetection, implement function to return PR type, improvement amount, and previous PR details
-- [ ] 4.6 Create `lib/prDetection.test.ts` with test cases for both PR types and non-PR scenarios
-- [ ] 4.7 Create `components/AMRAPDialog.tsx` client component with reps input, notes textarea, submit/cancel buttons
-- [ ] 4.8 In AMRAPDialog, implement form validation: warn if reps < 50% of expected target
-- [ ] 4.9 In AMRAPDialog, implement loading state during submission and disabled state after successful submit
-- [ ] 4.10 Create `components/PRNotification.tsx` client component to display PR achievements with confetti emoji
-- [ ] 4.11 In PRNotification, implement different display formats for rep PR vs 1RM PR
-- [ ] 4.12 In PRNotification, show improvement details, previous PR date, and previous notes
-- [ ] 4.13 Add CSS styles to `app/globals.css` for AMRAPDialog (modal overlay, form, buttons, validation warnings)
-- [ ] 4.14 Add CSS styles to `app/globals.css` for PRNotification (celebratory styling, different PR types)
-- [ ] 4.15 Create API route `app/api/workout/record-amrap/route.ts` with POST handler
-- [ ] 4.16 In record-amrap API, authenticate user and validate request body (workoutPlanId, weekNumber, lift, reps, notes)
-- [ ] 4.17 In record-amrap API, verify user owns the WorkoutPlan
-- [ ] 4.18 In record-amrap API, get current workout details (weight, expected reps) from WorkoutPlan
-- [ ] 4.19 In record-amrap API, fetch user's AMRAP history for this lift
-- [ ] 4.20 In record-amrap API, use prDetection to check if this is a PR and get PR details
-- [ ] 4.21 In record-amrap API, create new AMRAP history entry and add to User.amrapHistory array
-- [ ] 4.22 In record-amrap API, mark the AMRAP set as `amrapRecorded: true` in WorkoutPlan
-- [ ] 4.23 In record-amrap API, return success response with PR details (if applicable)
-- [ ] 4.24 Update `app/workout/page.tsx` to show AMRAPDialog when "Record AMRAP" button is clicked
-- [ ] 4.25 In workout page, handle AMRAP submission: call API, show PR notification if applicable, disable button
-- [ ] 4.26 In workout page, display PRNotification component when API returns PR data
-- [ ] 4.27 Run `npm test lib/oneRMCalculation.test.ts` and verify all tests pass
-- [ ] 4.28 Run `npm test lib/prDetection.test.ts` and verify all tests pass
-- [ ] 4.29 Test AMRAP recording: submit AMRAP, verify it saves to DB and cannot be re-submitted
-- [ ] 4.30 Test PR detection: record AMRAP that beats previous performance and verify notification shows correctly
+- [x] 4.1 Create `lib/oneRMCalculation.ts` with function to calculate theoretical 1RM using Epley formula: weight × (1 + reps/30)
+- [x] 4.2 Create `lib/oneRMCalculation.test.ts` with test cases for various weight/rep combinations
+- [x] 4.3 Create `lib/prDetection.ts` with functions to detect rep PRs (same weight, more reps) and 1RM PRs (higher calculated max)
+- [x] 4.4 In prDetection, implement function to compare current AMRAP to historical AMRAPs for the same lift
+- [x] 4.5 In prDetection, implement function to return PR type, improvement amount, and previous PR details
+- [x] 4.6 Create `lib/prDetection.test.ts` with test cases for both PR types and non-PR scenarios
+- [x] 4.7 Create `components/AMRAPDialog.tsx` client component with reps input, notes textarea, submit/cancel buttons
+- [x] 4.8 In AMRAPDialog, implement form validation: warn if reps < 50% of expected target
+- [x] 4.9 In AMRAPDialog, implement loading state during submission and disabled state after successful submit
+- [x] 4.10 Create `components/PRNotification.tsx` client component to display PR achievements with confetti emoji
+- [x] 4.11 In PRNotification, implement different display formats for rep PR vs 1RM PR
+- [x] 4.12 In PRNotification, show improvement details, previous PR date, and previous notes
+- [x] 4.13 Add CSS styles to `app/globals.css` for AMRAPDialog (modal overlay, form, buttons, validation warnings)
+- [x] 4.14 Add CSS styles to `app/globals.css` for PRNotification (celebratory styling, different PR types)
+- [x] 4.15 Create API route `app/api/workout/record-amrap/route.ts` with POST handler
+- [x] 4.16 In record-amrap API, authenticate user and validate request body (workoutPlanId, weekNumber, lift, reps, notes)
+- [x] 4.17 In record-amrap API, verify user owns the WorkoutPlan
+- [x] 4.18 In record-amrap API, get current workout details (weight, expected reps) from WorkoutPlan
+- [x] 4.19 In record-amrap API, fetch user's AMRAP history for this lift
+- [x] 4.20 In record-amrap API, use prDetection to check if this is a PR and get PR details
+- [x] 4.21 In record-amrap API, create new AMRAP history entry and add to User.amrapHistory array
+- [x] 4.22 In record-amrap API, mark the AMRAP set as `amrapRecorded: true` in WorkoutPlan
+- [x] 4.23 In record-amrap API, return success response with PR details (if applicable)
+- [x] 4.24 Update `app/workout/page.tsx` to show AMRAPDialog when "Record AMRAP" button is clicked
+- [x] 4.25 In workout page, handle AMRAP submission: call API, show PR notification if applicable, disable button
+- [x] 4.26 In workout page, display PRNotification component when API returns PR data
+- [x] 4.27 Run `npm test lib/oneRMCalculation.test.ts` and verify all tests pass
+- [x] 4.28 Run `npm test lib/prDetection.test.ts` and verify all tests pass
+- [x] 4.29 Test AMRAP recording: submit AMRAP, verify it saves to DB and cannot be re-submitted
+- [x] 4.30 Test PR detection: record AMRAP that beats previous performance and verify notification shows correctly
 
-### [ ] 5.0 Auto-Navigation and Workout Progression
+### [~] 5.0 Auto-Navigation and Workout Progression
 
 #### 5.0 Proof Artifact(s)
 

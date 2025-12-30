@@ -6,7 +6,10 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import WorkoutNavigation, { type LiftType } from '@/components/WorkoutNavigation';
 import SetRow from '@/components/SetRow';
+import AMRAPDialog from '@/components/AMRAPDialog';
+import PRNotification from '@/components/PRNotification';
 import type { IWorkoutSet } from '@/models/WorkoutPlan';
+import type { PRDetails } from '@/lib/prDetection';
 
 // Type for the workout plan data from API
 interface WorkoutPlanData {
@@ -40,6 +43,8 @@ function WorkoutPageContent() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [loadingSetId, setLoadingSetId] = useState<number | null>(null);
+  const [showAmrapDialog, setShowAmrapDialog] = useState(false);
+  const [prDetails, setPrDetails] = useState<PRDetails | null>(null);
 
   // Get current week and lift from URL params (defaults: week 1, squat)
   const weekParam = searchParams.get('week');
@@ -176,6 +181,40 @@ function WorkoutPageContent() {
     [workoutPlan, validWeek, validLift]
   );
 
+  // Handle AMRAP recording
+  const handleAmrapSubmit = useCallback(
+    async (reps: number, notes: string) => {
+      if (!workoutPlan) return;
+
+      const response = await fetch('/api/workout/record-amrap', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          workoutPlanId: workoutPlan._id,
+          weekNumber: validWeek,
+          lift: validLift,
+          reps,
+          notes,
+        }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to record AMRAP');
+      }
+
+      const data = await response.json();
+      setWorkoutPlan(data.workoutPlan);
+      setShowAmrapDialog(false);
+
+      // Show PR notification if applicable
+      if (data.prDetails?.isPR) {
+        setPrDetails(data.prDetails);
+      }
+    },
+    [workoutPlan, validWeek, validLift]
+  );
+
   // Loading state
   if (status === 'loading' || loading) {
     return (
@@ -301,10 +340,7 @@ function WorkoutPageContent() {
           {showRecordAmrapButton && (
             <button
               className="record-amrap-button"
-              onClick={() => {
-                // Will be implemented in Task 4.0
-                console.log('Record AMRAP clicked');
-              }}
+              onClick={() => setShowAmrapDialog(true)}
             >
               🎯 Record AMRAP Performance
             </button>
@@ -331,6 +367,29 @@ function WorkoutPageContent() {
           <li>Weights are rounded to the nearest available plate</li>
         </ul>
       </section>
+
+      {/* AMRAP Dialog */}
+      {showAmrapDialog && amrapSet && currentLiftData && (
+        <AMRAPDialog
+          isOpen={showAmrapDialog}
+          lift={currentLiftData.lift}
+          weight={amrapSet.weight}
+          units={workoutPlan.units}
+          expectedReps={amrapSet.reps}
+          onSubmit={handleAmrapSubmit}
+          onCancel={() => setShowAmrapDialog(false)}
+        />
+      )}
+
+      {/* PR Notification */}
+      {prDetails && prDetails.isPR && currentLiftData && (
+        <PRNotification
+          prDetails={prDetails}
+          lift={currentLiftData.lift}
+          units={workoutPlan.units}
+          onClose={() => setPrDetails(null)}
+        />
+      )}
     </>
   );
 }
