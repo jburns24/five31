@@ -49,11 +49,18 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             </Link>
           </li>
           {session ? (
-            <li>
-              <Link href="/account" onClick={onClose}>
-                Profile
-              </Link>
-            </li>
+            <>
+              <li>
+                <Link href="/workout" onClick={onClose}>
+                  My Workout
+                </Link>
+              </li>
+              <li>
+                <Link href="/account" onClick={onClose}>
+                  Profile
+                </Link>
+              </li>
+            </>
           ) : (
             <li>
               <button onClick={handleSignIn}>

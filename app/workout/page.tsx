@@ -1,51 +1,159 @@
-import { redirect } from 'next/navigation';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/auth';
-import connectDB from '@/lib/mongodb';
-import User from '@/models/User';
-import WorkoutPlan, { type IWorkoutPlan } from '@/models/WorkoutPlan';
+'use client';
+
+import { Suspense, useEffect, useState, useCallback } from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import WorkoutNavigation, { type LiftType } from '@/components/WorkoutNavigation';
+import type { IWorkoutSet } from '@/models/WorkoutPlan';
 
-export default async function WorkoutPage() {
-  const session = await getServerSession(authOptions);
+// Type for the workout plan data from API
+interface WorkoutPlanData {
+  _id: string;
+  dateCreated: string;
+  units: 'lbs' | 'kg';
+  trainingMaxValues: {
+    squat: number;
+    bench: number;
+    deadlift: number;
+    overheadPress: number;
+  };
+  weeklyWorkouts: {
+    weekNumber: number;
+    weekName: string;
+    lifts: {
+      lift: LiftType;
+      liftName: string;
+      trainingMax: number;
+      sets: IWorkoutSet[];
+    }[];
+  }[];
+}
 
-  if (!session || !session.user) {
-    redirect('/');
+function WorkoutPageContent() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const [workoutPlan, setWorkoutPlan] = useState<WorkoutPlanData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Get current week and lift from URL params (defaults: week 1, squat)
+  const weekParam = searchParams.get('week');
+  const liftParam = searchParams.get('lift');
+  const currentWeek = weekParam ? parseInt(weekParam, 10) : 1;
+  const currentLift: LiftType = (liftParam as LiftType) || 'squat';
+
+  // Validate week and lift values
+  const validWeek = currentWeek >= 1 && currentWeek <= 4 ? currentWeek : 1;
+  const validLift: LiftType = ['squat', 'bench', 'deadlift', 'overheadPress'].includes(currentLift)
+    ? currentLift
+    : 'squat';
+
+  // Fetch workout plan data
+  useEffect(() => {
+    async function fetchWorkoutPlan() {
+      if (status === 'loading') return;
+
+      if (!session) {
+        router.push('/');
+        return;
+      }
+
+      try {
+        setLoading(true);
+        const response = await fetch('/api/workout/current');
+        
+        if (response.status === 404) {
+          // No workout plan found
+          setWorkoutPlan(null);
+          setLoading(false);
+          return;
+        }
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch workout plan');
+        }
+
+        const data = await response.json();
+        setWorkoutPlan(data.workoutPlan);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An error occurred');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchWorkoutPlan();
+  }, [session, status, router]);
+
+  // Update URL when week or lift changes
+  const handleWeekChange = useCallback(
+    (week: number) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set('week', week.toString());
+      router.push(`/workout?${params.toString()}`, { scroll: false });
+    },
+    [router, searchParams]
+  );
+
+  const handleLiftChange = useCallback(
+    (lift: LiftType) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set('lift', lift);
+      router.push(`/workout?${params.toString()}`, { scroll: false });
+    },
+    [router, searchParams]
+  );
+
+  // Loading state
+  if (status === 'loading' || loading) {
+    return (
+      <div className="workout-loading">
+        <p>Loading your workout...</p>
+      </div>
+    );
   }
 
-  await connectDB();
-
-  // Get user to find their ID
-  const user = await User.findOne({ email: session.user.email });
-  if (!user) {
-    redirect('/');
+  // Error state
+  if (error) {
+    return (
+      <div className="workout-empty">
+        <h1>Error</h1>
+        <p>{error}</p>
+        <Link href="/account" className="workout-link-button">
+          Go to Account Page
+        </Link>
+      </div>
+    );
   }
-
-  // Find active (non-archived) workout plan for this user
-  const workoutPlan = await WorkoutPlan.findOne({
-    userId: user._id,
-    isArchived: false,
-  })
-    .sort({ dateCreated: -1 })
-    .lean() as (IWorkoutPlan & { _id: string; dateCreated: Date }) | null;
 
   // Empty state - no active workout plan
   if (!workoutPlan) {
     return (
-      <main className="workout-page">
-        <div className="workout-empty">
-          <h1>No Active Workout Plan</h1>
-          <p>
-            You don&apos;t have an active workout plan yet. Enter your 1RM values on
-            your account page to generate a personalized 4-week 5/3/1 program.
-          </p>
-          <Link href="/account" className="workout-link-button">
-            Go to Account Page
-          </Link>
-        </div>
-      </main>
+      <div className="workout-empty">
+        <h1>No Active Workout Plan</h1>
+        <p>
+          You don&apos;t have an active workout plan yet. Enter your 1RM values on
+          your account page to generate a personalized 4-week 5/3/1 program.
+        </p>
+        <Link href="/account" className="workout-link-button">
+          Go to Account Page
+        </Link>
+      </div>
     );
   }
+
+  // Get the current week data
+  const currentWeekData = workoutPlan.weeklyWorkouts.find(
+    (w) => w.weekNumber === validWeek
+  );
+
+  // Get the current lift data
+  const currentLiftData = currentWeekData?.lifts.find(
+    (l) => l.lift === validLift
+  );
 
   // Format date
   const createdDate = new Date(workoutPlan.dateCreated);
@@ -56,88 +164,71 @@ export default async function WorkoutPage() {
   });
 
   return (
-    <main className="workout-page">
+    <>
       <div className="workout-header">
         <div className="workout-header-content">
-          <h1>Your 5/3/1 Workout Plan</h1>
-          <p className="workout-date">Created on {formattedDate}</p>
+          <h1>Your 5/3/1 Workout</h1>
+          <p className="workout-date">Plan created on {formattedDate}</p>
         </div>
         <Link href="/account" className="workout-back-link">
           ← Back to Account
         </Link>
       </div>
 
-      {/* Training Max Summary */}
-      <section className="workout-section">
-        <h2>Training Max Values</h2>
-        <p className="workout-section-desc">
-          Your Training Max (TM) is 90% of your 1RM, rounded to the nearest
-          available plate increment.
-        </p>
-        <div className="tm-grid">
-          <div className="tm-card">
-            <span className="tm-label">Squat</span>
-            <span className="tm-value">
-              {workoutPlan.trainingMaxValues.squat} {workoutPlan.units}
-            </span>
-          </div>
-          <div className="tm-card">
-            <span className="tm-label">Bench Press</span>
-            <span className="tm-value">
-              {workoutPlan.trainingMaxValues.bench} {workoutPlan.units}
-            </span>
-          </div>
-          <div className="tm-card">
-            <span className="tm-label">Deadlift</span>
-            <span className="tm-value">
-              {workoutPlan.trainingMaxValues.deadlift} {workoutPlan.units}
-            </span>
-          </div>
-          <div className="tm-card">
-            <span className="tm-label">Overhead Press</span>
-            <span className="tm-value">
-              {workoutPlan.trainingMaxValues.overheadPress} {workoutPlan.units}
-            </span>
-          </div>
-        </div>
-      </section>
+      {/* Navigation Controls */}
+      <WorkoutNavigation
+        currentWeek={validWeek}
+        currentLift={validLift}
+        onWeekChange={handleWeekChange}
+        onLiftChange={handleLiftChange}
+      />
 
-      {/* Weekly Workouts */}
-      {workoutPlan.weeklyWorkouts.map((week) => (
+      {/* Current Workout Display */}
+      {currentWeekData && currentLiftData && (
         <section
-          key={week.weekNumber}
-          className={`workout-section ${week.weekNumber === 4 ? 'deload-week' : ''}`}
+          className={`workout-section workout-current ${
+            validWeek === 4 ? 'deload-week' : ''
+          }`}
         >
-          <h2>{week.weekName}</h2>
-          {week.weekNumber === 4 && (
+          <div className="workout-current__header">
+            <h2>{currentLiftData.liftName}</h2>
+            <span className="workout-current__week-badge">
+              {currentWeekData.weekName}
+            </span>
+          </div>
+
+          {validWeek === 4 && (
             <p className="workout-section-desc deload-desc">
               Deload week - lighter weights for recovery
             </p>
           )}
-          <div className="lifts-grid">
-            {week.lifts.map((lift) => (
-              <div key={lift.lift} className="lift-card">
-                <h3 className="lift-name">{lift.liftName}</h3>
-                <div className="sets-list">
-                  {lift.sets.map((set) => (
-                    <div key={set.setNumber} className="set-row">
-                      <span className="set-label">Set {set.setNumber}</span>
-                      <span className="set-weight">
-                        {set.weight} {workoutPlan.units}
-                      </span>
-                      <span className="set-reps">
-                        × {set.reps}
-                        {set.isAmrap && <span className="amrap-badge">+</span>}
-                      </span>
-                      <span className="set-percentage">{set.percentage}%</span>
-                    </div>
-                  ))}
-                </div>
+
+          <div className="workout-current__tm">
+            Training Max: {currentLiftData.trainingMax} {workoutPlan.units}
+          </div>
+
+          <div className="sets-list sets-list--interactive">
+            {currentLiftData.sets.map((set) => (
+              <div
+                key={set.setNumber}
+                className={`set-row set-row--interactive ${
+                  set.completed ? 'set-row--completed' : ''
+                }`}
+              >
+                <span className="set-label">Set {set.setNumber}</span>
+                <span className="set-weight">
+                  {set.weight} {workoutPlan.units}
+                </span>
+                <span className="set-reps">
+                  × {set.reps}
+                  {set.isAmrap && <span className="amrap-badge">+</span>}
+                </span>
+                <span className="set-percentage">{set.percentage}%</span>
               </div>
             ))}
           </div>
         </section>
-      ))}
+      )}
 
       {/* Legend */}
       <section className="workout-legend">
@@ -151,6 +242,22 @@ export default async function WorkoutPage() {
           <li>Weights are rounded to the nearest available plate</li>
         </ul>
       </section>
+    </>
+  );
+}
+
+export default function WorkoutPage() {
+  return (
+    <main className="workout-page">
+      <Suspense
+        fallback={
+          <div className="workout-loading">
+            <p>Loading your workout...</p>
+          </div>
+        }
+      >
+        <WorkoutPageContent />
+      </Suspense>
     </main>
   );
 }

@@ -13,9 +13,14 @@ export default function DesktopNav() {
           <Link href="/">Home</Link>
         </li>
         {session ? (
-          <li>
-            <Link href="/account">Profile</Link>
-          </li>
+          <>
+            <li>
+              <Link href="/workout">My Workout</Link>
+            </li>
+            <li>
+              <Link href="/account">Profile</Link>
+            </li>
+          </>
         ) : (
           <li>
             <button onClick={() => signIn('google', { callbackUrl: '/account' })}>Sign In</button>

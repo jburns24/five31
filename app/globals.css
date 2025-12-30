@@ -1181,3 +1181,193 @@ main {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+/* Workout Navigation Component */
+.workout-navigation {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.workout-navigation__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.workout-navigation__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #2d2d2d;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.workout-navigation__arrow:hover:not(:disabled) {
+  background: #404040;
+}
+
+.workout-navigation__arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.workout-navigation__week {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.workout-navigation__label {
+  font-size: 0.75rem;
+  color: #808080;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.workout-navigation__select {
+  background: #2d2d2d;
+  border: 1px solid #3d3d3d;
+  border-radius: 8px;
+  padding: 0.5rem 2rem 0.5rem 1rem;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23808080' d='M6 8L2 4h8z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+}
+
+.workout-navigation__select:focus {
+  outline: none;
+  border-color: #505050;
+}
+
+.workout-navigation__tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.workout-navigation__tab {
+  background: #2d2d2d;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  color: #b0b0b0;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.workout-navigation__tab:hover {
+  background: #3d3d3d;
+  color: #ffffff;
+}
+
+.workout-navigation__tab--active {
+  background: #404040;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Workout Current Section */
+.workout-current {
+  margin-bottom: 1.5rem;
+}
+
+.workout-current__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.workout-current__header h2 {
+  margin: 0;
+}
+
+.workout-current__week-badge {
+  background: #2d2d2d;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.8125rem;
+  color: #b0b0b0;
+}
+
+.workout-current__tm {
+  color: #808080;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+/* Interactive Set Rows */
+.sets-list--interactive {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.set-row--interactive {
+  cursor: pointer;
+  transition: background 0.2s ease;
+  border-radius: 8px;
+  padding: 0.75rem;
+  background: #252525;
+  border: none;
+}
+
+.set-row--interactive:hover {
+  background: #303030;
+}
+
+.set-row--completed {
+  background: #1a2a1a;
+  opacity: 0.7;
+}
+
+.set-row--completed .set-weight,
+.set-row--completed .set-reps {
+  text-decoration: line-through;
+}
+
+/* Workout Loading State */
+.workout-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  color: #808080;
+}
+
+/* Responsive Styles for Navigation */
+@media (min-width: 768px) {
+  .workout-navigation {
+    padding: 1.5rem 2rem;
+  }
+
+  .workout-navigation__controls {
+    gap: 1.5rem;
+  }
+
+  .workout-navigation__tabs {
+    gap: 0.75rem;
+  }
+
+  .workout-navigation__tab {
+    padding: 0.625rem 1.25rem;
+  }
+}

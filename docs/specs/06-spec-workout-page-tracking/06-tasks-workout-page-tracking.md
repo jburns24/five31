@@ -57,7 +57,7 @@ This task list breaks down the Workout Page Tracking feature into implementable 
 - [x] 1.7 Test database operations: create a WorkoutPlan with completed sets and verify fields persist correctly
 - [x] 1.8 Test database operations: add an AMRAP entry to User.amrapHistory and verify it persists correctly
 
-### [~] 2.0 Navigation Integration and Single Workout View
+### [x] 2.0 Navigation Integration and Single Workout View
 
 #### 2.0 Proof Artifact(s)
 
@@ -69,21 +69,21 @@ This task list breaks down the Workout Page Tracking feature into implementable 
 
 #### 2.0 Tasks
 
-- [ ] 2.1 Add "My Workout" link to `components/DesktopNav.tsx` navigation items (only show when user is authenticated)
-- [ ] 2.2 Add "My Workout" link to `components/MobileNav.tsx` navigation items (only show when user is authenticated)
-- [ ] 2.3 Create `components/WorkoutNavigation.tsx` client component with props for current week/lift and onChange handlers
-- [ ] 2.4 In WorkoutNavigation component, implement week dropdown selector (1-4) with current week highlighted
-- [ ] 2.5 In WorkoutNavigation component, implement lift tabs (Squat, Bench Press, Deadlift, Overhead Press) with current lift highlighted
-- [ ] 2.6 In WorkoutNavigation component, implement prev/next arrow buttons that cycle through workouts sequentially
-- [ ] 2.7 Refactor `app/workout/page.tsx` to be a client component (add 'use client' directive)
-- [ ] 2.8 In workout page, implement URL query param state management for `week` and `lift` using Next.js useSearchParams and useRouter
-- [ ] 2.9 In workout page, fetch workout data and filter to show only the current week and lift based on URL params
-- [ ] 2.10 In workout page, implement redirect to `/account` if user has no active workout plan
-- [ ] 2.11 Add CSS styles to `app/globals.css` for WorkoutNavigation component (dropdowns, tabs, arrows, responsive layout)
-- [ ] 2.12 Test navigation: verify all controls (dropdown, tabs, arrows) update URL params and display correct workout
-- [ ] 2.13 Test mobile responsiveness: verify navigation stacks properly and touch targets are adequate
+- [x] 2.1 Add "My Workout" link to `components/DesktopNav.tsx` navigation items (only show when user is authenticated)
+- [x] 2.2 Add "My Workout" link to `components/MobileNav.tsx` navigation items (only show when user is authenticated)
+- [x] 2.3 Create `components/WorkoutNavigation.tsx` client component with props for current week/lift and onChange handlers
+- [x] 2.4 In WorkoutNavigation component, implement week dropdown selector (1-4) with current week highlighted
+- [x] 2.5 In WorkoutNavigation component, implement lift tabs (Squat, Bench Press, Deadlift, Overhead Press) with current lift highlighted
+- [x] 2.6 In WorkoutNavigation component, implement prev/next arrow buttons that cycle through workouts sequentially
+- [x] 2.7 Refactor `app/workout/page.tsx` to be a client component (add 'use client' directive)
+- [x] 2.8 In workout page, implement URL query param state management for `week` and `lift` using Next.js useSearchParams and useRouter
+- [x] 2.9 In workout page, fetch workout data and filter to show only the current week and lift based on URL params
+- [x] 2.10 In workout page, implement redirect to `/account` if user has no active workout plan
+- [x] 2.11 Add CSS styles to `app/globals.css` for WorkoutNavigation component (dropdowns, tabs, arrows, responsive layout)
+- [x] 2.12 Test navigation: verify all controls (dropdown, tabs, arrows) update URL params and display correct workout
+- [x] 2.13 Test mobile responsiveness: verify navigation stacks properly and touch targets are adequate
 
-### [ ] 3.0 Set Completion Tracking with API Integration
+### [~] 3.0 Set Completion Tracking with API Integration
 
 #### 3.0 Proof Artifact(s)
 
