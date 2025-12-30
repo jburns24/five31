@@ -489,4 +489,45 @@ main {
   .hamburger-icon {
     display: none;
   }
+
+  .mobile-nav,
+  .mobile-nav-backdrop {
+    display: none !important;
+  }
+}
+
+/* Desktop Navigation Styles */
+.desktop-nav {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .desktop-nav {
+    display: flex;
+    margin-left: auto;
+  }
+
+  .desktop-nav-items {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+  }
+
+  .desktop-nav-items a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+  }
+
+  .desktop-nav-items a:hover {
+    background: #2d2d2d;
+    color: #ffffff;
+  }
 }

@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import HamburgerIcon from './HamburgerIcon'
 import MobileNav from './MobileNav'
+import DesktopNav from './DesktopNav'
 
 export default function Header() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false)
@@ -20,6 +21,7 @@ export default function Header() {
           priority
         />
       </Link>
+      <DesktopNav />
       <HamburgerIcon onClick={() => setIsMobileNavOpen(true)} />
       <MobileNav isOpen={isMobileNavOpen} onClose={() => setIsMobileNavOpen(false)} />
     </header>

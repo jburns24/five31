@@ -23,7 +23,7 @@
 
 ## Tasks
 
-### [~] 1.0 Implement Mobile Hamburger Menu Navigation
+### [x] 1.0 Implement Mobile Hamburger Menu Navigation
 
 Create a mobile-first navigation system with a hamburger menu icon that slides in from the right, displaying context-aware navigation items based on authentication state.
 
@@ -45,7 +45,7 @@ Create a mobile-first navigation system with a hamburger menu icon that slides i
 - [x] 1.6 Update `Header.tsx` to include `HamburgerIcon` and `MobileNav` components, ensuring they only render on mobile viewports
 - [x] 1.7 Test mobile navigation flow: verify hamburger icon appears on mobile, menu slides in from right, navigation items display correctly for both auth states, and menu closes on navigation click and outside click
 
-### [ ] 2.0 Implement Responsive Desktop Navigation
+### [~] 2.0 Implement Responsive Desktop Navigation
 
 Add desktop horizontal navigation that appears at screen widths of 1024px and above, replacing the hamburger menu with a traditional navigation layout.
 
@@ -58,11 +58,11 @@ Add desktop horizontal navigation that appears at screen widths of 1024px and ab
 
 #### 2.0 Tasks
 
-- [ ] 2.1 Add desktop navigation section to `Header.tsx` that renders horizontally aligned navigation items using flexbox layout
-- [ ] 2.2 Implement session-based navigation items in desktop nav: display "Home" and "Sign In" for unauthenticated users, display "Home" and "Profile" for authenticated users using `getServerSession` server-side
-- [ ] 2.3 Add desktop navigation CSS to `globals.css` with `@media (min-width: 1024px)` query: horizontal layout styles, navigation item spacing, hover states, and hide mobile hamburger icon
-- [ ] 2.4 Add smooth transition styles in `globals.css` for switching between mobile and desktop layouts (300ms ease transition)
-- [ ] 2.5 Test responsive behavior: verify hamburger menu appears below 1024px, desktop navigation appears at 1024px and above, and navigation items display correctly for both auth states at desktop breakpoint
+- [x] 2.1 Add desktop navigation section to `Header.tsx` that renders horizontally aligned navigation items using flexbox layout
+- [x] 2.2 Implement session-based navigation items in desktop nav: display "Home" and "Sign In" for unauthenticated users, display "Home" and "Profile" for authenticated users using `getServerSession` server-side
+- [x] 2.3 Add desktop navigation CSS to `globals.css` with `@media (min-width: 1024px)` query: horizontal layout styles, navigation item spacing, hover states, and hide mobile hamburger icon
+- [x] 2.4 Add smooth transition styles in `globals.css` for switching between mobile and desktop layouts (300ms ease transition)
+- [x] 2.5 Test responsive behavior: verify hamburger menu appears below 1024px, desktop navigation appears at 1024px and above, and navigation items display correctly for both auth states at desktop breakpoint
 
 ### [ ] 3.0 Create User Profile Page at /account
 
