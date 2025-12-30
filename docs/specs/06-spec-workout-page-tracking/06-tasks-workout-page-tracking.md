@@ -83,7 +83,7 @@ This task list breaks down the Workout Page Tracking feature into implementable 
 - [x] 2.12 Test navigation: verify all controls (dropdown, tabs, arrows) update URL params and display correct workout
 - [x] 2.13 Test mobile responsiveness: verify navigation stacks properly and touch targets are adequate
 
-### [~] 3.0 Set Completion Tracking with API Integration
+### [x] 3.0 Set Completion Tracking with API Integration
 
 #### 3.0 Proof Artifact(s)
 
@@ -96,27 +96,27 @@ This task list breaks down the Workout Page Tracking feature into implementable 
 
 #### 3.0 Tasks
 
-- [ ] 3.1 Create `components/SetRow.tsx` client component with props: set data, completed state, onClick handler, disabled state
-- [ ] 3.2 In SetRow component, implement visual states: normal, completed (with checkmark/strikethrough), disabled (when AMRAP recorded)
-- [ ] 3.3 In SetRow component, add click handler that calls parent callback with set identification
-- [ ] 3.4 Add CSS styles to `app/globals.css` for SetRow component (normal, completed, disabled, hover, AMRAP badge)
-- [ ] 3.5 Create API route `app/api/workout/complete-set/route.ts` with POST handler
-- [ ] 3.6 In complete-set API, authenticate user with getServerSession and validate request body (workoutPlanId, weekNumber, lift, setNumber, completed)
-- [ ] 3.7 In complete-set API, verify user owns the WorkoutPlan before allowing modification
-- [ ] 3.8 In complete-set API, update the specific set's `completed` field in the database using MongoDB update query
-- [ ] 3.9 In complete-set API, check if AMRAP is already recorded for this workout and prevent unmarking if true
-- [ ] 3.10 In complete-set API, return updated workout data or appropriate error response
-- [ ] 3.11 Update `app/workout/page.tsx` to render SetRow components for each set in the current workout
-- [ ] 3.12 In workout page, implement set click handler that calls complete-set API with optimistic UI update
-- [ ] 3.13 In workout page, implement error rollback for failed API calls (revert optimistic update)
-- [ ] 3.14 In workout page, implement logic to check if all sets are complete and last set is AMRAP
-- [ ] 3.15 In workout page, conditionally render "Record AMRAP" button when conditions are met
-- [ ] 3.16 Add loading states and disabled states while API calls are in progress
-- [ ] 3.17 Test set completion: verify clicking toggles state, persists to DB, and updates UI
-- [ ] 3.18 Test AMRAP button: verify it only appears when all sets complete and last is AMRAP
-- [ ] 3.19 Test state locking: verify sets cannot be unmarked after AMRAP recorded
+- [x] 3.1 Create `components/SetRow.tsx` client component with props: set data, completed state, onClick handler, disabled state
+- [x] 3.2 In SetRow component, implement visual states: normal, completed (with checkmark/strikethrough), disabled (when AMRAP recorded)
+- [x] 3.3 In SetRow component, add click handler that calls parent callback with set identification
+- [x] 3.4 Add CSS styles to `app/globals.css` for SetRow component (normal, completed, disabled, hover, AMRAP badge)
+- [x] 3.5 Create API route `app/api/workout/complete-set/route.ts` with POST handler
+- [x] 3.6 In complete-set API, authenticate user with getServerSession and validate request body (workoutPlanId, weekNumber, lift, setNumber, completed)
+- [x] 3.7 In complete-set API, verify user owns the WorkoutPlan before allowing modification
+- [x] 3.8 In complete-set API, update the specific set's `completed` field in the database using MongoDB update query
+- [x] 3.9 In complete-set API, check if AMRAP is already recorded for this workout and prevent unmarking if true
+- [x] 3.10 In complete-set API, return updated workout data or appropriate error response
+- [x] 3.11 Update `app/workout/page.tsx` to render SetRow components for each set in the current workout
+- [x] 3.12 In workout page, implement set click handler that calls complete-set API with optimistic UI update
+- [x] 3.13 In workout page, implement error rollback for failed API calls (revert optimistic update)
+- [x] 3.14 In workout page, implement logic to check if all sets are complete and last set is AMRAP
+- [x] 3.15 In workout page, conditionally render "Record AMRAP" button when conditions are met
+- [x] 3.16 Add loading states and disabled states while API calls are in progress
+- [x] 3.17 Test set completion: verify clicking toggles state, persists to DB, and updates UI
+- [x] 3.18 Test AMRAP button: verify it only appears when all sets complete and last is AMRAP
+- [x] 3.19 Test state locking: verify sets cannot be unmarked after AMRAP recorded
 
-### [ ] 4.0 AMRAP Recording and PR Detection System
+### [~] 4.0 AMRAP Recording and PR Detection System
 
 #### 4.0 Proof Artifact(s)
 

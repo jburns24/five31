@@ -1371,3 +1371,163 @@ main {
     padding: 0.625rem 1.25rem;
   }
 }
+
+/* SetRow Component Styles */
+.set-row--clickable {
+  display: grid;
+  grid-template-columns: 32px 1fr 1.5fr 1fr 1fr;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.75rem;
+  background: #252525;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  user-select: none;
+}
+
+.set-row--clickable:hover:not(.set-row--disabled):not(.set-row--loading) {
+  background: #303030;
+  border-color: #404040;
+}
+
+.set-row--clickable:focus {
+  outline: none;
+  border-color: #505050;
+}
+
+.set-row--completed {
+  background: #1a2a1a;
+  border-color: #2d4a2d;
+}
+
+.set-row--completed:hover:not(.set-row--disabled):not(.set-row--loading) {
+  background: #1f321f;
+}
+
+.set-row--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.set-row--loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.set-row__completion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.set-row__circle {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #505050;
+  border-radius: 50%;
+  transition: border-color 0.2s ease;
+}
+
+.set-row--clickable:hover:not(.set-row--disabled) .set-row__circle {
+  border-color: #707070;
+}
+
+.set-row__checkmark {
+  width: 20px;
+  height: 20px;
+  background: #4a7c4a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.set-row__label {
+  color: #808080;
+  font-size: 0.875rem;
+}
+
+.set-row__weight {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.set-row__reps {
+  color: #b0b0b0;
+  font-size: 0.9375rem;
+}
+
+.set-row__percentage {
+  color: #808080;
+  font-size: 0.8125rem;
+  text-align: right;
+}
+
+.set-row__text--strike {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+/* Record AMRAP Button */
+.record-amrap-button {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1rem;
+  background: #2d5a2d;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.record-amrap-button:hover:not(:disabled) {
+  background: #3d6a3d;
+}
+
+.record-amrap-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* AMRAP Recorded Indicator */
+.workout-amrap-recorded {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: #1a2a1a;
+  border: 1px solid #2d4a2d;
+  border-radius: 8px;
+  color: #6b8e6b;
+  font-size: 0.9375rem;
+  text-align: center;
+}
+
+/* Responsive SetRow */
+@media (max-width: 480px) {
+  .set-row--clickable {
+    grid-template-columns: 28px 1fr 1.2fr 0.8fr 0.6fr;
+    padding: 0.625rem;
+    gap: 0.375rem;
+  }
+
+  .set-row__weight {
+    font-size: 0.9375rem;
+  }
+
+  .set-row__reps {
+    font-size: 0.875rem;
+  }
+
+  .set-row__percentage {
+    font-size: 0.75rem;
+  }
+}

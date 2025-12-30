@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import WorkoutNavigation, { type LiftType } from '@/components/WorkoutNavigation';
+import SetRow from '@/components/SetRow';
 import type { IWorkoutSet } from '@/models/WorkoutPlan';
 
 // Type for the workout plan data from API
@@ -38,6 +39,7 @@ function WorkoutPageContent() {
   const [workoutPlan, setWorkoutPlan] = useState<WorkoutPlanData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [loadingSetId, setLoadingSetId] = useState<number | null>(null);
 
   // Get current week and lift from URL params (defaults: week 1, squat)
   const weekParam = searchParams.get('week');
@@ -52,41 +54,41 @@ function WorkoutPageContent() {
     : 'squat';
 
   // Fetch workout plan data
-  useEffect(() => {
-    async function fetchWorkoutPlan() {
-      if (status === 'loading') return;
+  const fetchWorkoutPlan = useCallback(async () => {
+    if (status === 'loading') return;
 
-      if (!session) {
-        router.push('/');
+    if (!session) {
+      router.push('/');
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const response = await fetch('/api/workout/current');
+
+      if (response.status === 404) {
+        // No workout plan found
+        setWorkoutPlan(null);
+        setLoading(false);
         return;
       }
 
-      try {
-        setLoading(true);
-        const response = await fetch('/api/workout/current');
-        
-        if (response.status === 404) {
-          // No workout plan found
-          setWorkoutPlan(null);
-          setLoading(false);
-          return;
-        }
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch workout plan');
-        }
-
-        const data = await response.json();
-        setWorkoutPlan(data.workoutPlan);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
-      } finally {
-        setLoading(false);
+      if (!response.ok) {
+        throw new Error('Failed to fetch workout plan');
       }
-    }
 
-    fetchWorkoutPlan();
+      const data = await response.json();
+      setWorkoutPlan(data.workoutPlan);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+    } finally {
+      setLoading(false);
+    }
   }, [session, status, router]);
+
+  useEffect(() => {
+    fetchWorkoutPlan();
+  }, [fetchWorkoutPlan]);
 
   // Update URL when week or lift changes
   const handleWeekChange = useCallback(
@@ -105,6 +107,73 @@ function WorkoutPageContent() {
       router.push(`/workout?${params.toString()}`, { scroll: false });
     },
     [router, searchParams]
+  );
+
+  // Handle set completion toggle
+  const handleSetClick = useCallback(
+    async (setNumber: number, currentCompleted: boolean) => {
+      if (!workoutPlan) return;
+
+      // Store the previous state for rollback
+      const previousPlan = workoutPlan;
+
+      // Optimistic update
+      setWorkoutPlan((prev) => {
+        if (!prev) return prev;
+        return {
+          ...prev,
+          weeklyWorkouts: prev.weeklyWorkouts.map((week) => {
+            if (week.weekNumber !== validWeek) return week;
+            return {
+              ...week,
+              lifts: week.lifts.map((lift) => {
+                if (lift.lift !== validLift) return lift;
+                return {
+                  ...lift,
+                  sets: lift.sets.map((set) => {
+                    if (set.setNumber !== setNumber) return set;
+                    return { ...set, completed: !currentCompleted };
+                  }),
+                };
+              }),
+            };
+          }),
+        };
+      });
+
+      setLoadingSetId(setNumber);
+
+      try {
+        const response = await fetch('/api/workout/complete-set', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            workoutPlanId: workoutPlan._id,
+            weekNumber: validWeek,
+            lift: validLift,
+            setNumber,
+            completed: !currentCompleted,
+          }),
+        });
+
+        if (!response.ok) {
+          const data = await response.json();
+          throw new Error(data.error || 'Failed to update set');
+        }
+
+        // Update with server response
+        const data = await response.json();
+        setWorkoutPlan(data.workoutPlan);
+      } catch (err) {
+        // Rollback on error
+        setWorkoutPlan(previousPlan);
+        console.error('Failed to complete set:', err);
+        // Could add a toast notification here
+      } finally {
+        setLoadingSetId(null);
+      }
+    },
+    [workoutPlan, validWeek, validLift]
   );
 
   // Loading state
@@ -154,6 +223,13 @@ function WorkoutPageContent() {
   const currentLiftData = currentWeekData?.lifts.find(
     (l) => l.lift === validLift
   );
+
+  // Check if all sets are complete and last set is AMRAP
+  const allSetsComplete = currentLiftData?.sets.every((s) => s.completed) ?? false;
+  const hasAmrapSet = currentLiftData?.sets.some((s) => s.isAmrap) ?? false;
+  const amrapSet = currentLiftData?.sets.find((s) => s.isAmrap);
+  const amrapRecorded = amrapSet?.amrapRecorded ?? false;
+  const showRecordAmrapButton = allSetsComplete && hasAmrapSet && !amrapRecorded;
 
   // Format date
   const createdDate = new Date(workoutPlan.dateCreated);
@@ -209,24 +285,37 @@ function WorkoutPageContent() {
 
           <div className="sets-list sets-list--interactive">
             {currentLiftData.sets.map((set) => (
-              <div
+              <SetRow
                 key={set.setNumber}
-                className={`set-row set-row--interactive ${
-                  set.completed ? 'set-row--completed' : ''
-                }`}
-              >
-                <span className="set-label">Set {set.setNumber}</span>
-                <span className="set-weight">
-                  {set.weight} {workoutPlan.units}
-                </span>
-                <span className="set-reps">
-                  × {set.reps}
-                  {set.isAmrap && <span className="amrap-badge">+</span>}
-                </span>
-                <span className="set-percentage">{set.percentage}%</span>
-              </div>
+                set={set}
+                units={workoutPlan.units}
+                completed={set.completed ?? false}
+                disabled={amrapRecorded}
+                isLoading={loadingSetId === set.setNumber}
+                onClick={() => handleSetClick(set.setNumber, set.completed ?? false)}
+              />
             ))}
           </div>
+
+          {/* Record AMRAP Button */}
+          {showRecordAmrapButton && (
+            <button
+              className="record-amrap-button"
+              onClick={() => {
+                // Will be implemented in Task 4.0
+                console.log('Record AMRAP clicked');
+              }}
+            >
+              🎯 Record AMRAP Performance
+            </button>
+          )}
+
+          {/* AMRAP Recorded indicator */}
+          {amrapRecorded && (
+            <div className="workout-amrap-recorded">
+              ✓ AMRAP recorded for this workout
+            </div>
+          )}
         </section>
       )}
 
