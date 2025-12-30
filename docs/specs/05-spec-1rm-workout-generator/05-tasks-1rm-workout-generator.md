@@ -60,7 +60,7 @@
 - [x] 1.11 Write unit tests for `generateWorkoutPlan()` verifying structure includes all lifts, all weeks, and correct calculations
 - [x] 1.12 Run test suite and verify all tests pass
 
-### [ ] 2.0 Extend User Model and Create WorkoutPlan Model
+### [x] 2.0 Extend User Model and Create WorkoutPlan Model
 
 **Purpose:** Implement the database schemas needed to store 1RM data and generated workout plans.
 
@@ -74,17 +74,17 @@
 
 #### 2.0 Tasks
 
-- [ ] 2.1 Update `models/User.ts` IUser interface to include optional 1RM fields: `oneRM?: { squat?: number, bench?: number, deadlift?: number, overheadPress?: number, units?: 'lbs' | 'kg', roundingPreference?: 'plate' | '2.5' }`
-- [ ] 2.2 Update `models/User.ts` UserSchema to include 1RM fields with appropriate validation (positive numbers, reasonable bounds)
-- [ ] 2.3 Test User model extension by creating/updating a user document with 1RM data via MongoDB shell or script
-- [ ] 2.4 Create `models/WorkoutPlan.ts` with IWorkoutPlan interface extending Document
-- [ ] 2.5 Define WorkoutPlan schema fields: userId (ObjectId ref to User), dateCreated, lastUpdated, isArchived (boolean, default false), units, roundingPreference
-- [ ] 2.6 Define nested schema structures for trainingMaxValues (object with squat/bench/deadlift/overheadPress) and weeklyWorkouts (array of weeks, each containing array of lifts with sets)
-- [ ] 2.7 Add schema indexes on userId and isArchived for efficient queries
-- [ ] 2.8 Add schema validation: userId required, dates auto-managed with timestamps, units enum validation
-- [ ] 2.9 Export WorkoutPlan model following the pattern from User.ts (prevent recompilation in Next.js hot reload)
-- [ ] 2.10 Create test script or use MongoDB shell to verify WorkoutPlan model can save and retrieve complete 4-week workout data
-- [ ] 2.11 Verify database queries work: find active plan by userId (`isArchived: false`), archive old plans (update `isArchived: true`)
+- [x] 2.1 Update `models/User.ts` IUser interface to include optional 1RM fields: `oneRM?: { squat?: number, bench?: number, deadlift?: number, overheadPress?: number, units?: 'lbs' | 'kg', roundingPreference?: 'plate' | '2.5' }`
+- [x] 2.2 Update `models/User.ts` UserSchema to include 1RM fields with appropriate validation (positive numbers, reasonable bounds)
+- [x] 2.3 Test User model extension by creating/updating a user document with 1RM data via MongoDB shell or script
+- [x] 2.4 Create `models/WorkoutPlan.ts` with IWorkoutPlan interface extending Document
+- [x] 2.5 Define WorkoutPlan schema fields: userId (ObjectId ref to User), dateCreated, lastUpdated, isArchived (boolean, default false), units, roundingPreference
+- [x] 2.6 Define nested schema structures for trainingMaxValues (object with squat/bench/deadlift/overheadPress) and weeklyWorkouts (array of weeks, each containing array of lifts with sets)
+- [x] 2.7 Add schema indexes on userId and isArchived for efficient queries
+- [x] 2.8 Add schema validation: userId required, dates auto-managed with timestamps, units enum validation
+- [x] 2.9 Export WorkoutPlan model following the pattern from User.ts (prevent recompilation in Next.js hot reload)
+- [x] 2.10 Create test script or use MongoDB shell to verify WorkoutPlan model can save and retrieve complete 4-week workout data
+- [x] 2.11 Verify database queries work: find active plan by userId (`isArchived: false`), archive old plans (update `isArchived: true`)
 
 ### [ ] 3.0 Implement 1RM Tracker Card on Account Page
 
