@@ -72,11 +72,11 @@ export interface IWorkoutPlan extends Document {
 
    Creating an optimized production build ...
  ✓ Compiled successfully
- ✓ Linting and checking validity of types    
- ✓ Collecting page data    
+ ✓ Linting and checking validity of types
+ ✓ Collecting page data
  ✓ Generating static pages (6/6)
- ✓ Collecting build traces    
- ✓ Finalizing page optimization    
+ ✓ Collecting build traces
+ ✓ Finalizing page optimization
 
 Route (app)                              Size     First Load JS
 ┌ ○ /                                    137 B          87.5 kB

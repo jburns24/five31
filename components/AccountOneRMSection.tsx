@@ -66,7 +66,7 @@ export default function AccountOneRMSection({
         onGenerateWorkout={handleGenerateWorkout}
         isGenerating={isGenerating}
       />
-      
+
       {error && (
         <div className="onerm-error-banner">
           {error}

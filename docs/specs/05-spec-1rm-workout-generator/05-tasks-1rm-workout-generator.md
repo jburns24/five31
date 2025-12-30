@@ -150,7 +150,7 @@
 - [x] 4.17 Handle API response: on success, redirect to `/workout` using Next.js router; on error, display error message to user
 - [x] 4.18 Test complete flow: click Generate Workout → see dialog → confirm → verify API called → verify redirect to /workout → verify database shows archived old plan and new active plan
 
-### [ ] 5.0 Create Workout Display Page
+### [x] 5.0 Create Workout Display Page
 
 **Purpose:** Build the protected `/workout` route that displays the generated 4-week plan with calculated weights.
 
@@ -167,19 +167,19 @@
 
 #### 5.0 Tasks
 
-- [ ] 5.1 Create `app/workout/page.tsx` as a server component with TypeScript
-- [ ] 5.2 Add session validation using `getServerSession(authOptions)`, redirect to '/' if not authenticated
-- [ ] 5.3 Connect to database and fetch user's active workout plan: `WorkoutPlan.findOne({ userId: user._id, isArchived: false }).sort({ dateCreated: -1 })`
-- [ ] 5.4 Handle empty state: if no active workout plan found, display "No active workout plan" message with link back to /account
-- [ ] 5.5 Create TypeScript interfaces/types for rendering workout data (Week, Lift, Set)
-- [ ] 5.6 Implement UI layout with Training Max summary section at top showing TM values for all four lifts
-- [ ] 5.7 Implement Week 1 section displaying all four lifts with sets showing weight × reps (e.g., "Squat Set 1: 185 lbs × 5")
-- [ ] 5.8 Implement Week 2 section with same structure as Week 1
-- [ ] 5.9 Implement Week 3 section with same structure as Week 1
-- [ ] 5.10 Implement Week 4 (Deload) section with same structure, optionally styled differently to indicate deload
-- [ ] 5.11 Add plan creation date display
-- [ ] 5.12 Add navigation link/button back to /account page
-- [ ] 5.13 Add CSS styles to globals.css for workout page layout, week sections, lift cards/tables, set displays
-- [ ] 5.14 Test with generated workout: verify all weeks display correctly, weights match calculations, units shown properly
-- [ ] 5.15 Test empty state: verify "No active workout plan" message shows for user without plan
-- [ ] 5.16 Test authentication: verify redirect to home page when not logged in
+- [x] 5.1 Create `app/workout/page.tsx` as a server component with TypeScript
+- [x] 5.2 Add session validation using `getServerSession(authOptions)`, redirect to '/' if not authenticated
+- [x] 5.3 Connect to database and fetch user's active workout plan: `WorkoutPlan.findOne({ userId: user._id, isArchived: false }).sort({ dateCreated: -1 })`
+- [x] 5.4 Handle empty state: if no active workout plan found, display "No active workout plan" message with link back to /account
+- [x] 5.5 Create TypeScript interfaces/types for rendering workout data (Week, Lift, Set)
+- [x] 5.6 Implement UI layout with Training Max summary section at top showing TM values for all four lifts
+- [x] 5.7 Implement Week 1 section displaying all four lifts with sets showing weight × reps (e.g., "Squat Set 1: 185 lbs × 5")
+- [x] 5.8 Implement Week 2 section with same structure as Week 1
+- [x] 5.9 Implement Week 3 section with same structure as Week 1
+- [x] 5.10 Implement Week 4 (Deload) section with same structure, optionally styled differently to indicate deload
+- [x] 5.11 Add plan creation date display
+- [x] 5.12 Add navigation link/button back to /account page
+- [x] 5.13 Add CSS styles to globals.css for workout page layout, week sections, lift cards/tables, set displays
+- [x] 5.14 Test with generated workout: verify all weeks display correctly, weights match calculations, units shown properly
+- [x] 5.15 Test empty state: verify "No active workout plan" message shows for user without plan
+- [x] 5.16 Test authentication: verify redirect to home page when not logged in

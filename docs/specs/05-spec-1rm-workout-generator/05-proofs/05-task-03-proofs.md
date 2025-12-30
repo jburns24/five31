@@ -84,9 +84,9 @@ The following style classes were added to globals.css:
   ▲ Next.js 14.2.35
    Creating an optimized production build ...
  ✓ Compiled successfully
- ✓ Linting and checking validity of types    
+ ✓ Linting and checking validity of types
  ✓ Generating static pages (6/6)
- ✓ Finalizing page optimization    
+ ✓ Finalizing page optimization
 
 Route (app)                              Size     First Load JS
 ├ ƒ /account                             2.33 kB         104 kB
