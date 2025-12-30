@@ -7,6 +7,8 @@ export interface IWorkoutSet {
   weight: number;
   reps: number;
   isAmrap: boolean;
+  completed?: boolean;
+  amrapRecorded?: boolean;
 }
 
 export interface ILiftWorkout {
@@ -70,6 +72,16 @@ const WorkoutSetSchema = new Schema<IWorkoutSet>(
     isAmrap: {
       type: Boolean,
       required: true,
+      default: false,
+    },
+    completed: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    amrapRecorded: {
+      type: Boolean,
+      required: false,
       default: false,
     },
   },

@@ -68,11 +68,11 @@ Comprehensive workout page styles including:
   ▲ Next.js 14.2.35
    Creating an optimized production build ...
  ✓ Compiled successfully
- ✓ Linting and checking validity of types    
- ✓ Collecting page data    
+ ✓ Linting and checking validity of types
+ ✓ Collecting page data
  ✓ Generating static pages (8/8)
- ✓ Collecting build traces    
- ✓ Finalizing page optimization    
+ ✓ Collecting build traces
+ ✓ Finalizing page optimization
 
 Route (app)                              Size     First Load JS
 ├ ƒ /workout                             655 B           103 kB

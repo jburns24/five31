@@ -1,4 +1,16 @@
-import mongoose, { Document, Model, Schema } from 'mongoose';
+import mongoose, { Document, Model, Schema, Types } from 'mongoose';
+
+// TypeScript interface for AMRAP history entry
+export interface IAMRAPHistoryEntry {
+  lift: 'squat' | 'bench' | 'deadlift' | 'overheadPress';
+  weight: number;
+  reps: number;
+  units: 'lbs' | 'kg';
+  date: Date;
+  workoutPlanId: Types.ObjectId;
+  weekNumber: number;
+  notes?: string;
+}
 
 // TypeScript interface for 1RM data
 export interface IOneRM {
@@ -17,6 +29,7 @@ export interface IUser extends Document {
   name: string;
   image: string;
   oneRM?: IOneRM;
+  amrapHistory?: IAMRAPHistoryEntry[];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -58,6 +71,54 @@ const OneRMSchema = new Schema<IOneRM>(
   { _id: false }
 );
 
+// Sub-schema for AMRAP history entries
+const AMRAPHistorySchema = new Schema<IAMRAPHistoryEntry>(
+  {
+    lift: {
+      type: String,
+      required: true,
+      enum: ['squat', 'bench', 'deadlift', 'overheadPress'],
+    },
+    weight: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
+    reps: {
+      type: Number,
+      required: true,
+      min: 1,
+    },
+    units: {
+      type: String,
+      required: true,
+      enum: ['lbs', 'kg'],
+    },
+    date: {
+      type: Date,
+      required: true,
+      default: Date.now,
+    },
+    workoutPlanId: {
+      type: Schema.Types.ObjectId,
+      ref: 'WorkoutPlan',
+      required: true,
+    },
+    weekNumber: {
+      type: Number,
+      required: true,
+      min: 1,
+      max: 4,
+    },
+    notes: {
+      type: String,
+      required: false,
+      maxlength: 500,
+    },
+  },
+  { _id: true }
+);
+
 // Mongoose schema definition
 const UserSchema = new Schema<IUser>(
   {
@@ -91,6 +152,11 @@ const UserSchema = new Schema<IUser>(
     oneRM: {
       type: OneRMSchema,
       required: false,
+    },
+    amrapHistory: {
+      type: [AMRAPHistorySchema],
+      required: false,
+      default: [],
     },
   },
   {
