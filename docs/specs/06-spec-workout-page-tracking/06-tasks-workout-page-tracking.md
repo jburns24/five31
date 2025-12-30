@@ -161,7 +161,7 @@ This task list breaks down the Workout Page Tracking feature into implementable 
 - [x] 4.29 Test AMRAP recording: submit AMRAP, verify it saves to DB and cannot be re-submitted
 - [x] 4.30 Test PR detection: record AMRAP that beats previous performance and verify notification shows correctly
 
-### [~] 5.0 Auto-Navigation and Workout Progression
+### [x] 5.0 Auto-Navigation and Workout Progression
 
 #### 5.0 Proof Artifact(s)
 
@@ -174,30 +174,30 @@ This task list breaks down the Workout Page Tracking feature into implementable 
 
 #### 5.0 Tasks
 
-- [ ] 5.1 Create `lib/workoutNavigation.ts` with function to find first incomplete workout in a WorkoutPlan
-- [ ] 5.2 In workoutNavigation, implement logic to iterate through weeks/lifts and find first set with `completed !== true`
-- [ ] 5.3 In workoutNavigation, implement function to check if all workouts are complete
-- [ ] 5.4 Create `lib/workoutNavigation.test.ts` with test cases for various completion scenarios
-- [ ] 5.5 Create `lib/autoIncrementLogic.ts` with function to calculate new 1RM values based on AMRAP performance
-- [ ] 5.6 In autoIncrementLogic, implement logic: if reps >= target, increase 1RM by 10 lbs (5 kg); otherwise keep current
-- [ ] 5.7 In autoIncrementLogic, implement function to get AMRAP target reps for each week (Week 1: 5+, Week 2: 3+, Week 3: 1+, Week 4: 5+)
-- [ ] 5.8 Create `lib/autoIncrementLogic.test.ts` with test cases for met targets, missed targets, and mixed scenarios
-- [ ] 5.9 Update `app/workout/page.tsx` to call workoutNavigation on page load to find first incomplete workout
-- [ ] 5.10 In workout page, update URL params to navigate to first incomplete workout automatically
-- [ ] 5.11 In workout page, detect when all workouts are complete and show completion message instead of workout view
-- [ ] 5.12 In workout page, add "Generate New Plan" button that navigates to `/account` when all workouts complete
-- [ ] 5.13 In workout page, implement beforeunload event listener to warn if sets are marked but AMRAP not recorded
-- [ ] 5.14 Update `app/account/page.tsx` to fetch user's AMRAP history from database
-- [ ] 5.15 In account page, use oneRMCalculation to compute theoretical 1RM from latest AMRAP for each lift
-- [ ] 5.16 In account page, display theoretical 1RM values alongside current 1RM values in AccountOneRMSection
-- [ ] 5.17 In account page, detect if user is coming from completed workout plan (check query param or session)
-- [ ] 5.18 In account page, if coming from completed plan, use autoIncrementLogic to calculate suggested new 1RM values
-- [ ] 5.19 In account page, pre-populate 1RM form fields with auto-incremented values when generating new plan
-- [ ] 5.20 Add CSS styles to `app/globals.css` for completion message, generate new plan button, navigation warning
-- [ ] 5.21 Run `npm test lib/workoutNavigation.test.ts` and verify all tests pass
-- [ ] 5.22 Run `npm test lib/autoIncrementLogic.test.ts` and verify all tests pass
-- [ ] 5.23 Test auto-navigation: verify page loads with first incomplete workout displayed
-- [ ] 5.24 Test completion state: verify all complete shows message and button
-- [ ] 5.25 Test navigation warning: verify warning appears when leaving with unsaved progress
-- [ ] 5.26 Test theoretical 1RM display: verify account page shows calculated values
-- [ ] 5.27 Test auto-increment: complete full plan, generate new plan, verify 1RM values auto-incremented correctly
+- [x] 5.1 Create `lib/workoutNavigation.ts` with function to find first incomplete workout in a WorkoutPlan
+- [x] 5.2 In workoutNavigation, implement logic to iterate through weeks/lifts and find first set with `completed !== true`
+- [x] 5.3 In workoutNavigation, implement function to check if all workouts are complete
+- [x] 5.4 Create `lib/workoutNavigation.test.ts` with test cases for various completion scenarios
+- [x] 5.5 Create `lib/autoIncrementLogic.ts` with function to calculate new 1RM values based on AMRAP performance
+- [x] 5.6 In autoIncrementLogic, implement logic: if reps >= target, increase 1RM by 10 lbs (5 kg); otherwise keep current
+- [x] 5.7 In autoIncrementLogic, implement function to get AMRAP target reps for each week (Week 1: 5+, Week 2: 3+, Week 3: 1+, Week 4: 5+)
+- [x] 5.8 Create `lib/autoIncrementLogic.test.ts` with test cases for met targets, missed targets, and mixed scenarios
+- [x] 5.9 Update `app/workout/page.tsx` to call workoutNavigation on page load to find first incomplete workout
+- [x] 5.10 In workout page, update URL params to navigate to first incomplete workout automatically
+- [x] 5.11 In workout page, detect when all workouts are complete and show completion message instead of workout view
+- [x] 5.12 In workout page, add "Generate New Plan" button that navigates to `/account` when all workouts complete
+- [x] 5.13 In workout page, implement beforeunload event listener to warn if sets are marked but AMRAP not recorded
+- [x] 5.14 Update `app/account/page.tsx` to fetch user's AMRAP history from database
+- [x] 5.15 In account page, use oneRMCalculation to compute theoretical 1RM from latest AMRAP for each lift
+- [x] 5.16 In account page, display theoretical 1RM values alongside current 1RM values in AccountOneRMSection
+- [x] 5.17 In account page, detect if user is coming from completed workout plan (check query param or session)
+- [x] 5.18 In account page, if coming from completed plan, use autoIncrementLogic to calculate suggested new 1RM values
+- [x] 5.19 In account page, pre-populate 1RM form fields with auto-incremented values when generating new plan
+- [x] 5.20 Add CSS styles to `app/globals.css` for completion message, generate new plan button, navigation warning
+- [x] 5.21 Run `npm test lib/workoutNavigation.test.ts` and verify all tests pass
+- [x] 5.22 Run `npm test lib/autoIncrementLogic.test.ts` and verify all tests pass
+- [x] 5.23 Test auto-navigation: verify page loads with first incomplete workout displayed
+- [x] 5.24 Test completion state: verify all complete shows message and button
+- [x] 5.25 Test navigation warning: verify warning appears when leaving with unsaved progress
+- [x] 5.26 Test theoretical 1RM display: verify account page shows calculated values
+- [x] 5.27 Test auto-increment: complete full plan, generate new plan, verify 1RM values auto-incremented correctly

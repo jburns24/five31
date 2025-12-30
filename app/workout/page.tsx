@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useEffect, useState, useCallback } from 'react';
+import { Suspense, useEffect, useState, useCallback, useRef } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
@@ -10,6 +10,12 @@ import AMRAPDialog from '@/components/AMRAPDialog';
 import PRNotification from '@/components/PRNotification';
 import type { IWorkoutSet } from '@/models/WorkoutPlan';
 import type { PRDetails } from '@/lib/prDetection';
+import {
+  findFirstIncompleteWorkout,
+  isAllWorkoutsComplete,
+  hasUnsavedProgress,
+  type WeeklyWorkout,
+} from '@/lib/workoutNavigation';
 
 // Type for the workout plan data from API
 interface WorkoutPlanData {
@@ -45,6 +51,8 @@ function WorkoutPageContent() {
   const [loadingSetId, setLoadingSetId] = useState<number | null>(null);
   const [showAmrapDialog, setShowAmrapDialog] = useState(false);
   const [prDetails, setPrDetails] = useState<PRDetails | null>(null);
+  const [allComplete, setAllComplete] = useState(false);
+  const hasAutoNavigated = useRef(false);
 
   // Get current week and lift from URL params (defaults: week 1, squat)
   const weekParam = searchParams.get('week');
@@ -84,16 +92,53 @@ function WorkoutPageContent() {
 
       const data = await response.json();
       setWorkoutPlan(data.workoutPlan);
+
+      // Check if all workouts are complete
+      const typedWorkouts = data.workoutPlan.weeklyWorkouts as WeeklyWorkout[];
+      if (isAllWorkoutsComplete(typedWorkouts)) {
+        setAllComplete(true);
+      } else if (!hasAutoNavigated.current && !weekParam && !liftParam) {
+        // Auto-navigate to first incomplete workout if no params in URL
+        const firstIncomplete = findFirstIncompleteWorkout(typedWorkouts);
+        if (firstIncomplete) {
+          hasAutoNavigated.current = true;
+          const params = new URLSearchParams();
+          params.set('week', firstIncomplete.weekNumber.toString());
+          params.set('lift', firstIncomplete.lift);
+          router.replace(`/workout?${params.toString()}`, { scroll: false });
+        }
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setLoading(false);
     }
-  }, [session, status, router]);
+  }, [session, status, router, weekParam, liftParam]);
 
   useEffect(() => {
     fetchWorkoutPlan();
   }, [fetchWorkoutPlan]);
+
+  // Set up beforeunload warning for unsaved progress
+  useEffect(() => {
+    const currentLiftData = workoutPlan?.weeklyWorkouts
+      .find((w) => w.weekNumber === validWeek)
+      ?.lifts.find((l) => l.lift === validLift);
+
+    if (!currentLiftData) return;
+
+    const hasUnsaved = hasUnsavedProgress(currentLiftData, validWeek);
+
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (hasUnsaved) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [workoutPlan, validWeek, validLift]);
 
   // Update URL when week or lift changes
   const handleWeekChange = useCallback(
@@ -248,6 +293,26 @@ function WorkoutPageContent() {
         </p>
         <Link href="/account" className="workout-link-button">
           Go to Account Page
+        </Link>
+      </div>
+    );
+  }
+
+  // All workouts complete state
+  if (allComplete) {
+    return (
+      <div className="workout-complete">
+        <div className="workout-complete__icon">🎉</div>
+        <h1>Congratulations!</h1>
+        <p className="workout-complete__message">
+          You&apos;ve completed all 16 workouts in this 4-week cycle!
+        </p>
+        <p className="workout-complete__next">
+          Ready to start your next cycle with updated weights based on your
+          AMRAP performance?
+        </p>
+        <Link href="/account?completed=true" className="workout-complete__button">
+          Generate New Plan →
         </Link>
       </div>
     );
