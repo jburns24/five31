@@ -66,7 +66,7 @@ The program overview section has been implemented with a card-based layout, "sta
 }
 ```
 
-**Verification**: 
+**Verification**:
 - Card-based layout using existing `.card` class
 - Responsive grid: 2x2 on mobile, 4-column on tablet+
 - Colors match dark theme (#2d2d2d for week cards, #ffffff for text)
@@ -83,18 +83,18 @@ The program overview section has been implemented with a card-based layout, "sta
   <div className="card">
     <h2>What is 5/3/1?</h2>
     <p>
-      5/3/1 is a strength training program designed by powerlifter Jim Wendler. 
-      It focuses on four main barbell lifts—squat, bench press, deadlift, and 
+      5/3/1 is a strength training program designed by powerlifter Jim Wendler.
+      It focuses on four main barbell lifts—squat, bench press, deadlift, and
       overhead press—using a simple 4-week cycle that builds real, lasting strength.
     </p>
-    
+
     <div className="philosophy-highlight">
       "Start too light, progress slowly"
     </div>
 
     <p>
-      The core philosophy is sustainable progress. Instead of chasing quick gains that 
-      lead to burnout or injury, 5/3/1 uses submaximal training to ensure you're always 
+      The core philosophy is sustainable progress. Instead of chasing quick gains that
+      lead to burnout or injury, 5/3/1 uses submaximal training to ensure you're always
       making progress week after week, month after month.
     </p>
 

@@ -18,8 +18,8 @@ export default async function Home() {
             Built for lifters who want consistent, measurable strength gains
           </h1>
           <p className="hero-subheadline">
-            Track your workouts using Jim Wendler's 5/3/1 program—a proven strength training 
-            methodology built on simple principles: start light, progress slowly, and build 
+            Track your workouts using Jim Wendler's 5/3/1 program—a proven strength training
+            methodology built on simple principles: start light, progress slowly, and build
             strength that lasts. No complicated spreadsheets, just lift and log.
           </p>
         </div>
@@ -30,18 +30,18 @@ export default async function Home() {
         <div className="card">
           <h2>What is 5/3/1?</h2>
           <p>
-            5/3/1 is a strength training program designed by powerlifter Jim Wendler. 
-            It focuses on four main barbell lifts—squat, bench press, deadlift, and 
+            5/3/1 is a strength training program designed by powerlifter Jim Wendler.
+            It focuses on four main barbell lifts—squat, bench press, deadlift, and
             overhead press—using a simple 4-week cycle that builds real, lasting strength.
           </p>
-          
+
           <div className="philosophy-highlight">
             "Start too light, progress slowly"
           </div>
 
           <p>
-            The core philosophy is sustainable progress. Instead of chasing quick gains that 
-            lead to burnout or injury, 5/3/1 uses submaximal training to ensure you're always 
+            The core philosophy is sustainable progress. Instead of chasing quick gains that
+            lead to burnout or injury, 5/3/1 uses submaximal training to ensure you're always
             making progress week after week, month after month.
           </p>
 
@@ -83,9 +83,9 @@ export default async function Home() {
         <div className="footer-content">
           <p className="footer-attribution">
             This app follows{' '}
-            <a 
-              href="https://www.jimwendler.com" 
-              target="_blank" 
+            <a
+              href="https://www.jimwendler.com"
+              target="_blank"
               rel="noopener noreferrer"
             >
               Jim Wendler's
@@ -93,20 +93,20 @@ export default async function Home() {
             5/3/1 methodology.
           </p>
           <p className="footer-disclaimer">
-            This tool is not affiliated with Jim Wendler or his brand. It's an independent 
+            This tool is not affiliated with Jim Wendler or his brand. It's an independent
             project built by a lifter who loves the program.
           </p>
           <div className="footer-links">
-            <a 
-              href="https://www.jimwendler.com" 
-              target="_blank" 
+            <a
+              href="https://www.jimwendler.com"
+              target="_blank"
               rel="noopener noreferrer"
             >
               Learn more about 5/3/1 →
             </a>
-            <a 
-              href="https://buymeacoffee.com/joshuajohnn" 
-              target="_blank" 
+            <a
+              href="https://buymeacoffee.com/joshuajohnn"
+              target="_blank"
               rel="noopener noreferrer"
               className="footer-coffee"
             >

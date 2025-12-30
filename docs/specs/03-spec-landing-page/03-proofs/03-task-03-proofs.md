@@ -65,7 +65,7 @@ The footer section has been implemented with Jim Wendler attribution, disclaimer
 }
 ```
 
-**Verification**: 
+**Verification**:
 - Full-width footer with #0a0a0a background (darker than body)
 - Centered content with max-width 900px
 - Links stack vertically on mobile, horizontal on tablet+
@@ -82,9 +82,9 @@ The footer section has been implemented with Jim Wendler attribution, disclaimer
   <div className="footer-content">
     <p className="footer-attribution">
       This app follows{' '}
-      <a 
-        href="https://www.jimwendler.com" 
-        target="_blank" 
+      <a
+        href="https://www.jimwendler.com"
+        target="_blank"
         rel="noopener noreferrer"
       >
         Jim Wendler's
@@ -92,20 +92,20 @@ The footer section has been implemented with Jim Wendler attribution, disclaimer
       5/3/1 methodology.
     </p>
     <p className="footer-disclaimer">
-      This tool is not affiliated with Jim Wendler or his brand. It's an independent 
+      This tool is not affiliated with Jim Wendler or his brand. It's an independent
       project built by a lifter who loves the program.
     </p>
     <div className="footer-links">
-      <a 
-        href="https://www.jimwendler.com" 
-        target="_blank" 
+      <a
+        href="https://www.jimwendler.com"
+        target="_blank"
         rel="noopener noreferrer"
       >
         Learn more about 5/3/1 →
       </a>
-      <a 
-        href="https://buymeacoffee.com/joshuajohnn" 
-        target="_blank" 
+      <a
+        href="https://buymeacoffee.com/joshuajohnn"
+        target="_blank"
         rel="noopener noreferrer"
         className="footer-coffee"
       >
@@ -141,9 +141,9 @@ The footer section has been implemented with Jim Wendler attribution, disclaimer
 
 ```tsx
 // All links follow this pattern:
-<a 
-  href="https://..." 
-  target="_blank" 
+<a
+  href="https://..."
+  target="_blank"
   rel="noopener noreferrer"
 >
 ```

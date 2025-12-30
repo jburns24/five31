@@ -80,7 +80,7 @@ export const metadata: Metadata = {
 }
 ```
 
-**Verification**: 
+**Verification**:
 - Mobile-first responsive styles implemented
 - Base font-size 2rem for headline (32px), scaling to 2.5rem (tablet) and 3rem (desktop)
 - Body text 1.125rem (18px) exceeds 16px accessibility minimum
@@ -100,8 +100,8 @@ export const metadata: Metadata = {
       Built for lifters who want consistent, measurable strength gains
     </h1>
     <p className="hero-subheadline">
-      Track your workouts using Jim Wendler's 5/3/1 program—a proven strength training 
-      methodology built on simple principles: start light, progress slowly, and build 
+      Track your workouts using Jim Wendler's 5/3/1 program—a proven strength training
+      methodology built on simple principles: start light, progress slowly, and build
       strength that lasts. No complicated spreadsheets, just lift and log.
     </p>
   </div>
