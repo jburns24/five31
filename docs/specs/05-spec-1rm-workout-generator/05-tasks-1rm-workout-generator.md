@@ -86,7 +86,7 @@
 - [x] 2.10 Create test script or use MongoDB shell to verify WorkoutPlan model can save and retrieve complete 4-week workout data
 - [x] 2.11 Verify database queries work: find active plan by userId (`isArchived: false`), archive old plans (update `isArchived: true`)
 
-### [ ] 3.0 Implement 1RM Tracker Card on Account Page
+### [x] 3.0 Implement 1RM Tracker Card on Account Page
 
 **Purpose:** Create the UI for users to input their 1RM values with validation and persistence.
 
@@ -101,20 +101,20 @@
 
 #### 3.0 Tasks
 
-- [ ] 3.1 Create `components/OneRMCard.tsx` as a client component ('use client' directive) with TypeScript
-- [ ] 3.2 Define component state for form inputs: squat, bench, deadlift, overheadPress (all numbers), units ('lbs' | 'kg'), and validation errors
-- [ ] 3.3 Implement input fields for all four lifts with labels and number input type
-- [ ] 3.4 Implement unit selector (radio buttons or dropdown) for lbs/kg with default to 'lbs'
-- [ ] 3.5 Implement client-side validation: check all fields filled, values > 0, values within reasonable bounds (1-2000 lbs or 1-900 kg)
-- [ ] 3.6 Display inline validation error messages for invalid inputs
-- [ ] 3.7 Implement "Generate Workout" button with disabled state when validation fails
-- [ ] 3.8 Add useEffect hook to pre-fill form inputs with user's existing 1RM data (passed as props from parent)
-- [ ] 3.9 Add CSS classes following globals.css patterns (card styling, form inputs, buttons)
-- [ ] 3.10 Update `app/account/page.tsx` to fetch user's 1RM data from database (user.oneRM)
-- [ ] 3.11 Import and render OneRMCard component in account page, passing user's 1RM data as props
-- [ ] 3.12 Add CSS styles to `app/globals.css` for 1RM card, form inputs, validation errors, and button states
-- [ ] 3.13 Test UI: verify card displays on /account page, inputs work, validation shows errors, button enables/disables correctly
-- [ ] 3.14 Test persistence: enter 1RM values, refresh page, verify values are pre-filled from database
+- [x] 3.1 Create `components/OneRMCard.tsx` as a client component ('use client' directive) with TypeScript
+- [x] 3.2 Define component state for form inputs: squat, bench, deadlift, overheadPress (all numbers), units ('lbs' | 'kg'), and validation errors
+- [x] 3.3 Implement input fields for all four lifts with labels and number input type
+- [x] 3.4 Implement unit selector (radio buttons or dropdown) for lbs/kg with default to 'lbs'
+- [x] 3.5 Implement client-side validation: check all fields filled, values > 0, values within reasonable bounds (1-2000 lbs or 1-900 kg)
+- [x] 3.6 Display inline validation error messages for invalid inputs
+- [x] 3.7 Implement "Generate Workout" button with disabled state when validation fails
+- [x] 3.8 Add useEffect hook to pre-fill form inputs with user's existing 1RM data (passed as props from parent)
+- [x] 3.9 Add CSS classes following globals.css patterns (card styling, form inputs, buttons)
+- [x] 3.10 Update `app/account/page.tsx` to fetch user's 1RM data from database (user.oneRM)
+- [x] 3.11 Import and render OneRMCard component in account page, passing user's 1RM data as props
+- [x] 3.12 Add CSS styles to `app/globals.css` for 1RM card, form inputs, validation errors, and button states
+- [x] 3.13 Test UI: verify card displays on /account page, inputs work, validation shows errors, button enables/disables correctly
+- [x] 3.14 Test persistence: enter 1RM values, refresh page, verify values are pre-filled from database
 
 ### [ ] 4.0 Build Workout Generation API and User Flow
 

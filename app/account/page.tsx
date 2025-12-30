@@ -5,6 +5,8 @@ import connectDB from '@/lib/mongodb'
 import User from '@/models/User'
 import UserAvatar from '@/components/UserAvatar'
 import SignOutButton from '@/components/SignOutButton'
+import AccountOneRMSection from '@/components/AccountOneRMSection'
+import type { IOneRM } from '@/models/User'
 
 export default async function AccountPage() {
   const session = await getServerSession(authOptions)
@@ -28,6 +30,16 @@ export default async function AccountPage() {
     year: 'numeric',
   })
 
+  // Serialize 1RM data for client component
+  const oneRMData: IOneRM | undefined = user.oneRM ? {
+    squat: user.oneRM.squat,
+    bench: user.oneRM.bench,
+    deadlift: user.oneRM.deadlift,
+    overheadPress: user.oneRM.overheadPress,
+    units: user.oneRM.units,
+    roundingPreference: user.oneRM.roundingPreference,
+  } : undefined
+
   return (
     <main className="account-page">
       <div className="account-card">
@@ -47,6 +59,8 @@ export default async function AccountPage() {
           <SignOutButton />
         </div>
       </div>
+
+      <AccountOneRMSection initialData={oneRMData} />
     </main>
   )
 }
