@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useSession } from 'next-auth/react'
+import { useSession, signIn } from 'next-auth/react'
 
 export default function DesktopNav() {
   const { data: session } = useSession()
@@ -18,7 +18,7 @@ export default function DesktopNav() {
           </li>
         ) : (
           <li>
-            <Link href="/api/auth/signin">Sign In</Link>
+            <button onClick={() => signIn('google', { callbackUrl: '/account' })}>Sign In</button>
           </li>
         )}
       </ul>

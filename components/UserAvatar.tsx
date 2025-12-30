@@ -20,12 +20,12 @@ function getColorFromName(name: string): string {
     '#6366f1', // indigo
     '#f43f5e', // rose
   ]
-  
+
   let hash = 0
   for (let i = 0; i < name.length; i++) {
     hash = name.charCodeAt(i) + ((hash << 5) - hash)
   }
-  
+
   return colors[Math.abs(hash) % colors.length]
 }
 

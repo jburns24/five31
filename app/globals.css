@@ -485,6 +485,28 @@ main {
   background: #2d2d2d;
 }
 
+.mobile-nav-items button {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.125rem;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.mobile-nav-items button:hover {
+  background: #2d2d2d;
+}
+
 @media (min-width: 1024px) {
   .hamburger-icon {
     display: none;
@@ -527,6 +549,24 @@ main {
   }
 
   .desktop-nav-items a:hover {
+    background: #2d2d2d;
+    color: #ffffff;
+  }
+
+  .desktop-nav-items button {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .desktop-nav-items button:hover {
     background: #2d2d2d;
     color: #ffffff;
   }
@@ -605,13 +645,13 @@ main {
   .account-card {
     padding: 3rem;
   }
-  
+
   .account-header {
     flex-direction: row;
     text-align: left;
     align-items: flex-start;
   }
-  
+
   .account-info h1 {
     font-size: 2rem;
   }

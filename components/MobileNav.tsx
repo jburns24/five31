@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useSession } from 'next-auth/react'
+import { useSession, signIn } from 'next-auth/react'
 import Link from 'next/link'
 
 interface MobileNavProps {
@@ -25,6 +25,11 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
   }, [isOpen])
 
   if (!isOpen) return null
+
+  const handleSignIn = () => {
+    onClose()
+    signIn('google', { callbackUrl: '/account' })
+  }
 
   return (
     <>
@@ -51,9 +56,9 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             </li>
           ) : (
             <li>
-              <Link href="/api/auth/signin" onClick={onClose}>
+              <button onClick={handleSignIn}>
                 Sign In
-              </Link>
+              </button>
             </li>
           )}
         </ul>

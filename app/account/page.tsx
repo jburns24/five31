@@ -14,7 +14,7 @@ export default async function AccountPage() {
   }
 
   await connectDB()
-  
+
   const user = await User.findOne({ email: session.user.email }).lean()
 
   if (!user) {
