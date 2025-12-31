@@ -114,7 +114,7 @@ const handleSetClick = useCallback(
 
     // Store the previous state for rollback
     const previousPlan = workoutPlan;
-    
+
     // Optimistic update
     setWorkoutPlan((prev) => {
       // ... update nested state

@@ -153,39 +153,95 @@ describe('autoIncrementLogic', () => {
       overheadPress: 135,
     };
 
-    it('should increment lifts where targets were met', () => {
+    it('should increment lifts where ALL targets were met across all weeks', () => {
       const amrapResults: AMRAPResult[] = [
-        { lift: 'squat', weekNumber: 3, reps: 3, weight: 285 }, // Met 1+ target
-        { lift: 'bench', weekNumber: 3, reps: 0, weight: 190 }, // Missed 1+ target
-        { lift: 'deadlift', weekNumber: 3, reps: 2, weight: 332 }, // Met 1+ target
-        { lift: 'overheadPress', weekNumber: 3, reps: 1, weight: 128 }, // Met 1+ target
+        // Squat: met all targets (5+, 3+, 1+)
+        { lift: 'squat', weekNumber: 1, reps: 7, weight: 255 },
+        { lift: 'squat', weekNumber: 2, reps: 5, weight: 270 },
+        { lift: 'squat', weekNumber: 3, reps: 3, weight: 285 },
+        // Bench: met all targets
+        { lift: 'bench', weekNumber: 1, reps: 5, weight: 170 },
+        { lift: 'bench', weekNumber: 2, reps: 3, weight: 180 },
+        { lift: 'bench', weekNumber: 3, reps: 1, weight: 190 },
       ];
 
       const result = calculateCycleProgression(currentValues, amrapResults, 'lbs');
 
-      expect(result.newValues).toEqual({
-        squat: 310, // +10
-        bench: 200, // No change (missed target)
-        deadlift: 360, // +10
-        overheadPress: 140, // +5
-      });
+      expect(result.newValues.squat).toBe(310); // +10 for meeting all targets
+      expect(result.newValues.bench).toBe(205); // +5 for meeting all targets
+      expect(result.newValues.deadlift).toBe(350); // No change (no results)
+      expect(result.newValues.overheadPress).toBe(135); // No change (no results)
     });
 
-    it('should prefer week 3 results when multiple weeks available', () => {
+    it('should NOT increment if week 1 target was missed (4 reps when 5+ required)', () => {
       const amrapResults: AMRAPResult[] = [
-        { lift: 'squat', weekNumber: 1, reps: 10, weight: 255 }, // Week 1 great
-        { lift: 'squat', weekNumber: 2, reps: 8, weight: 270 }, // Week 2 great
-        { lift: 'squat', weekNumber: 3, reps: 0, weight: 285 }, // Week 3 failed
+        // Squat: FAILED week 1 (only 4 reps when 5+ required)
+        { lift: 'squat', weekNumber: 1, reps: 4, weight: 255 }, // FAILED
+        { lift: 'squat', weekNumber: 2, reps: 5, weight: 270 }, // Met 3+
+        { lift: 'squat', weekNumber: 3, reps: 3, weight: 285 }, // Met 1+
       ];
 
-      const result = calculateCycleProgression(
-        { ...currentValues },
-        amrapResults,
-        'lbs'
-      );
+      const result = calculateCycleProgression(currentValues, amrapResults, 'lbs');
 
-      // Should use week 3 result, which failed
-      expect(result.newValues.squat).toBe(300); // No change
+      expect(result.newValues.squat).toBe(300); // No change - failed week 1
+      const squatDetail = result.details.find((d) => d.lift === 'squat');
+      expect(squatDetail?.increased).toBe(false);
+      expect(squatDetail?.targetReps).toBe(5);
+      expect(squatDetail?.actualReps).toBe(4);
+    });
+
+    it('should NOT increment if week 2 target was missed (2 reps when 3+ required)', () => {
+      const amrapResults: AMRAPResult[] = [
+        { lift: 'bench', weekNumber: 1, reps: 8, weight: 170 }, // Met 5+
+        { lift: 'bench', weekNumber: 2, reps: 2, weight: 180 }, // FAILED 3+
+        { lift: 'bench', weekNumber: 3, reps: 3, weight: 190 }, // Met 1+
+      ];
+
+      const result = calculateCycleProgression(currentValues, amrapResults, 'lbs');
+
+      expect(result.newValues.bench).toBe(200); // No change - failed week 2
+    });
+
+    it('should NOT increment if week 3 target was missed (0 reps when 1+ required)', () => {
+      const amrapResults: AMRAPResult[] = [
+        { lift: 'deadlift', weekNumber: 1, reps: 10, weight: 298 }, // Met 5+
+        { lift: 'deadlift', weekNumber: 2, reps: 8, weight: 315 }, // Met 3+
+        { lift: 'deadlift', weekNumber: 3, reps: 0, weight: 332 }, // FAILED 1+
+      ];
+
+      const result = calculateCycleProgression(currentValues, amrapResults, 'lbs');
+
+      expect(result.newValues.deadlift).toBe(350); // No change - failed week 3
+    });
+
+    it('should handle mixed results - some lifts pass, some fail', () => {
+      const amrapResults: AMRAPResult[] = [
+        // Squat: met all targets
+        { lift: 'squat', weekNumber: 1, reps: 5, weight: 255 },
+        { lift: 'squat', weekNumber: 2, reps: 3, weight: 270 },
+        { lift: 'squat', weekNumber: 3, reps: 1, weight: 285 },
+        // Bench: failed week 1
+        { lift: 'bench', weekNumber: 1, reps: 4, weight: 170 }, // FAILED
+        { lift: 'bench', weekNumber: 2, reps: 5, weight: 180 },
+        { lift: 'bench', weekNumber: 3, reps: 2, weight: 190 },
+      ];
+
+      const result = calculateCycleProgression(currentValues, amrapResults, 'lbs');
+
+      expect(result.newValues.squat).toBe(310); // +10 (all targets met)
+      expect(result.newValues.bench).toBe(200); // No change (failed week 1)
+    });
+
+    it('should increment if only some weeks were completed but all completed weeks met target', () => {
+      const amrapResults: AMRAPResult[] = [
+        // Only week 1 and 2 completed, both targets met
+        { lift: 'squat', weekNumber: 1, reps: 6, weight: 255 },
+        { lift: 'squat', weekNumber: 2, reps: 4, weight: 270 },
+      ];
+
+      const result = calculateCycleProgression(currentValues, amrapResults, 'lbs');
+
+      expect(result.newValues.squat).toBe(310); // +10 (all completed weeks met target)
     });
 
     it('should handle missing AMRAP results for some lifts', () => {
@@ -207,7 +263,7 @@ describe('autoIncrementLogic', () => {
         { lift: 'squat', weekNumber: 1, reps: 8, weight: 255 },
         { lift: 'bench', weekNumber: 1, reps: 6, weight: 170 },
         { lift: 'deadlift', weekNumber: 1, reps: 5, weight: 298 },
-        { lift: 'overheadPress', weekNumber: 1, reps: 4, weight: 115 },
+        { lift: 'overheadPress', weekNumber: 1, reps: 4, weight: 115 }, // FAILED 5+
       ];
 
       const result = calculateCycleProgression(currentValues, amrapResults, 'lbs');
@@ -219,6 +275,30 @@ describe('autoIncrementLogic', () => {
         'deadlift',
         'overheadPress',
       ]);
+
+      // OHP should show it failed
+      const ohpDetail = result.details.find((d) => d.lift === 'overheadPress');
+      expect(ohpDetail?.increased).toBe(false);
+      expect(ohpDetail?.newOneRM).toBe(135);
+    });
+
+    it('should use correct increment amounts (kg)', () => {
+      const kgValues: OneRMValues = {
+        squat: 140,
+        bench: 90,
+        deadlift: 160,
+        overheadPress: 60,
+      };
+
+      const amrapResults: AMRAPResult[] = [
+        { lift: 'squat', weekNumber: 3, reps: 3, weight: 133 },
+        { lift: 'bench', weekNumber: 3, reps: 2, weight: 85 },
+      ];
+
+      const result = calculateCycleProgression(kgValues, amrapResults, 'kg');
+
+      expect(result.newValues.squat).toBe(145); // +5 kg
+      expect(result.newValues.bench).toBe(92.5); // +2.5 kg
     });
   });
 

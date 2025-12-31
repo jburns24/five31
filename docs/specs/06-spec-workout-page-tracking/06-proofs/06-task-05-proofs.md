@@ -242,7 +242,7 @@ export function calculateCycleProgression(
   units: 'lbs' | 'kg'
 ): OneRMValues {
   const newOneRMs = { ...currentOneRMs };
-  
+
   amrapResults.forEach(result => {
     const { lift, weekNumber, reps } = result;
     const currentValue = currentOneRMs[lift];
@@ -256,7 +256,7 @@ export function calculateCycleProgression(
       );
     }
   });
-  
+
   return newOneRMs;
 }
 ```

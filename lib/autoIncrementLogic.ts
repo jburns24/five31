@@ -110,7 +110,8 @@ export function calculateNewOneRM(
 
 /**
  * Calculate new 1RM values for all lifts based on cycle AMRAP results.
- * Uses the best AMRAP from each lift in weeks 1-3 (ignoring deload).
+ * A lift only progresses if ALL AMRAP targets were met during the cycle.
+ * If any week's target was missed, the lift does not progress.
  *
  * @param currentValues - Current 1RM values for all lifts
  * @param amrapResults - Array of all AMRAP results from the cycle
@@ -148,13 +149,41 @@ export function calculateCycleProgression(
       continue;
     }
 
-    // Use the result from week 3 if available (1+ set), otherwise best performance
-    const week3Result = liftResults.find((r) => r.weekNumber === 3);
-    const resultToUse = week3Result || liftResults[liftResults.length - 1];
+    // Check if ALL targets were met for this lift
+    // If ANY week's target was missed, the lift does NOT progress
+    let allTargetsMet = true;
+    let failedWeek: number | null = null;
+    let failedReps = 0;
+    let failedTarget = 0;
 
-    const incrementResult = calculateNewOneRM(currentValues[lift], resultToUse, units);
-    details.push(incrementResult);
-    newValues[lift] = incrementResult.newOneRM;
+    for (const result of liftResults) {
+      const targetReps = getTargetReps(result.weekNumber);
+      if (result.reps < targetReps) {
+        allTargetsMet = false;
+        failedWeek = result.weekNumber;
+        failedReps = result.reps;
+        failedTarget = targetReps;
+        break; // Found a failure, no need to check further
+      }
+    }
+
+    if (allTargetsMet) {
+      // All targets met - use the most recent result for increment calculation
+      const latestResult = liftResults[liftResults.length - 1];
+      const incrementResult = calculateNewOneRM(currentValues[lift], latestResult, units);
+      details.push(incrementResult);
+      newValues[lift] = incrementResult.newOneRM;
+    } else {
+      // At least one target missed - no progression
+      details.push({
+        lift,
+        currentOneRM: currentValues[lift],
+        newOneRM: currentValues[lift],
+        increased: false,
+        targetReps: failedTarget,
+        actualReps: failedReps,
+      });
+    }
   }
 
   return { newValues, details };

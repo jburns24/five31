@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useEffect, useState, useCallback, useRef } from 'react';
+import { Suspense, useEffect, useState, useCallback } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
@@ -52,7 +52,6 @@ function WorkoutPageContent() {
   const [showAmrapDialog, setShowAmrapDialog] = useState(false);
   const [prDetails, setPrDetails] = useState<PRDetails | null>(null);
   const [allComplete, setAllComplete] = useState(false);
-  const hasAutoNavigated = useRef(false);
 
   // Get current week and lift from URL params (defaults: week 1, squat)
   const weekParam = searchParams.get('week');
@@ -97,15 +96,23 @@ function WorkoutPageContent() {
       const typedWorkouts = data.workoutPlan.weeklyWorkouts as WeeklyWorkout[];
       if (isAllWorkoutsComplete(typedWorkouts)) {
         setAllComplete(true);
-      } else if (!hasAutoNavigated.current && !weekParam && !liftParam) {
-        // Auto-navigate to first incomplete workout if no params in URL
+      } else {
+        // Always navigate to first incomplete workout on page load
         const firstIncomplete = findFirstIncompleteWorkout(typedWorkouts);
         if (firstIncomplete) {
-          hasAutoNavigated.current = true;
-          const params = new URLSearchParams();
-          params.set('week', firstIncomplete.weekNumber.toString());
-          params.set('lift', firstIncomplete.lift);
-          router.replace(`/workout?${params.toString()}`, { scroll: false });
+          const currentWeekFromUrl = weekParam ? parseInt(weekParam, 10) : null;
+          const currentLiftFromUrl = liftParam as LiftType | null;
+
+          // Only navigate if current URL doesn't match first incomplete
+          if (
+            currentWeekFromUrl !== firstIncomplete.weekNumber ||
+            currentLiftFromUrl !== firstIncomplete.lift
+          ) {
+            const params = new URLSearchParams();
+            params.set('week', firstIncomplete.weekNumber.toString());
+            params.set('lift', firstIncomplete.lift);
+            router.replace(`/workout?${params.toString()}`, { scroll: false });
+          }
         }
       }
     } catch (err) {

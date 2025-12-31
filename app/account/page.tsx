@@ -8,7 +8,7 @@ import SignOutButton from '@/components/SignOutButton'
 import AccountOneRMSection from '@/components/AccountOneRMSection'
 import type { IOneRM, IAMRAPHistoryEntry } from '@/models/User'
 import { calculateOneRM } from '@/lib/oneRMCalculation'
-import { calculateCycleProgression, type AMRAPResult, type OneRMValues, type LiftType } from '@/lib/autoIncrementLogic'
+import { calculateCycleProgression, type AMRAPResult, type OneRMValues, type LiftType, type IncrementResult } from '@/lib/autoIncrementLogic'
 
 interface AccountPageProps {
   searchParams: Promise<{ completed?: string }>
@@ -69,6 +69,7 @@ export default async function AccountPage({ searchParams }: AccountPageProps) {
 
   // Calculate suggested new 1RM values if coming from completed plan
   let suggestedOneRMs: IOneRM | undefined = undefined
+  let progressionDetails: IncrementResult[] = []
   if (fromCompletedPlan && oneRMData) {
     const currentValues: OneRMValues = {
       squat: oneRMData.squat || 0,
@@ -85,12 +86,13 @@ export default async function AccountPage({ searchParams }: AccountPageProps) {
       weight: entry.weight,
     }))
 
-    const { newValues } = calculateCycleProgression(
+    const { newValues, details } = calculateCycleProgression(
       currentValues,
       amrapResults,
       oneRMData.units || 'lbs'
     )
 
+    progressionDetails = details
     suggestedOneRMs = {
       squat: newValues.squat,
       bench: newValues.bench,
@@ -124,6 +126,7 @@ export default async function AccountPage({ searchParams }: AccountPageProps) {
       <AccountOneRMSection
         initialData={oneRMData}
         suggestedData={suggestedOneRMs}
+        progressionDetails={progressionDetails}
         theoretical1RMs={theoretical1RMs}
         fromCompletedPlan={fromCompletedPlan}
       />
