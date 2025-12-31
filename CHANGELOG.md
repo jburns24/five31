@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.9](https://github.com/jburns24/five31/compare/v1.2.8...v1.2.9) (2025-12-31)
+
+
+### Bug Fixes
+
+* **ci:** removed sts trust policy and reverted back to built in token ([#34](https://github.com/jburns24/five31/issues/34)) ([9954ece](https://github.com/jburns24/five31/commit/9954ece9833931533c1ed6f8a809637e94893fab))
+
 ## [1.2.8](https://github.com/jburns24/five31/compare/v1.2.7...v1.2.8) (2025-12-31)
 
 
