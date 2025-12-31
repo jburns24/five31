@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/jburns24/five31/compare/v1.0.3...v1.1.0) (2025-12-31)
+
+
+### Features
+
+* update STS trust policy for release-please ([#9](https://github.com/jburns24/five31/issues/9)) ([871bc40](https://github.com/jburns24/five31/commit/871bc408b9fc53765738a51fcc99028a9b1d2b09))
+
 ## [1.0.3](https://github.com/jburns24/five31/compare/v1.0.2...v1.0.3) (2025-12-31)
 
 
