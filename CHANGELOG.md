@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.8](https://github.com/jburns24/five31/compare/v1.2.7...v1.2.8) (2025-12-31)
+
+
+### Bug Fixes
+
+* **ci:** change sts policy back to repo level permission after associ… ([#32](https://github.com/jburns24/five31/issues/32)) ([26e40e6](https://github.com/jburns24/five31/commit/26e40e695f8d0e44ce34869d9508347bfd28b553))
+
 ## [1.2.7](https://github.com/jburns24/five31/compare/v1.2.6...v1.2.7) (2025-12-31)
 
 
