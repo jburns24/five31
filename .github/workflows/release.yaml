@@ -6,7 +6,6 @@ on:
       - "v*.*.*"
 
 permissions:
-  packages: write
   contents: read
   id-token: write
 
@@ -18,7 +17,7 @@ jobs:
         id: octo-sts
         with:
           scope: jburns24/five31
-          identity: release-please
+          identity: build-and-push
 
       - name: Checkout
         uses: actions/checkout@v4
