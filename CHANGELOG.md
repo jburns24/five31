@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/jburns24/five31/compare/v1.2.0...v1.2.1) (2025-12-31)
+
+
+### Bug Fixes
+
+* **ci:** update subject pattern for sts policy for build-and-push ([#17](https://github.com/jburns24/five31/issues/17)) ([b490023](https://github.com/jburns24/five31/commit/b4900232b90ce542db6c96565273c89540a02460))
+
 ## [1.2.0](https://github.com/jburns24/five31/compare/v1.1.1...v1.2.0) (2025-12-31)
 
 
