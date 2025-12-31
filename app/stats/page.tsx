@@ -6,7 +6,9 @@ import User from '@/models/User'
 import type { IAMRAPHistoryEntry } from '@/models/User'
 import { calculateOneRM } from '@/lib/oneRMCalculation'
 import type { LiftType } from '@/lib/autoIncrementLogic'
+import { findHeaviestAMRAPs, serializeHeaviestAMRAPs } from '@/lib/statsCalculations'
 import Theoretical1RMSection from '@/components/Theoretical1RMSection'
+import HeaviestAMRAPSection from '@/components/HeaviestAMRAPSection'
 
 export default async function StatsPage() {
   const session = await getServerSession(authOptions)
@@ -45,6 +47,10 @@ export default async function StatsPage() {
     }
   }
 
+  // Find heaviest AMRAP for each lift
+  const heaviestAMRAPs = findHeaviestAMRAPs(amrapHistory)
+  const serializedHeaviestAMRAPs = serializeHeaviestAMRAPs(heaviestAMRAPs)
+
   return (
     <main className="stats-page">
       <div className="stats-container">
@@ -56,11 +62,11 @@ export default async function StatsPage() {
           units={units}
         />
 
-        {/* Heaviest AMRAP Records Section - Placeholder */}
-        <section className="stats-section">
-          <h2 className="stats-section-title">Heaviest AMRAP Records</h2>
-          <p className="stats-placeholder">Coming soon...</p>
-        </section>
+        {/* Heaviest AMRAP Records Section */}
+        <HeaviestAMRAPSection
+          heaviestAMRAPs={serializedHeaviestAMRAPs}
+          units={units}
+        />
 
         {/* 1RM Progress Chart Section - Placeholder */}
         <section className="stats-section">

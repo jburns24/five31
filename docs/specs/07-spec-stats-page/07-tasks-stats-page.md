@@ -65,7 +65,7 @@ Move the theoretical 1RM section from the Account page to the Stats page, includ
 - [x] 2.4 Update `app/account/page.tsx` to remove the `theoretical1RMs` calculation and prop passed to `AccountOneRMSection`
 - [x] 2.5 Add "No data yet" placeholder display in `Theoretical1RMSection` when no lifts have AMRAP history
 
-### [ ] 3.0 Heaviest AMRAP Records Display
+### [x] 3.0 Heaviest AMRAP Records Display
 
 Create a section displaying the heaviest recorded AMRAP for each lift with weight, reps, date, and expandable notes functionality.
 
@@ -78,12 +78,12 @@ Create a section displaying the heaviest recorded AMRAP for each lift with weigh
 
 #### 3.0 Tasks
 
-- [ ] 3.1 Create `lib/statsCalculations.ts` with a `findHeaviestAMRAPs` function that takes AMRAP history array and returns the heaviest record (by weight) for each lift
-- [ ] 3.2 Write unit tests in `lib/statsCalculations.test.ts` for `findHeaviestAMRAPs` covering: multiple records per lift, ties (same weight), empty history, and missing lifts
-- [ ] 3.3 Create `components/HeaviestAMRAPSection.tsx` as a client component that displays four lift cards with weight, reps, and formatted date
-- [ ] 3.4 Add expandable notes functionality to `HeaviestAMRAPSection` with a "View notes" toggle button that shows/hides notes inline (only visible when notes exist)
-- [ ] 3.5 Update `app/stats/page.tsx` to call `findHeaviestAMRAPs`, serialize the data, and pass it to `HeaviestAMRAPSection`
-- [ ] 3.6 Add CSS styles for heaviest AMRAP cards in `app/globals.css` including empty state, notes expansion animation, and responsive layout
+- [x] 3.1 Create `lib/statsCalculations.ts` with a `findHeaviestAMRAPs` function that takes AMRAP history array and returns the heaviest record (by weight) for each lift
+- [x] 3.2 Write unit tests in `lib/statsCalculations.test.ts` for `findHeaviestAMRAPs` covering: multiple records per lift, ties (same weight), empty history, and missing lifts
+- [x] 3.3 Create `components/HeaviestAMRAPSection.tsx` as a client component that displays four lift cards with weight, reps, and formatted date
+- [x] 3.4 Add expandable notes functionality to `HeaviestAMRAPSection` with a "View notes" toggle button that shows/hides notes inline (only visible when notes exist)
+- [x] 3.5 Update `app/stats/page.tsx` to call `findHeaviestAMRAPs`, serialize the data, and pass it to `HeaviestAMRAPSection`
+- [x] 3.6 Add CSS styles for heaviest AMRAP cards in `app/globals.css` including empty state, notes expansion animation, and responsive layout
 
 ### [ ] 4.0 1RM Progress Chart with Time Filtering
 
