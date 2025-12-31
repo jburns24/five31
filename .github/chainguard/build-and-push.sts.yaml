@@ -1,5 +1,5 @@
 issuer: https://token.actions.githubusercontent.com
-subject_pattern: repo:jburns24/five31:ref:refs/tags/v*
+subject_pattern: repo:jburns24/five31:ref:refs/tags/v.*
 claim_pattern:
   workflow_ref: jburns24/five31/.github/workflows/release.yaml@.* # Still not sure what needs to come after the actual workflow name but this works
 
