@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.2](https://github.com/jburns24/five31/compare/v1.0.1...v1.0.2) (2025-12-31)
+
+
+### Bug Fixes
+
+* Update the dynamic route handlers to fix build errors ([e59bc49](https://github.com/jburns24/five31/commit/e59bc498ea1bfcb4e806e94ffc7ae3b921a60a71))
+* Update the dynamic route handlers to fix build errors ([11ab5c5](https://github.com/jburns24/five31/commit/11ab5c5721e8cab77ca1361976fc457c142f0b24))
+
 ## [1.0.1](https://github.com/jburns24/five31/compare/v1.0.0...v1.0.1) (2025-12-31)
 
 
