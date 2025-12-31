@@ -2278,3 +2278,134 @@ main {
     grid-template-columns: 1fr;
   }
 }
+
+/* 1RM Progress Chart Styles */
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.chart-header .stats-section-title {
+  margin: 0;
+}
+
+.time-period-selector {
+  display: flex;
+  gap: 0.25rem;
+  background: #222222;
+  border-radius: 6px;
+  padding: 0.25rem;
+}
+
+.time-period-btn {
+  background: transparent;
+  border: none;
+  color: #888888;
+  font-size: 0.8125rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.time-period-btn:hover {
+  color: #b0b0b0;
+  background: #333333;
+}
+
+.time-period-btn-active {
+  background: #3b82f6;
+  color: #ffffff;
+}
+
+.time-period-btn-active:hover {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.chart-container {
+  margin-top: 1rem;
+}
+
+/* Recharts overrides for dark mode */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: #333333;
+}
+
+.recharts-legend-item-text {
+  color: #b0b0b0 !important;
+}
+
+.recharts-default-legend {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Custom tooltip styles */
+.chart-tooltip {
+  background: #1a1a1a;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  padding: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.chart-tooltip-date {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.chart-tooltip-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.chart-tooltip-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+}
+
+.chart-tooltip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.chart-tooltip-label {
+  color: #888888;
+}
+
+.chart-tooltip-value {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+@media (max-width: 480px) {
+  .chart-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .time-period-selector {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .time-period-btn {
+    flex: 1;
+    text-align: center;
+    padding: 0.5rem 0.25rem;
+  }
+}

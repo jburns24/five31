@@ -85,7 +85,7 @@ Create a section displaying the heaviest recorded AMRAP for each lift with weigh
 - [x] 3.5 Update `app/stats/page.tsx` to call `findHeaviestAMRAPs`, serialize the data, and pass it to `HeaviestAMRAPSection`
 - [x] 3.6 Add CSS styles for heaviest AMRAP cards in `app/globals.css` including empty state, notes expansion animation, and responsive layout
 
-### [ ] 4.0 1RM Progress Chart with Time Filtering
+### [x] 4.0 1RM Progress Chart with Time Filtering
 
 Install Recharts, create the progress chart component with all four lifts displayed as colored lines, implement time period filtering, and ensure dark mode support.
 
@@ -101,12 +101,12 @@ Install Recharts, create the progress chart component with all four lifts displa
 
 #### 4.0 Tasks
 
-- [ ] 4.1 Install recharts package: `npm install recharts`
-- [ ] 4.2 Add `transformAMRAPToChartData` function to `lib/statsCalculations.ts` that filters AMRAP history to weeks 1-3 only, calculates theoretical 1RM for each entry, and returns data formatted for Recharts
-- [ ] 4.3 Write unit tests for `transformAMRAPToChartData` covering: week 4 exclusion, 1RM calculation, date sorting, and time period filtering
-- [ ] 4.4 Create `components/OneRMProgressChart.tsx` as a client component with Recharts `LineChart`, `ResponsiveContainer`, four colored lines (one per lift), legend, and tooltip
-- [ ] 4.5 Add time period selector UI to `OneRMProgressChart` with buttons/dropdown for: 3 months, 6 months, 1 year (default), All time
-- [ ] 4.6 Implement time period filtering in `OneRMProgressChart` using React state to filter chart data based on selected period
-- [ ] 4.7 Update `app/stats/page.tsx` to pass AMRAP history and units to `OneRMProgressChart`
-- [ ] 4.8 Add CSS styles for the chart in `app/globals.css` including dark mode colors for lines/grid/legend, time selector styling, and responsive container sizing
-- [ ] 4.9 Add empty state display in `OneRMProgressChart` when no data exists for the selected time period
+- [x] 4.1 Install recharts package: `npm install recharts`
+- [x] 4.2 Add `transformAMRAPToChartData` function to `lib/statsCalculations.ts` that filters AMRAP history to weeks 1-3 only, calculates theoretical 1RM for each entry, and returns data formatted for Recharts
+- [x] 4.3 Write unit tests for `transformAMRAPToChartData` covering: week 4 exclusion, 1RM calculation, date sorting, and time period filtering
+- [x] 4.4 Create `components/OneRMProgressChart.tsx` as a client component with Recharts `LineChart`, `ResponsiveContainer`, four colored lines (one per lift), legend, and tooltip
+- [x] 4.5 Add time period selector UI to `OneRMProgressChart` with buttons/dropdown for: 3 months, 6 months, 1 year (default), All time
+- [x] 4.6 Implement time period filtering in `OneRMProgressChart` using React state to filter chart data based on selected period
+- [x] 4.7 Update `app/stats/page.tsx` to pass AMRAP history and units to `OneRMProgressChart`
+- [x] 4.8 Add CSS styles for the chart in `app/globals.css` including dark mode colors for lines/grid/legend, time selector styling, and responsive container sizing
+- [x] 4.9 Add empty state display in `OneRMProgressChart` when no data exists for the selected time period

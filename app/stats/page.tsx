@@ -9,6 +9,7 @@ import type { LiftType } from '@/lib/autoIncrementLogic'
 import { findHeaviestAMRAPs, serializeHeaviestAMRAPs } from '@/lib/statsCalculations'
 import Theoretical1RMSection from '@/components/Theoretical1RMSection'
 import HeaviestAMRAPSection from '@/components/HeaviestAMRAPSection'
+import OneRMProgressChart from '@/components/OneRMProgressChart'
 
 export default async function StatsPage() {
   const session = await getServerSession(authOptions)
@@ -51,6 +52,13 @@ export default async function StatsPage() {
   const heaviestAMRAPs = findHeaviestAMRAPs(amrapHistory)
   const serializedHeaviestAMRAPs = serializeHeaviestAMRAPs(heaviestAMRAPs)
 
+  // Serialize AMRAP history for the chart component
+  const serializedAmrapHistory = amrapHistory.map((entry) => ({
+    ...entry,
+    date: entry.date instanceof Date ? entry.date : new Date(entry.date),
+    workoutPlanId: entry.workoutPlanId.toString(),
+  })) as unknown as IAMRAPHistoryEntry[]
+
   return (
     <main className="stats-page">
       <div className="stats-container">
@@ -68,11 +76,11 @@ export default async function StatsPage() {
           units={units}
         />
 
-        {/* 1RM Progress Chart Section - Placeholder */}
-        <section className="stats-section">
-          <h2 className="stats-section-title">1RM Progress</h2>
-          <p className="stats-placeholder">Coming soon...</p>
-        </section>
+        {/* 1RM Progress Chart Section */}
+        <OneRMProgressChart
+          amrapHistory={serializedAmrapHistory}
+          units={units}
+        />
       </div>
     </main>
   )
