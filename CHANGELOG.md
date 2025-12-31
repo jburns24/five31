@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.0](https://github.com/jburns24/five31/compare/v1.1.1...v1.2.0) (2025-12-31)
+
+
+### Features
+
+* **ci:** add STS policies for GitHub Actions workflows release.yaml ([#15](https://github.com/jburns24/five31/issues/15)) ([aeb5842](https://github.com/jburns24/five31/commit/aeb5842e693065ce3de866501c8ccb3042aa2535))
+
+
+### Bug Fixes
+
+* remove claim_ref pattern from sts policy ([#14](https://github.com/jburns24/five31/issues/14)) ([5d21781](https://github.com/jburns24/five31/commit/5d21781fa63f190c65c46653ded284e2232386aa))
+* update workflow claim pattern for sts token ([#13](https://github.com/jburns24/five31/issues/13)) ([31b4d92](https://github.com/jburns24/five31/commit/31b4d92e236021ee815bb9cfd2d6a63b0a37494d))
+
 ## [1.1.1](https://github.com/jburns24/five31/compare/v1.1.0...v1.1.1) (2025-12-31)
 
 
