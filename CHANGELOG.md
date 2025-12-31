@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/jburns24/five31/compare/v1.0.2...v1.0.3) (2025-12-31)
+
+
+### Bug Fixes
+
+* update the release workflow permissions to allow content writes ([#7](https://github.com/jburns24/five31/issues/7)) ([db86e37](https://github.com/jburns24/five31/commit/db86e37bbd5d4c5fdd14ee0355fe8c4e3da3fe70))
+
 ## [1.0.2](https://github.com/jburns24/five31/compare/v1.0.1...v1.0.2) (2025-12-31)
 
 
