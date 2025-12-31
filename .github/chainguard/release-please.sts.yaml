@@ -1,7 +1,7 @@
 issuer: https://token.actions.githubusercontent.com
 subject_pattern: repo:jburns24/five31:ref:refs/heads/master
-claim_pattern:
-  workflow_ref: jburns24/five31/.github/workflows/* # Still not sure what needs to come after the actual workflow name but this works
+# claim_pattern:
+#   workflow_ref: jburns24/five31/.github/workflows/* # Still not sure what needs to come after the actual workflow name but this works
 
 permissions:
   contents: write
