@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.4](https://github.com/jburns24/five31/compare/v1.2.3...v1.2.4) (2025-12-31)
+
+
+### Bug Fixes
+
+* update sts permissions to just 'packages' ([#23](https://github.com/jburns24/five31/issues/23)) ([267f730](https://github.com/jburns24/five31/commit/267f7309fe5e1ab3f5eb61b2fc3ce3bf8d90faad))
+
 ## [1.2.3](https://github.com/jburns24/five31/compare/v1.2.2...v1.2.3) (2025-12-31)
 
 
