@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3](https://github.com/jburns24/five31/compare/v1.2.2...v1.2.3) (2025-12-31)
+
+
+### Bug Fixes
+
+* **ci:** fix sts permissions for build and push. Added comment to ref… ([#21](https://github.com/jburns24/five31/issues/21)) ([fde5b71](https://github.com/jburns24/five31/commit/fde5b71d941d40c0a26d981be8df9e739887b0d9))
+
 ## [1.2.2](https://github.com/jburns24/five31/compare/v1.2.1...v1.2.2) (2025-12-31)
 
 
