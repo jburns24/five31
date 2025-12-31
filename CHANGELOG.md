@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.1](https://github.com/jburns24/five31/compare/v1.0.0...v1.0.1) (2025-12-31)
+
+
+### Bug Fixes
+
+* **ci:** checkout code before trying to build hoping this fixes permi… ([7caa438](https://github.com/jburns24/five31/commit/7caa438039d96149841c303cfc18f7a24d90e564))
+* **ci:** checkout code before trying to build hoping this fixes permission issue ([cd65698](https://github.com/jburns24/five31/commit/cd6569839b660c7f27367df3c3c61cb582273e4f))
+
 ## 1.0.0 (2025-12-31)
 
 
