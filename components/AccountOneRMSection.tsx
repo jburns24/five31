@@ -18,7 +18,6 @@ interface AccountOneRMSectionProps {
   initialData?: IOneRM;
   suggestedData?: IOneRM;
   progressionDetails?: IncrementResult[];
-  theoretical1RMs?: Partial<Record<LiftType, number>>;
   fromCompletedPlan?: boolean;
 }
 
@@ -26,7 +25,6 @@ export default function AccountOneRMSection({
   initialData,
   suggestedData,
   progressionDetails = [],
-  theoretical1RMs,
   fromCompletedPlan = false,
 }: AccountOneRMSectionProps) {
   const router = useRouter();
@@ -141,46 +139,6 @@ export default function AccountOneRMSection({
             💡 In 5/3/1, you must hit all target reps (5+, 3+, 1+) throughout the cycle to progress.
             Missing any target means repeating at the same weight next cycle.
           </p>
-        </div>
-      )}
-
-      {theoretical1RMs && Object.keys(theoretical1RMs).length > 0 && (
-        <div className="theoretical-1rm-section">
-          <h3>📊 Theoretical 1RM (from AMRAP data)</h3>
-          <div className="theoretical-1rm-grid">
-            {theoretical1RMs.squat && (
-              <div className="theoretical-1rm-item">
-                <span className="lift-name">Squat</span>
-                <span className="lift-value">
-                  {theoretical1RMs.squat} {initialData?.units || 'lbs'}
-                </span>
-              </div>
-            )}
-            {theoretical1RMs.bench && (
-              <div className="theoretical-1rm-item">
-                <span className="lift-name">Bench</span>
-                <span className="lift-value">
-                  {theoretical1RMs.bench} {initialData?.units || 'lbs'}
-                </span>
-              </div>
-            )}
-            {theoretical1RMs.deadlift && (
-              <div className="theoretical-1rm-item">
-                <span className="lift-name">Deadlift</span>
-                <span className="lift-value">
-                  {theoretical1RMs.deadlift} {initialData?.units || 'lbs'}
-                </span>
-              </div>
-            )}
-            {theoretical1RMs.overheadPress && (
-              <div className="theoretical-1rm-item">
-                <span className="lift-name">OHP</span>
-                <span className="lift-value">
-                  {theoretical1RMs.overheadPress} {initialData?.units || 'lbs'}
-                </span>
-              </div>
-            )}
-          </div>
         </div>
       )}
 

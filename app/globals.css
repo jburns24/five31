@@ -2146,6 +2146,23 @@ main {
   padding: 2rem 0;
 }
 
+.stats-empty-state {
+  color: #888888;
+  font-size: 0.9375rem;
+  text-align: center;
+  padding: 2rem 1rem;
+  background: #222222;
+  border-radius: 8px;
+  line-height: 1.5;
+}
+
+.stats-section-description {
+  color: #888888;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
 @media (min-width: 768px) {
   .stats-page {
     padding: 3rem 2rem;

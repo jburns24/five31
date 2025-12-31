@@ -47,7 +47,7 @@ Create the `/stats` page route with authentication, add navigation links to desk
 - [x] 1.4 Add a "View Stats" link/button to the Account page that navigates to `/stats`
 - [x] 1.5 Add CSS styles for the stats page layout in `app/globals.css` (container, section spacing, headings)
 
-### [ ] 2.0 Theoretical 1RM Card Migration
+### [x] 2.0 Theoretical 1RM Card Migration
 
 Move the theoretical 1RM section from the Account page to the Stats page, including the calculation logic and display.
 
@@ -59,11 +59,11 @@ Move the theoretical 1RM section from the Account page to the Stats page, includ
 
 #### 2.0 Tasks
 
-- [ ] 2.1 Create `components/Theoretical1RMSection.tsx` as a presentational component that accepts theoretical 1RM values and units as props, displays all four lifts in a grid
-- [ ] 2.2 Update `app/stats/page.tsx` to fetch user data, calculate theoretical 1RM values from AMRAP history using the existing `calculateOneRM` function, and render `Theoretical1RMSection`
-- [ ] 2.3 Remove the theoretical 1RM section from `components/AccountOneRMSection.tsx` (the `{theoretical1RMs && ...}` block) and remove the `theoretical1RMs` prop
-- [ ] 2.4 Update `app/account/page.tsx` to remove the `theoretical1RMs` calculation and prop passed to `AccountOneRMSection`
-- [ ] 2.5 Add "No data yet" placeholder display in `Theoretical1RMSection` when no lifts have AMRAP history
+- [x] 2.1 Create `components/Theoretical1RMSection.tsx` as a presentational component that accepts theoretical 1RM values and units as props, displays all four lifts in a grid
+- [x] 2.2 Update `app/stats/page.tsx` to fetch user data, calculate theoretical 1RM values from AMRAP history using the existing `calculateOneRM` function, and render `Theoretical1RMSection`
+- [x] 2.3 Remove the theoretical 1RM section from `components/AccountOneRMSection.tsx` (the `{theoretical1RMs && ...}` block) and remove the `theoretical1RMs` prop
+- [x] 2.4 Update `app/account/page.tsx` to remove the `theoretical1RMs` calculation and prop passed to `AccountOneRMSection`
+- [x] 2.5 Add "No data yet" placeholder display in `Theoretical1RMSection` when no lifts have AMRAP history
 
 ### [ ] 3.0 Heaviest AMRAP Records Display
 

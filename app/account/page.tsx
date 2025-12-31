@@ -8,7 +8,6 @@ import UserAvatar from '@/components/UserAvatar'
 import SignOutButton from '@/components/SignOutButton'
 import AccountOneRMSection from '@/components/AccountOneRMSection'
 import type { IOneRM, IAMRAPHistoryEntry } from '@/models/User'
-import { calculateOneRM } from '@/lib/oneRMCalculation'
 import { calculateCycleProgression, type AMRAPResult, type OneRMValues, type LiftType, type IncrementResult } from '@/lib/autoIncrementLogic'
 
 interface AccountPageProps {
@@ -49,24 +48,8 @@ export default async function AccountPage({ searchParams }: AccountPageProps) {
     roundingPreference: user.oneRM.roundingPreference,
   } : undefined
 
-  // Calculate theoretical 1RM values from AMRAP history
+  // Get AMRAP history for cycle progression calculation
   const amrapHistory = (user.amrapHistory || []) as IAMRAPHistoryEntry[]
-  const theoretical1RMs: Partial<Record<LiftType, number>> = {}
-
-  const lifts: LiftType[] = ['squat', 'bench', 'deadlift', 'overheadPress']
-  for (const lift of lifts) {
-    const liftHistory = amrapHistory.filter((entry) => entry.lift === lift)
-    if (liftHistory.length > 0) {
-      // Find the best theoretical 1RM from history
-      const best = liftHistory.reduce((max, entry) => {
-        const theoretical = calculateOneRM(entry.weight, entry.reps)
-        return theoretical > max ? theoretical : max
-      }, 0)
-      if (best > 0) {
-        theoretical1RMs[lift] = best
-      }
-    }
-  }
 
   // Calculate suggested new 1RM values if coming from completed plan
   let suggestedOneRMs: IOneRM | undefined = undefined
@@ -131,7 +114,6 @@ export default async function AccountPage({ searchParams }: AccountPageProps) {
         initialData={oneRMData}
         suggestedData={suggestedOneRMs}
         progressionDetails={progressionDetails}
-        theoretical1RMs={theoretical1RMs}
         fromCompletedPlan={fromCompletedPlan}
       />
     </main>
