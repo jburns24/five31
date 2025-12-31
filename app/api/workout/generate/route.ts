@@ -7,6 +7,9 @@ import WorkoutPlan from '@/models/WorkoutPlan';
 import { generateWorkoutPlan } from '@/lib/workoutCalculator';
 import type { IOneRM } from '@/models/User';
 
+// Force dynamic rendering since this route uses session/headers
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     // Verify authentication

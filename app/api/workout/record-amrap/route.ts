@@ -6,6 +6,9 @@ import User from '@/models/User';
 import WorkoutPlan, { IWorkoutPlan } from '@/models/WorkoutPlan';
 import { detectPR, PRDetails, AMRAPEntry } from '@/lib/prDetection';
 
+// Force dynamic rendering since this route uses session/headers
+export const dynamic = 'force-dynamic';
+
 interface RecordAMRAPRequest {
   workoutPlanId: string;
   weekNumber: number;

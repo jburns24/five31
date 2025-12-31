@@ -5,6 +5,9 @@ import connectDB from '@/lib/mongodb';
 import User from '@/models/User';
 import WorkoutPlan from '@/models/WorkoutPlan';
 
+// Force dynamic rendering since this route uses session/headers
+export const dynamic = 'force-dynamic';
+
 interface CompleteSetRequest {
   workoutPlanId: string;
   weekNumber: number;
