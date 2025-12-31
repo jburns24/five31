@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/app/auth'
 import connectDB from '@/lib/mongodb'
 import User from '@/models/User'
+import Link from 'next/link'
 import UserAvatar from '@/components/UserAvatar'
 import SignOutButton from '@/components/SignOutButton'
 import AccountOneRMSection from '@/components/AccountOneRMSection'
@@ -119,6 +120,9 @@ export default async function AccountPage({ searchParams }: AccountPageProps) {
           </div>
         </div>
         <div className="account-actions">
+          <Link href="/stats" className="button button-secondary">
+            View Stats
+          </Link>
           <SignOutButton />
         </div>
       </div>

@@ -18,6 +18,9 @@ export default function DesktopNav() {
               <Link href="/workout">My Workout</Link>
             </li>
             <li>
+              <Link href="/stats">Stats</Link>
+            </li>
+            <li>
               <Link href="/account">Profile</Link>
             </li>
           </>

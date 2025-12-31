@@ -56,6 +56,11 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                 </Link>
               </li>
               <li>
+                <Link href="/stats" onClick={onClose}>
+                  Stats
+                </Link>
+              </li>
+              <li>
                 <Link href="/account" onClick={onClose}>
                   Profile
                 </Link>
