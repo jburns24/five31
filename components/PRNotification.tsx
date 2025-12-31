@@ -74,7 +74,7 @@ export default function PRNotification({
 
         {prDetails.repPR && (
           <div className="pr-notification__pr pr-notification__pr--rep">
-            <span className="pr-notification__pr-type">💪 Rep PR</span>
+            <span className="pr-notification__pr-type">Rep PR</span>
             <p className="pr-notification__achievement">
               <strong>+{prDetails.repPR.improvement} reps</strong> at{' '}
               {prDetails.repPR.weight} {units}!

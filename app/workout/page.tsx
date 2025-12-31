@@ -414,14 +414,14 @@ function WorkoutPageContent() {
               className="record-amrap-button"
               onClick={() => setShowAmrapDialog(true)}
             >
-              🎯 Record AMRAP Performance
+              Record AMRAP Performance
             </button>
           )}
 
           {/* AMRAP Recorded indicator */}
           {amrapRecorded && (
             <div className="workout-amrap-recorded">
-              ✓ AMRAP recorded for this workout
+              AMRAP recorded for this workout
             </div>
           )}
         </section>

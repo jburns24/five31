@@ -24,7 +24,7 @@ export default function Theoretical1RMSection({
   if (!hasAnyData) {
     return (
       <section className="stats-section">
-        <h2 className="stats-section-title">📊 Theoretical 1RM</h2>
+        <h2 className="stats-section-title">Theoretical 1RM</h2>
         <p className="stats-empty-state">
           No data yet. Complete AMRAP sets in your workouts to see your theoretical 1RM values here.
         </p>
@@ -34,7 +34,7 @@ export default function Theoretical1RMSection({
 
   return (
     <section className="stats-section">
-      <h2 className="stats-section-title">📊 Theoretical 1RM</h2>
+      <h2 className="stats-section-title">Theoretical 1RM</h2>
       <p className="stats-section-description">
         Calculated from your best AMRAP performances using the Epley formula.
       </p>
