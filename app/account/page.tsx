@@ -103,9 +103,6 @@ export default async function AccountPage({ searchParams }: AccountPageProps) {
           </div>
         </div>
         <div className="account-actions">
-          <Link href="/stats" className="button button-secondary">
-            View Stats
-          </Link>
           <SignOutButton />
         </div>
       </div>

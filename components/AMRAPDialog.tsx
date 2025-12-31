@@ -95,7 +95,7 @@ export default function AMRAPDialog({
     >
       <div className="amrap-dialog">
         <h2 id="amrap-dialog-title" className="amrap-dialog__title">
-          🎯 Record AMRAP Performance
+          Record AMRAP Performance
         </h2>
 
         <div className="amrap-dialog__set-info">

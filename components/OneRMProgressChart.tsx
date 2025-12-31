@@ -125,7 +125,7 @@ export default function OneRMProgressChart({
   return (
     <section className="stats-section">
       <div className="chart-header">
-        <h2 className="stats-section-title">📈 1RM Progress</h2>
+        <h2 className="stats-section-title">1RM Progress</h2>
         <div className="time-period-selector">
           {TIME_PERIODS.map((period) => (
             <button

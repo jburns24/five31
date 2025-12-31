@@ -44,7 +44,7 @@ export default function HeaviestAMRAPSection({
   if (!hasAnyData) {
     return (
       <section className="stats-section">
-        <h2 className="stats-section-title">🏆 Heaviest AMRAP Records</h2>
+        <h2 className="stats-section-title">Heaviest AMRAP Records</h2>
         <p className="stats-empty-state">
           No AMRAP records yet. Complete AMRAP sets in your workouts to see your heaviest lifts here.
         </p>
@@ -54,7 +54,7 @@ export default function HeaviestAMRAPSection({
 
   return (
     <section className="stats-section">
-      <h2 className="stats-section-title">🏆 Heaviest AMRAP Records</h2>
+      <h2 className="stats-section-title">Heaviest AMRAP Records</h2>
       <p className="stats-section-description">
         Your heaviest recorded weight for each lift.
       </p>

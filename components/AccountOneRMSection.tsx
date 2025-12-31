@@ -85,11 +85,11 @@ export default function AccountOneRMSection({
     <>
       {fromCompletedPlan && suggestedData && (
         <div className="onerm-progression-banner">
-          <h3>🎯 Cycle Complete - 1RM Progression</h3>
+          <h3>Cycle Complete - 1RM Progression</h3>
 
           {passedLifts.length > 0 && (
             <div className="progression-section progression-success">
-              <h4>✅ Progressing</h4>
+              <h4>Progressing</h4>
               <ul>
                 {passedLifts.map((detail) => (
                   <li key={detail.lift}>
