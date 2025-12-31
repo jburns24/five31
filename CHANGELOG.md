@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.2](https://github.com/jburns24/five31/compare/v1.2.1...v1.2.2) (2025-12-31)
+
+
+### Bug Fixes
+
+* correct typo in subject_pattern field ([#19](https://github.com/jburns24/five31/issues/19)) ([bced1d6](https://github.com/jburns24/five31/commit/bced1d6f0d0f6e2b4cafe309ba762dcc9c913bc6))
+
 ## [1.2.1](https://github.com/jburns24/five31/compare/v1.2.0...v1.2.1) (2025-12-31)
 
 
