@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.5](https://github.com/jburns24/five31/compare/v1.2.4...v1.2.5) (2025-12-31)
+
+
+### Bug Fixes
+
+* **ci:** change sts policy to use organization level permission ([#26](https://github.com/jburns24/five31/issues/26)) ([53dea78](https://github.com/jburns24/five31/commit/53dea78e734bf78521e3f01f91d10feaac09ae29))
+
 ## [1.2.4](https://github.com/jburns24/five31/compare/v1.2.3...v1.2.4) (2025-12-31)
 
 
