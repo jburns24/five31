@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/jburns24/five31/compare/v1.1.0...v1.1.1) (2025-12-31)
+
+
+### Bug Fixes
+
+* **ci:** add missing id-token write permission ([#11](https://github.com/jburns24/five31/issues/11)) ([6576c2c](https://github.com/jburns24/five31/commit/6576c2c455483d1673e5f68560673c2eba643b96))
+
 ## [1.1.0](https://github.com/jburns24/five31/compare/v1.0.3...v1.1.0) (2025-12-31)
 
 
