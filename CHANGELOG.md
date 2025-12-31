@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.7](https://github.com/jburns24/five31/compare/v1.2.6...v1.2.7) (2025-12-31)
+
+
+### Bug Fixes
+
+* **ci:** change away from octo-sts token to built in token ([#30](https://github.com/jburns24/five31/issues/30)) ([27073c5](https://github.com/jburns24/five31/commit/27073c587fa25af4a8c4bcdbcbfaaf5906b0fdb6))
+
 ## [1.2.6](https://github.com/jburns24/five31/compare/v1.2.5...v1.2.6) (2025-12-31)
 
 
