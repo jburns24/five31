@@ -5,4 +5,4 @@ claim_pattern:
 
 permissions:
   # List of permissions https://github.com/octo-sts/app/blob/main/pkg/octosts/octosts.TrustPolicy.json
-  packages: write
+  organization_packages: write
