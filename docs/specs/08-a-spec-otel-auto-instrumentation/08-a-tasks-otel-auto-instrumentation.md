@@ -189,7 +189,7 @@ Configure the OTLP exporter to send traces to the central OTel Collector in the 
 
 ---
 
-### [ ] 6.0 Create Comprehensive OTel Documentation
+### [x] 6.0 Create Comprehensive OTel Documentation
 
 Create detailed documentation explaining the wide events pattern, providing example queries for debugging, documenting all environment variables, and including troubleshooting guidance. This enables developers to effectively use the observability data without additional assistance.
 
@@ -205,12 +205,12 @@ Create detailed documentation explaining the wide events pattern, providing exam
 
 #### 6.0 Tasks
 
-- [ ] 6.1 Create `/docs/observability/` directory for observability documentation
-- [ ] 6.2 Create `/docs/observability/otel-guide.md` with basic structure and table of contents
-- [ ] 6.3 Add "Overview" section explaining auto-instrumentation and what traces capture
-- [ ] 6.4 Add "Wide Events Pattern" section explaining the hybrid approach: wide main spans (50-80 attributes) with sparse child spans for complex operations
-- [ ] 6.5 Add "Architecture" section with diagram or description of trace flow: Application → OTLP Exporter → OTel Collector
-- [ ] 6.6 Add "Example Queries" section with 10+ practical queries:
+- [x] 6.1 Create `/docs/observability/` directory for observability documentation
+- [x] 6.2 Create `/docs/observability/otel-guide.md` with basic structure and table of contents
+- [x] 6.3 Add "Overview" section explaining auto-instrumentation and what traces capture
+- [x] 6.4 Add "Wide Events Pattern" section explaining the hybrid approach: wide main spans (50-80 attributes) with sparse child spans for complex operations
+- [x] 6.5 Add "Architecture" section with diagram or description of trace flow: Application → OTLP Exporter → OTel Collector
+- [x] 6.6 Add "Example Queries" section with 10+ practical queries:
   - Find all requests to specific endpoint
   - Find slow requests (duration > threshold)
   - Group errors by HTTP status code
@@ -221,13 +221,13 @@ Create detailed documentation explaining the wide events pattern, providing exam
   - Find requests with specific sample rate
   - Trace requests across services (if applicable)
   - Debug specific user flow with trace ID
-- [ ] 6.7 Add "Environment Variables" section with table including: OTEL_EXPORTER_OTLP_ENDPOINT, OTEL_SERVICE_NAME, OTEL_LOG_LEVEL, OTEL_SAMPLING_SLOW_THRESHOLD_MS, OTEL_SAMPLING_SUCCESS_RATE, GIT_SHA, NODE_ENV
-- [ ] 6.8 For each environment variable, document: name, description, default value, required/optional, example value
-- [ ] 6.9 Add "Viewing Traces" section with examples of trace JSON output and how to read span attributes
-- [ ] 6.10 Add "Sampling Strategy" section explaining tail-based sampling: always retain errors and slow requests, sample successful fast requests
-- [ ] 6.11 Add "Troubleshooting" section with common issues: SDK not initializing, traces not exporting, collector unavailable, missing attributes, sampling not working
-- [ ] 6.12 For each troubleshooting issue, provide symptoms, diagnosis steps, and solution
-- [ ] 6.13 Add "Local Development" section explaining how to run with console exporter or local collector
-- [ ] 6.14 Add "Production Deployment" section explaining k8s configuration and expected collector setup
-- [ ] 6.15 Review documentation for completeness, clarity, and accuracy
-- [ ] 6.16 Add links to relevant OpenTelemetry documentation and Next.js instrumentation docs
+- [x] 6.7 Add "Environment Variables" section with table including: OTEL_EXPORTER_OTLP_ENDPOINT, OTEL_SERVICE_NAME, OTEL_LOG_LEVEL, OTEL_SAMPLING_SLOW_THRESHOLD_MS, OTEL_SAMPLING_SUCCESS_RATE, GIT_SHA, NODE_ENV
+- [x] 6.8 For each environment variable, document: name, description, default value, required/optional, example value
+- [x] 6.9 Add "Viewing Traces" section with examples of trace JSON output and how to read span attributes
+- [x] 6.10 Add "Sampling Strategy" section explaining tail-based sampling: always retain errors and slow requests, sample successful fast requests
+- [x] 6.11 Add "Troubleshooting" section with common issues: SDK not initializing, traces not exporting, collector unavailable, missing attributes, sampling not working
+- [x] 6.12 For each troubleshooting issue, provide symptoms, diagnosis steps, and solution
+- [x] 6.13 Add "Local Development" section explaining how to run with console exporter or local collector
+- [x] 6.14 Add "Production Deployment" section explaining k8s configuration and expected collector setup
+- [x] 6.15 Review documentation for completeness, clarity, and accuracy
+- [x] 6.16 Add links to relevant OpenTelemetry documentation and Next.js instrumentation docs
