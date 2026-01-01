@@ -92,7 +92,7 @@ Create Next.js middleware that intercepts all API requests, marks the auto-instr
 
 ---
 
-### [ ] 3.0 Add Service Metadata and Deployment Context
+### [x] 3.0 Add Service Metadata and Deployment Context
 
 Enrich all main spans with comprehensive service metadata including Git SHA (service version), deployment timestamp, environment name, and runtime details. Update Docker build and deployment configuration to capture and pass Git SHA as an environment variable.
 
@@ -107,20 +107,20 @@ Enrich all main spans with comprehensive service metadata including Git SHA (ser
 
 #### 3.0 Tasks
 
-- [ ] 3.1 Create `/lib/otel/metadata.ts` for metadata collection functions
-- [ ] 3.2 In metadata.ts, implement getServiceVersion() that returns GIT_SHA from env var, or falls back to git command `git rev-parse --short HEAD`, or 'unknown'
-- [ ] 3.3 In metadata.ts, implement getServiceEnvironment() that returns NODE_ENV or 'development'
-- [ ] 3.4 In metadata.ts, implement getDeploymentAgeMinutes() that calculates minutes since process start time (process.uptime() / 60)
-- [ ] 3.5 In metadata.ts, implement getRuntimeMetadata() that returns object with node.version (process.version), process.pid (process.pid), process.platform (process.platform)
-- [ ] 3.6 In metadata.ts, export getAllServiceMetadata() that returns combined metadata object with all above values
-- [ ] 3.7 Update `/middleware.ts` to import getAllServiceMetadata() and add all metadata to main span using setMainSpanAttributes()
-- [ ] 3.8 Update `Dockerfile` builder stage to add `ARG GIT_SHA` before RUN npm run build
-- [ ] 3.9 Update `Dockerfile` builder stage to add `ENV GIT_SHA=${GIT_SHA}` to make build arg available as environment variable
-- [ ] 3.10 Update `Dockerfile` runner stage to add `ENV GIT_SHA=${GIT_SHA}` to persist in final image
-- [ ] 3.11 Update `docker-compose.yml` to add build args section with GIT_SHA: `build: { context: ., dockerfile: Dockerfile, args: { GIT_SHA: ${GIT_SHA:-dev} } }`
-- [ ] 3.12 Update `docker-compose.yml` environment section to add GIT_SHA and NODE_ENV variables
-- [ ] 3.13 Test locally by setting GIT_SHA env var and running dev server, verify service.version appears in traces
-- [ ] 3.14 Test Docker build with `docker build --build-arg GIT_SHA=$(git rev-parse --short HEAD) -t five31-test .` and verify GIT_SHA is captured
+- [x] 3.1 Create `/lib/otel/metadata.ts` for metadata collection functions
+- [x] 3.2 In metadata.ts, implement getServiceVersion() that returns GIT_SHA from env var, or falls back to git command `git rev-parse --short HEAD`, or 'unknown'
+- [x] 3.3 In metadata.ts, implement getServiceEnvironment() that returns NODE_ENV or 'development'
+- [x] 3.4 In metadata.ts, implement getDeploymentAgeMinutes() that calculates minutes since process start time (process.uptime() / 60)
+- [x] 3.5 In metadata.ts, implement getRuntimeMetadata() that returns object with node.version (process.version), process.pid (process.pid), process.platform (process.platform)
+- [x] 3.6 In metadata.ts, export getAllServiceMetadata() that returns combined metadata object with all above values
+- [x] 3.7 Update `/middleware.ts` to import getAllServiceMetadata() and add all metadata to main span using setMainSpanAttributes()
+- [x] 3.8 Update `Dockerfile` builder stage to add `ARG GIT_SHA` before RUN npm run build
+- [x] 3.9 Update `Dockerfile` builder stage to add `ENV GIT_SHA=${GIT_SHA}` to make build arg available as environment variable
+- [x] 3.10 Update `Dockerfile` runner stage to add `ENV GIT_SHA=${GIT_SHA}` to persist in final image
+- [x] 3.11 Update `docker-compose.yml` to add build args section with GIT_SHA: `build: { context: ., dockerfile: Dockerfile, args: { GIT_SHA: ${GIT_SHA:-dev} } }`
+- [x] 3.12 Update `docker-compose.yml` environment section to add GIT_SHA and NODE_ENV variables
+- [x] 3.13 Test locally by setting GIT_SHA env var and running dev server, verify service.version appears in traces
+- [x] 3.14 Test Docker build with `docker build --build-arg GIT_SHA=$(git rev-parse --short HEAD) -t five31-test .` and verify GIT_SHA is captured
 
 ---
 

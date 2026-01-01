@@ -12,6 +12,9 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Capture Git SHA as build argument
+ARG GIT_SHA
+ENV GIT_SHA=${GIT_SHA}
 ENV NEXT_TELEMETRY_DISABLED=1
 
 RUN npm run build
@@ -20,6 +23,9 @@ RUN npm run build
 FROM node:20-alpine AS runner
 WORKDIR /app
 
+# Persist Git SHA from builder stage
+ARG GIT_SHA
+ENV GIT_SHA=${GIT_SHA}
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 

@@ -1,5 +1,6 @@
 import { trace, Span, SpanStatusCode } from '@opentelemetry/api';
 import { getMainSpan, runWithMainSpan } from './context';
+import { getAllServiceMetadata } from './metadata';
 
 /**
  * Mark the currently active span as the main span and enrich it with initial attributes
@@ -21,7 +22,12 @@ export function markAndGetMainSpan(): Span | undefined {
 
   // Add basic service metadata
   activeSpan.setAttribute('service.name', process.env.OTEL_SERVICE_NAME || 'five31-workout-tracker');
-  activeSpan.setAttribute('service.environment', process.env.NODE_ENV || 'development');
+
+  // Add comprehensive metadata
+  const metadata = getAllServiceMetadata();
+  Object.entries(metadata).forEach(([key, value]) => {
+    activeSpan.setAttribute(key, value);
+  });
 
   return activeSpan;
 }
