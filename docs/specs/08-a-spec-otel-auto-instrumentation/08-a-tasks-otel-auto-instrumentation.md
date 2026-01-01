@@ -124,7 +124,7 @@ Enrich all main spans with comprehensive service metadata including Git SHA (ser
 
 ---
 
-### [ ] 4.0 Implement Tail-Based Sampling Configuration
+### [x] 4.0 Implement Tail-Based Sampling Configuration
 
 Create a custom sampler that implements tail-based sampling strategy: always retain error traces (status >= 400) and slow requests (duration > threshold), while probabilistically sampling successful fast requests. Add sample.rate attribute to all spans and make sampling thresholds configurable via environment variables.
 
@@ -139,21 +139,21 @@ Create a custom sampler that implements tail-based sampling strategy: always ret
 
 #### 4.0 Tasks
 
-- [ ] 4.1 Create `/lib/otel/sampler.ts` for custom sampler implementation
-- [ ] 4.2 In sampler.ts, import Sampler, SamplingResult from '@opentelemetry/sdk-trace-base'
-- [ ] 4.3 In sampler.ts, create TailBasedSampler class that implements Sampler interface
-- [ ] 4.4 In TailBasedSampler constructor, accept config object with slowThresholdMs (default 2000) and successSampleRate (default 0.1)
-- [ ] 4.5 In TailBasedSampler constructor, read config from environment variables OTEL_SAMPLING_SLOW_THRESHOLD_MS and OTEL_SAMPLING_SUCCESS_RATE
-- [ ] 4.6 Implement shouldSample() method that examines span attributes to determine sampling decision
-- [ ] 4.7 In shouldSample(), always return RECORD_AND_SAMPLED if http.status_code >= 400 (errors)
-- [ ] 4.8 In shouldSample(), always return RECORD_AND_SAMPLED if span duration > slowThresholdMs (slow requests)
-- [ ] 4.9 In shouldSample(), for successful fast requests, return RECORD_AND_SAMPLED with probability = successSampleRate, otherwise return NOT_RECORD
-- [ ] 4.10 In shouldSample(), add sample.rate attribute to traceState indicating sample rate (1 for always, 10 for 10%, 100 for 1%)
-- [ ] 4.11 Add debug logging in shouldSample() that logs sampling decisions with reason (error/slow/sampled/dropped)
-- [ ] 4.12 Update `/instrumentation.ts` to import and use TailBasedSampler in NodeSDK configuration
-- [ ] 4.13 Update `.env.example` to add OTEL_SAMPLING_SLOW_THRESHOLD_MS and OTEL_SAMPLING_SUCCESS_RATE with comments
-- [ ] 4.14 Test by triggering an error request (e.g., POST to invalid route) and verifying trace is retained
-- [ ] 4.15 Test by making multiple successful fast requests and verifying only ~10% are retained (if sample rate is 0.1)
+- [x] 4.1 Create `/lib/otel/sampler.ts` for custom sampler implementation
+- [x] 4.2 In sampler.ts, import Sampler, SamplingResult from '@opentelemetry/sdk-trace-base'
+- [x] 4.3 In sampler.ts, create TailBasedSampler class that implements Sampler interface
+- [x] 4.4 In TailBasedSampler constructor, accept config object with slowThresholdMs (default 2000) and successSampleRate (default 0.1)
+- [x] 4.5 In TailBasedSampler constructor, read config from environment variables OTEL_SAMPLING_SLOW_THRESHOLD_MS and OTEL_SAMPLING_SUCCESS_RATE
+- [x] 4.6 Implement shouldSample() method that examines span attributes to determine sampling decision
+- [x] 4.7 In shouldSample(), always return RECORD_AND_SAMPLED if http.status_code >= 400 (errors)
+- [x] 4.8 In shouldSample(), always return RECORD_AND_SAMPLED if span duration > slowThresholdMs (slow requests)
+- [x] 4.9 In shouldSample(), for successful fast requests, return RECORD_AND_SAMPLED with probability = successSampleRate, otherwise return NOT_RECORD
+- [x] 4.10 In shouldSample(), add sample.rate attribute to traceState indicating sample rate (1 for always, 10 for 10%, 100 for 1%)
+- [x] 4.11 Add debug logging in shouldSample() that logs sampling decisions with reason (error/slow/sampled/dropped)
+- [x] 4.12 Update `/instrumentation.ts` to import and use TailBasedSampler in NodeSDK configuration
+- [x] 4.13 Update `.env.example` to add OTEL_SAMPLING_SLOW_THRESHOLD_MS and OTEL_SAMPLING_SUCCESS_RATE with comments
+- [x] 4.14 Test by triggering an error request (e.g., POST to invalid route) and verifying trace is retained
+- [x] 4.15 Test by making multiple successful fast requests and verifying only ~10% are retained (if sample rate is 0.1)
 
 ---
 
