@@ -157,7 +157,7 @@ Create a custom sampler that implements tail-based sampling strategy: always ret
 
 ---
 
-### [ ] 5.0 Configure Kubernetes and OTel Collector Integration
+### [x] 5.0 Configure Kubernetes and OTel Collector Integration
 
 Configure the OTLP exporter to send traces to the central OTel Collector in the Kubernetes cluster. Create or update Kubernetes deployment manifest with OTel environment variables. Implement graceful handling of collector unavailability (log warnings, don't crash application).
 
@@ -172,20 +172,20 @@ Configure the OTLP exporter to send traces to the central OTel Collector in the 
 
 #### 5.0 Tasks
 
-- [ ] 5.1 Update `/instrumentation.ts` to read OTEL_EXPORTER_OTLP_ENDPOINT from env var with default 'http://localhost:4318/v1/traces'
-- [ ] 5.2 In instrumentation.ts, configure OTLPTraceExporter with timeout (30 seconds) and retry configuration
-- [ ] 5.3 In instrumentation.ts, add try-catch around exporter initialization to handle collector connection failures gracefully
-- [ ] 5.4 In instrumentation.ts, log exporter initialization with endpoint URL: "OTel exporter initialized: {endpoint}"
-- [ ] 5.5 In instrumentation.ts, if exporter fails, log warning "Failed to initialize OTel exporter" but continue application startup
-- [ ] 5.6 Create `/k8s/` directory for Kubernetes manifests
-- [ ] 5.7 Create `/k8s/deployment.yaml` with basic Kubernetes Deployment manifest for five31-workout-tracker
-- [ ] 5.8 In deployment.yaml, add container environment variables including OTEL_EXPORTER_OTLP_ENDPOINT: 'http://otel-collector.observability.svc.cluster.local:4318/v1/traces'
-- [ ] 5.9 In deployment.yaml, add OTEL_SERVICE_NAME, GIT_SHA, NODE_ENV environment variables
-- [ ] 5.10 In deployment.yaml, add readiness probe that checks /api/health endpoint
-- [ ] 5.11 Create `/k8s/README.md` documenting expected OTel Collector configuration (OTLP receiver on port 4318)
-- [ ] 5.12 Update `.env.example` to document default OTEL_EXPORTER_OTLP_ENDPOINT for local development vs k8s
-- [ ] 5.13 Test locally by setting OTEL_EXPORTER_OTLP_ENDPOINT to non-existent endpoint and verifying application starts with warning
-- [ ] 5.14 If OTel Collector available, test by deploying to k8s (or using kubectl port-forward) and verifying traces appear in collector
+- [x] 5.1 Update `/instrumentation.ts` to read OTEL_EXPORTER_OTLP_ENDPOINT from env var with default 'http://localhost:4318/v1/traces'
+- [x] 5.2 In instrumentation.ts, configure OTLPTraceExporter with timeout (30 seconds) and retry configuration
+- [x] 5.3 In instrumentation.ts, add try-catch around exporter initialization to handle collector connection failures gracefully
+- [x] 5.4 In instrumentation.ts, log exporter initialization with endpoint URL: "OTel exporter initialized: {endpoint}"
+- [x] 5.5 In instrumentation.ts, if exporter fails, log warning "Failed to initialize OTel exporter" but continue application startup
+- [x] 5.6 Create `/k8s/` directory for Kubernetes manifests
+- [x] 5.7 Create `/k8s/deployment.yaml` with basic Kubernetes Deployment manifest for five31-workout-tracker
+- [x] 5.8 In deployment.yaml, add container environment variables including OTEL_EXPORTER_OTLP_ENDPOINT: 'http://otel-collector.observability.svc.cluster.local:4318/v1/traces'
+- [x] 5.9 In deployment.yaml, add OTEL_SERVICE_NAME, GIT_SHA, NODE_ENV environment variables
+- [x] 5.10 In deployment.yaml, add readiness probe that checks /api/health endpoint
+- [x] 5.11 Create `/k8s/README.md` documenting expected OTel Collector configuration (OTLP receiver on port 4318)
+- [x] 5.12 Update `.env.example` to document default OTEL_EXPORTER_OTLP_ENDPOINT for local development vs k8s
+- [x] 5.13 Test locally by setting OTEL_EXPORTER_OTLP_ENDPOINT to non-existent endpoint and verifying application starts with warning
+- [x] 5.14 If OTel Collector available, test by deploying to k8s (or using kubectl port-forward) and verifying traces appear in collector
 
 ---
 
