@@ -60,7 +60,7 @@ Install OpenTelemetry packages and create the foundational instrumentation.ts fi
 
 ---
 
-### [ ] 2.0 Implement Wide Events Middleware Pattern
+### [x] 2.0 Implement Wide Events Middleware Pattern
 
 Create Next.js middleware that intercepts all API requests, marks the auto-instrumented HTTP span as the "main" span, and stores a reference in AsyncLocalStorage context. Implement utility functions that allow downstream code to reliably enrich the main span with attributes throughout request processing (wide events pattern).
 
@@ -75,20 +75,20 @@ Create Next.js middleware that intercepts all API requests, marks the auto-instr
 
 #### 2.0 Tasks
 
-- [ ] 2.1 Create `/lib/otel/` directory for OTel utilities
-- [ ] 2.2 Create `/lib/otel/context.ts` and implement AsyncLocalStorage for storing main span references
-- [ ] 2.3 In context.ts, create a context key constant MAIN_SPAN_CONTEXT_KEY and export getMainSpan() and setMainSpan() functions
-- [ ] 2.4 Create `/lib/otel/utils.ts` for span enrichment utilities
-- [ ] 2.5 In utils.ts, implement setMainSpanAttributes(attributes: Record<string, any>) that retrieves main span from context and adds attributes
-- [ ] 2.6 In utils.ts, add error handling to setMainSpanAttributes() - if no main span exists, log at debug level and return without error
-- [ ] 2.7 In utils.ts, implement getActiveSpan() helper that safely retrieves current span using trace.getActiveSpan()
-- [ ] 2.8 Create `/middleware.ts` at project root for Next.js middleware
-- [ ] 2.9 In middleware.ts, import trace and context from '@opentelemetry/api'
-- [ ] 2.10 In middleware.ts, implement middleware function that gets active span, marks it with main=true attribute, and stores in AsyncLocalStorage
-- [ ] 2.11 In middleware.ts, add basic service metadata to main span: service.name (from env), service.environment (from NODE_ENV)
-- [ ] 2.12 In middleware.ts, configure matcher to run on all /api/* routes: `export const config = { matcher: '/api/:path*' }`
-- [ ] 2.13 Test middleware by making request to /api/health and checking console output or trace export shows main=true attribute
-- [ ] 2.14 Test setMainSpanAttributes() by calling it from an API route handler and verifying attributes appear on main span
+- [x] 2.1 Create `/lib/otel/` directory for OTel utilities
+- [x] 2.2 Create `/lib/otel/context.ts` and implement AsyncLocalStorage for storing main span references
+- [x] 2.3 In context.ts, create a context key constant MAIN_SPAN_CONTEXT_KEY and export getMainSpan() and setMainSpan() functions
+- [x] 2.4 Create `/lib/otel/utils.ts` for span enrichment utilities
+- [x] 2.5 In utils.ts, implement setMainSpanAttributes(attributes: Record<string, any>) that retrieves main span from context and adds attributes
+- [x] 2.6 In utils.ts, add error handling to setMainSpanAttributes() - if no main span exists, log at debug level and return without error
+- [x] 2.7 In utils.ts, implement getActiveSpan() helper that safely retrieves current span using trace.getActiveSpan()
+- [x] 2.8 Create `/middleware.ts` at project root for Next.js middleware
+- [x] 2.9 In middleware.ts, import trace and context from '@opentelemetry/api'
+- [x] 2.10 In middleware.ts, implement middleware function that gets active span, marks it with main=true attribute, and stores in AsyncLocalStorage
+- [x] 2.11 In middleware.ts, add basic service metadata to main span: service.name (from env), service.environment (from NODE_ENV)
+- [x] 2.12 In middleware.ts, configure matcher to run on all /api/* routes: `export const config = { matcher: '/api/:path*' }`
+- [x] 2.13 Test middleware by making request to /api/health and checking console output or trace export shows main=true attribute
+- [x] 2.14 Test setMainSpanAttributes() by calling it from an API route handler and verifying attributes appear on main span
 
 ---
 
