@@ -82,7 +82,9 @@ This specification covers the implementation of OpenTelemetry (OTel) auto-instru
 - Console/OTel Collector: Trace shows service.version with git SHA demonstrates version tracking works
 - Console/OTel Collector: Trace shows deployment.age_minutes demonstrates deployment tracking works
 
-### Unit 4: Tail-Based Sampling Configuration
+### Unit 4: Tail-Based Sampling Configuration [DEPRECATED - 2026-01-04]
+
+**⚠️ DEPRECATION NOTICE:** This unit was removed from the implementation. Application-level "tail-based sampling" was architecturally incorrect (head-based sampling with tail-based criteria). Sampling is now handled by the OTel Collector where true tail-based sampling can be performed with complete trace data. See `08-a-addendum-sampling-removal.md` for details.
 
 **Purpose:** Implement sampling strategy to retain important traces (errors, slow requests) while sampling successful fast requests
 

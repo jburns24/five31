@@ -124,7 +124,9 @@ Enrich all main spans with comprehensive service metadata including Git SHA (ser
 
 ---
 
-### [x] 4.0 Implement Tail-Based Sampling Configuration
+### [x] 4.0 [DEPRECATED - 2026-01-04] Implement Tail-Based Sampling Configuration
+
+**⚠️ DEPRECATED:** This task was removed. Sampling moved to OTel Collector. See `08-a-addendum-sampling-removal.md`.
 
 Create a custom sampler that implements tail-based sampling strategy: always retain error traces (status >= 400) and slow requests (duration > threshold), while probabilistically sampling successful fast requests. Add sample.rate attribute to all spans and make sampling thresholds configurable via environment variables.
 

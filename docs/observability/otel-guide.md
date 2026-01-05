@@ -20,7 +20,7 @@ This application uses OpenTelemetry auto-instrumentation to automatically captur
 - Fetch calls to external services
 - MongoDB operations (via auto-instrumentation)
 
-Traces include comprehensive service metadata (version, environment, runtime info) and support tail-based sampling to reduce data volume while retaining important traces.
+Traces include comprehensive service metadata (version, environment, runtime info). The application exports 100% of traces to the OTel Collector, which handles tail-based sampling decisions.
 
 ## Wide Events Pattern
 
@@ -104,12 +104,6 @@ http.status_code >= 500
 GROUP BY deployment.age_minutes
 ```
 
-### Find requests with specific sample rate
-```
-sample.rate = 1  // All sampled (errors/slow)
-sample.rate = 10 // 10% sampled
-```
-
 ### Trace requests across services
 ```
 trace_id = "abc123..."
@@ -128,8 +122,6 @@ operation.type = "workout_plan_generation"
 | `OTEL_EXPORTER_OTLP_ENDPOINT` | OTLP HTTP endpoint URL | `http://localhost:4318/v1/traces` | Yes | `http://otel-collector.observability.svc.cluster.local:4318/v1/traces` |
 | `OTEL_SERVICE_NAME` | Service name in traces | `five31-workout-tracker` | Yes | `five31-workout-tracker` |
 | `OTEL_LOG_LEVEL` | SDK logging level | `info` | No | `debug`, `info`, `warn`, `error` |
-| `OTEL_SAMPLING_SLOW_THRESHOLD_MS` | Slow request threshold | `2000` | No | `3000` |
-| `OTEL_SAMPLING_SUCCESS_RATE` | Success sampling rate | `0.1` | No | `0.05` (5%) |
 | `GIT_SHA` | Git commit SHA (version) | `unknown` | No | `abc123def` |
 | `NODE_ENV` | Environment name | `development` | Yes | `production`, `staging` |
 
@@ -156,28 +148,25 @@ Traces are sent to the collector configured in OTEL_EXPORTER_OTLP_ENDPOINT.
     "node.version": "v20.11.0",
     "http.method": "GET",
     "http.url": "/api/workouts",
-    "http.status_code": 200,
-    "sample.rate": 10
+    "http.status_code": 200
   }
 }
 ```
 
 ## Sampling Strategy
 
-**Tail-Based Sampling Criteria:**
+The application sends **100% of traces** to the OTel Collector. Sampling decisions are made by the collector using tail-based sampling, which allows:
+- Retaining 100% of errors (after seeing the final status)
+- Retaining 100% of slow requests (after measuring complete duration)
+- Sampling successful fast requests at a configurable rate
 
-1. **Always Retain Errors:** Any request with `http.status_code >= 400` is sampled at 100%
-2. **Always Retain Slow Requests:** Requests taking longer than `OTEL_SAMPLING_SLOW_THRESHOLD_MS` are sampled at 100%
-3. **Probabilistic Sampling:** Successful fast requests are sampled at `OTEL_SAMPLING_SUCCESS_RATE` (default 10%)
+**Why collector-based sampling?**
+- True tail-based sampling requires seeing the complete trace
+- Collector has full trace information for intelligent sampling decisions
+- Application stays simple and focused on instrumentation
 
-**Adjusting Thresholds:**
-```bash
-# Sample only 5% of successful fast requests
-export OTEL_SAMPLING_SUCCESS_RATE=0.05
-
-# Increase slow request threshold to 3 seconds
-export OTEL_SAMPLING_SLOW_THRESHOLD_MS=3000
-```
+**Configuring collector sampling:**
+See `/k8s/README.md` for recommended OTel Collector tail-based sampling configuration.
 
 ## Troubleshooting
 
@@ -226,22 +215,6 @@ env | grep OTEL
 **Diagnosis:** Check if `markAndGetMainSpan()` is called in API route handlers
 
 **Solution:** Add `markAndGetMainSpan()` call at the start of route handlers
-
-### Sampling not working
-
-**Symptoms:** All traces sampled or none sampled
-
-**Diagnosis:**
-```bash
-# Check sampling configuration
-env | grep OTEL_SAMPLING
-
-# Enable debug logging
-export OTEL_LOG_LEVEL=debug
-npm run dev
-```
-
-**Solution:** Verify OTEL_SAMPLING_* variables are set correctly
 
 ## Local Development
 
