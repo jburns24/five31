@@ -17,7 +17,6 @@ services:
       - NODE_ENV=${NODE_ENV:-production}
       # Testing and Debugging
       - OTEL_LOG_LEVEL=${OTEL_LOG_LEVEL:-debug}
-      - OTEL_SAMPLING_SUCCESS_RATE=${OTEL_SAMPLING_SUCCESS_RATE:-1.0}
     env_file:
       - .env
     restart: unless-stopped

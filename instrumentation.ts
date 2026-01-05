@@ -1,7 +1,7 @@
 import { NodeSDK } from '@opentelemetry/sdk-node';
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
-import { TailBasedSampler } from './lib/otel/sampler';
+import { ParentBasedSampler, AlwaysOnSampler } from '@opentelemetry/sdk-trace-base';
 
 export async function register() {
   try {
@@ -10,8 +10,8 @@ export async function register() {
       url: process.env.OTEL_EXPORTER_OTLP_ENDPOINT || 'http://localhost:4318/v1/traces',
     });
 
-    // Configure tail-based sampler
-    const sampler = new TailBasedSampler();
+    // Configure sampler: 100% sampling at application level, collector handles tail-based sampling
+    const sampler = new ParentBasedSampler({ root: new AlwaysOnSampler() });
 
     // Initialize NodeSDK with trace exporter, auto-instrumentations, and service name
     const sdk = new NodeSDK({

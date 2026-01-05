@@ -1,10 +1,12 @@
 import { NextResponse } from 'next/server';
 import connectDB from '@/lib/mongodb';
 import { markAndGetMainSpan } from '@/lib/otel/utils';
+import { set } from 'mongoose';
 
 export async function GET() {
 
   markAndGetMainSpan();
+  await new Promise(resolve => setTimeout(resolve, 3000));
 
   try {
     await connectDB();

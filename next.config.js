@@ -8,9 +8,12 @@ const nextConfig = {
     if (isServer) {
       // Don't bundle OpenTelemetry packages for the browser
       config.externals = config.externals || [];
-      config.externals.push('@opentelemetry/sdk-node');
-      config.externals.push('@opentelemetry/auto-instrumentations-node');
-      config.externals.push('@opentelemetry/instrumentation');
+      config.externals.push(({ context, request }, callback) => {
+        if (request.startsWith('@opentelemetry/')) {
+          return callback(null, 'commonjs ' + request);
+        }
+        callback();
+      });
     } else {
       // Provide fallbacks for Node.js built-in modules on the client
       config.resolve.fallback = {
