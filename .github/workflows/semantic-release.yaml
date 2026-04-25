@@ -20,7 +20,7 @@ jobs:
       - uses: googleapis/release-please-action@v4
         with:
           config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
           # Using octo-sts to get a temporarty token. Needed so this workflow
           # will trigger other workflows (ie: the tag pushed by this workflow will trigger release.yaml)
           token: ${{ steps.octo-sts.outputs.token }}
-          release-type: 'simple'
