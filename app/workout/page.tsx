@@ -97,17 +97,11 @@ function WorkoutPageContent() {
       if (isAllWorkoutsComplete(typedWorkouts)) {
         setAllComplete(true);
       } else {
-        // Always navigate to first incomplete workout on page load
-        const firstIncomplete = findFirstIncompleteWorkout(typedWorkouts);
-        if (firstIncomplete) {
-          const currentWeekFromUrl = weekParam ? parseInt(weekParam, 10) : null;
-          const currentLiftFromUrl = liftParam as LiftType | null;
-
-          // Only navigate if current URL doesn't match first incomplete
-          if (
-            currentWeekFromUrl !== firstIncomplete.weekNumber ||
-            currentLiftFromUrl !== firstIncomplete.lift
-          ) {
+        // Only auto-navigate to first incomplete when no explicit workout was requested
+        const hasExplicitSelection = weekParam !== null || liftParam !== null;
+        if (!hasExplicitSelection) {
+          const firstIncomplete = findFirstIncompleteWorkout(typedWorkouts);
+          if (firstIncomplete) {
             const params = new URLSearchParams();
             params.set('week', firstIncomplete.weekNumber.toString());
             params.set('lift', firstIncomplete.lift);
