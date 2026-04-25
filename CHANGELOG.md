@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/jburns24/five31/compare/v1.3.0...v1.3.1) (2026-04-25)
+
+
+### Bug Fixes
+
+* respect explicit workout selection instead of always redirecting to first incomplete ([#39](https://github.com/jburns24/five31/issues/39)) ([6c643c8](https://github.com/jburns24/five31/commit/6c643c823510e4aa9a9851e65fcb50ba9bc44a82))
+
 ## [1.3.0](https://github.com/jburns24/five31/compare/v1.2.9...v1.3.0) (2026-04-25)
 
 
