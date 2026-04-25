@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/jburns24/five31/compare/v1.2.9...v1.3.0) (2026-04-25)
+
+
+### Features
+
+* Install OpenTelemetry SDK and configure auto-instrumentation ([#36](https://github.com/jburns24/five31/issues/36)) ([836e0f9](https://github.com/jburns24/five31/commit/836e0f9649d3d8f3f5dc7a8df52b43e189d450ad))
+
 ## [1.2.9](https://github.com/jburns24/five31/compare/v1.2.8...v1.2.9) (2025-12-31)
 
 
