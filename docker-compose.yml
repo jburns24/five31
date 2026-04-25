@@ -3,6 +3,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        GIT_SHA: ${GIT_SHA:-dev}
     container_name: nextjs-google-auth
     ports:
       - "3000:3000"
@@ -11,6 +13,10 @@ services:
       - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - GIT_SHA=${GIT_SHA:-dev}
+      - NODE_ENV=${NODE_ENV:-production}
+      # Testing and Debugging
+      - OTEL_LOG_LEVEL=${OTEL_LOG_LEVEL:-debug}
     env_file:
       - .env
     restart: unless-stopped

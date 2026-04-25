@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: five31-deployment
+  labels:
+    app: five31
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: five31
+  template:
+    metadata:
+      labels:
+        app: five31
+    spec:
+      containers:
+        - name: five31
+          image: ghcr.io/jburns24/five31:v1.2.9@sha256:931de74700d69b3dc6954cdb579240e157af87e0cf89da6954be677a7ceae2d0
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - secretRef:
+                name: five31-env
+          env:
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://otel-collector.observability.svc.cluster.local:4318/v1/traces"
+            - name: OTEL_SERVICE_NAME
+              value: "five31-workout-tracker"
+            - name: NODE_ENV
+              value: "production"
+            - name: OTEL_LOG_LEVEL
+              value: "info"
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
