@@ -1,72 +1,27 @@
-# Kubernetes Deployment
+# k8s/
 
-## OTel Collector Configuration
+Base Kubernetes manifests for five31. Owned by this repo; consumed as a kustomize base by overlays (e.g. the homelab cluster's `manifests/apps/53one/`).
 
-This application sends **100% of traces** to the collector. The collector should implement tail-based sampling to reduce data volume while retaining important traces.
+## Layout
 
-**Expected Collector Endpoint:**
-`http://otel-collector.observability.svc.cluster.local:4318/v1/traces`
+- `namespace.yaml` — `five31` namespace
+- `deployment.yaml` — Deployment with image pin, OTel env, probes, resources
+- `service.yaml` — ClusterIP `five31-service` (:80 → :3000)
+- `kustomization.yaml` — base kustomization
 
-**Required Collector Configuration:**
-- OTLP HTTP receiver on port 4318
-- Namespace: `observability`
-- Service name: `otel-collector`
+The image pin is bumped by the release workflow on tag.
 
-### Recommended Tail-Based Sampling Configuration
+## Build
 
-```yaml
-processors:
-  tail_sampling:
-    decision_wait: 10s
-    num_traces: 100000
-    expected_new_traces_per_sec: 100
-    policies:
-      # Always sample errors
-      - name: errors
-        type: status_code
-        status_code: {status_codes: [ERROR]}
-
-      # Always sample slow requests (>2s)
-      - name: slow-requests
-        type: latency
-        latency: {threshold_ms: 2000}
-
-      # Sample 10% of successful fast requests
-      - name: probabilistic
-        type: probabilistic
-        probabilistic: {sampling_percentage: 10}
-
-service:
-  pipelines:
-    traces:
-      receivers: [otlp]
-      processors: [tail_sampling, batch]
-      exporters: [jaeger, logging]
-```
-
-### Configuration Details
-
-- **decision_wait:** Wait 10 seconds to collect all spans in a trace before deciding
-- **Errors:** 100% retention for spans with status_code: ERROR
-- **Slow requests:** 100% retention for requests taking >2000ms
-- **Probabilistic:** 10% sampling for successful fast requests
-- **True tail-based:** Decisions made AFTER seeing complete trace
-
-### Deployment Notes
-
-- Deploy OTel Collector in `observability` namespace
-- Service name: `otel-collector`
-- Expose OTLP HTTP receiver on port 4318
-- Configure resource limits based on expected trace volume
-
-## Deployment
-
-Replace `{{ GIT_SHA }}` in deployment.yaml with actual git SHA before deploying:
 ```bash
-export GIT_SHA=$(git rev-parse --short HEAD)
-envsubst < deployment.yaml | kubectl apply -f -
+kustomize build k8s/
 ```
 
-## Environment Variables
+## Overlay contract
 
-All OTel environment variables are configured in the deployment manifest. Update deployment.yaml to change configuration.
+Overlays are expected to provide:
+
+- A `Secret` named `five31-env` (consumed via `envFrom`) supplying app secrets (NextAuth, MongoDB URI, Google OAuth, etc.)
+- Ingress / external routing — not provided here because it's cluster-specific (Traefik, certResolver, host).
+
+The OTel endpoint defaults to the homelab collector at `otel-collector.observability.svc.cluster.local:4318`. Override via overlay if your cluster differs.
