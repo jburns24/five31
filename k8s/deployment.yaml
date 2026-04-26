@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: five31
-          image: ghcr.io/jburns24/five31:v1.3.2 # x-release-please-version
+          image: ghcr.io/jburns24/five31:v1.3.3 # x-release-please-version
           ports:
             - containerPort: 3000
           envFrom:

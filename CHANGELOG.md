@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.3](https://github.com/jburns24/five31/compare/v1.3.2...v1.3.3) (2026-04-26)
+
+
+### Bug Fixes
+
+* Fixed empty string in ci causing build logs and removed noisy log line in health check ([cf60f55](https://github.com/jburns24/five31/commit/cf60f55962c446b1820e1993516ff6a901526073))
+
 ## [1.3.2](https://github.com/jburns24/five31/compare/v1.3.1...v1.3.2) (2026-04-25)
 
 
