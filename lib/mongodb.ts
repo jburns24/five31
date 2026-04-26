@@ -31,7 +31,6 @@ async function connectDB() {
   }
 
   if (cached.conn) {
-    console.log('MongoDB: Using cached connection');
     return cached.conn;
   }
 
