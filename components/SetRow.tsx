@@ -60,6 +60,9 @@ export default function SetRow({
       <span className={`set-row__reps ${completed ? 'set-row__text--strike' : ''}`}>
         × {set.reps}
         {set.isAmrap && <span className="amrap-badge">+</span>}
+        {set.isAmrap && set.amrapRecorded && set.actualReps !== undefined && (
+          <span className="set-row__actual-reps"> (got {set.actualReps})</span>
+        )}
       </span>
       <span className="set-row__percentage">{set.percentage}%</span>
     </div>

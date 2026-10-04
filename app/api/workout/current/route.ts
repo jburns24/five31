@@ -45,6 +45,27 @@ export async function GET() {
       );
     }
 
+    // Plans recorded before actualReps was persisted: backfill from AMRAP history
+    const history = (user.amrapHistory || []) as {
+      lift: string;
+      reps: number;
+      weekNumber: number;
+      workoutPlanId: { toString(): string };
+    }[];
+    for (const week of workoutPlan.weeklyWorkouts) {
+      for (const lift of week.lifts) {
+        const amrapSet = lift.sets.find((s) => s.isAmrap);
+        if (!amrapSet?.amrapRecorded || amrapSet.actualReps !== undefined) continue;
+        const entry = history.find(
+          (h) =>
+            h.workoutPlanId?.toString() === workoutPlan._id.toString() &&
+            h.weekNumber === week.weekNumber &&
+            h.lift === lift.lift
+        );
+        if (entry) amrapSet.actualReps = entry.reps;
+      }
+    }
+
     return NextResponse.json({ workoutPlan });
   } catch (error) {
     console.error('Error fetching workout plan:', error);

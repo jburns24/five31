@@ -9,6 +9,7 @@ export interface IWorkoutSet {
   isAmrap: boolean;
   completed?: boolean;
   amrapRecorded?: boolean;
+  actualReps?: number;
 }
 
 export interface ILiftWorkout {
@@ -83,6 +84,11 @@ const WorkoutSetSchema = new Schema<IWorkoutSet>(
       type: Boolean,
       required: false,
       default: false,
+    },
+    actualReps: {
+      type: Number,
+      required: false,
+      min: 0,
     },
   },
   { _id: false }

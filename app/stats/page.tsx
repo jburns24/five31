@@ -35,7 +35,7 @@ export default async function StatsPage() {
 
   const lifts: LiftType[] = ['squat', 'bench', 'deadlift', 'overheadPress']
   for (const lift of lifts) {
-    const liftHistory = amrapHistory.filter((entry) => entry.lift === lift)
+    const liftHistory = amrapHistory.filter((entry) => entry.lift === lift && entry.reps > 0)
     if (liftHistory.length > 0) {
       // Find the best theoretical 1RM from history
       const best = liftHistory.reduce((max, entry) => {

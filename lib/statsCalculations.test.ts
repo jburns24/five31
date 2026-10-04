@@ -78,6 +78,24 @@ describe('statsCalculations', () => {
       expect(result.squat?.reps).toBe(5)
     })
 
+    it('should ignore failed attempts with 0 reps', () => {
+      const history: IAMRAPHistoryEntry[] = [
+        createAMRAPEntry('squat', 225, 5),
+        createAMRAPEntry('squat', 275, 0),
+      ]
+
+      const result = findHeaviestAMRAPs(history)
+
+      expect(result.squat?.weight).toBe(225)
+      expect(result.squat?.reps).toBe(5)
+    })
+
+    it('should omit a lift whose only attempts failed', () => {
+      const result = findHeaviestAMRAPs([createAMRAPEntry('bench', 200, 0)])
+
+      expect(result.bench).toBeUndefined()
+    })
+
     it('should include notes when present', () => {
       const history: IAMRAPHistoryEntry[] = [
         createAMRAPEntry('bench', 185, 7, new Date(), 'Felt really strong today!'),
@@ -147,6 +165,11 @@ describe('statsCalculations', () => {
   describe('transformAMRAPToChartData', () => {
     it('should return empty array when history is empty', () => {
       const result = transformAMRAPToChartData([])
+      expect(result).toEqual([])
+    })
+
+    it('should exclude failed attempts with 0 reps from chart data', () => {
+      const result = transformAMRAPToChartData([createAMRAPEntry('squat', 275, 0, new Date(), undefined, 1)], 'all')
       expect(result).toEqual([])
     })
 

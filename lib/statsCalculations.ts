@@ -23,6 +23,7 @@ export type HeaviestAMRAPsByLift = Partial<Record<LiftType, HeaviestAMRAP>>
  * Find the heaviest AMRAP record for each lift.
  * "Heaviest" is determined by the highest weight lifted (regardless of reps).
  * In case of ties (same weight), the entry with more reps wins.
+ * Failed attempts (0 reps) are ignored.
  *
  * @param amrapHistory - Array of AMRAP history entries
  * @returns Object mapping each lift to its heaviest AMRAP record
@@ -39,7 +40,10 @@ export function findHeaviestAMRAPs(
   const lifts: LiftType[] = ['squat', 'bench', 'deadlift', 'overheadPress']
 
   for (const lift of lifts) {
-    const liftHistory = amrapHistory.filter((entry) => entry.lift === lift)
+    // Ignore failed attempts (0 reps) - only successful lifts count
+    const liftHistory = amrapHistory.filter(
+      (entry) => entry.lift === lift && entry.reps > 0
+    )
 
     if (liftHistory.length === 0) {
       continue
@@ -135,8 +139,9 @@ export function transformAMRAPToChartData(
   }
 
   // Filter to weeks 1-3 only (exclude week 4 deload)
+  // and failed attempts (0 reps)
   const nonDeloadEntries = amrapHistory.filter(
-    (entry) => entry.weekNumber >= 1 && entry.weekNumber <= 3
+    (entry) => entry.weekNumber >= 1 && entry.weekNumber <= 3 && entry.reps > 0
   )
 
   if (nonDeloadEntries.length === 0) {

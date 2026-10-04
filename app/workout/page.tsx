@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useEffect, useState, useCallback } from 'react';
+import { Suspense, useEffect, useState, useCallback, useRef } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
@@ -52,6 +52,8 @@ function WorkoutPageContent() {
   const [showAmrapDialog, setShowAmrapDialog] = useState(false);
   const [prDetails, setPrDetails] = useState<PRDetails | null>(null);
   const [allComplete, setAllComplete] = useState(false);
+  // A browser refresh should jump to the next unfinished workout (once per page load)
+  const refreshHandledRef = useRef(false);
 
   // Get current week and lift from URL params (defaults: week 1, squat)
   const weekParam = searchParams.get('week');
@@ -97,9 +99,16 @@ function WorkoutPageContent() {
       if (isAllWorkoutsComplete(typedWorkouts)) {
         setAllComplete(true);
       } else {
-        // Only auto-navigate to first incomplete when no explicit workout was requested
+        // Auto-navigate to first incomplete when no explicit workout was requested,
+        // or on a browser refresh. In-app navigation keeps the chosen workout so
+        // past workouts can still be viewed.
         const hasExplicitSelection = weekParam !== null || liftParam !== null;
-        if (!hasExplicitSelection) {
+        const navEntry = performance.getEntriesByType('navigation')[0] as
+          | PerformanceNavigationTiming
+          | undefined;
+        const isRefresh = !refreshHandledRef.current && navEntry?.type === 'reload';
+        refreshHandledRef.current = true;
+        if (!hasExplicitSelection || isRefresh) {
           const firstIncomplete = findFirstIncompleteWorkout(typedWorkouts);
           if (firstIncomplete) {
             const params = new URLSearchParams();
@@ -416,6 +425,9 @@ function WorkoutPageContent() {
           {amrapRecorded && (
             <div className="workout-amrap-recorded">
               AMRAP recorded for this workout
+              {amrapSet?.actualReps !== undefined && (
+                <> — {amrapSet.actualReps} {amrapSet.actualReps === 1 ? 'rep' : 'reps'}</>
+              )}
             </div>
           )}
         </section>
