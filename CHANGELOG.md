@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.4](https://github.com/jburns24/five31/compare/v1.3.3...v1.3.4) (2026-10-04)
+
+
+### Bug Fixes
+
+* ignore failed AMRAPs in stats, jump to next workout on refresh, show recorded AMRAP reps ([17cba8f](https://github.com/jburns24/five31/commit/17cba8fc48d9805afef61afc084044c3f90f9143))
+
 ## [1.3.3](https://github.com/jburns24/five31/compare/v1.3.2...v1.3.3) (2026-04-26)
 
 
